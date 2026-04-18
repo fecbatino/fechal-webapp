@@ -1,22 +1,22 @@
 'use client'
 import { useLocale } from 'next-intl'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter, usePathname } from '@/lib/navigation'
 
 const locales = [
   { code: 'de', label: 'DE' },
   { code: 'fr', label: 'FR' },
   { code: 'en', label: 'EN' },
-]
+] as const
+
+type LocaleCode = 'de' | 'fr' | 'en'
 
 export default function LanguageSwitcher() {
   const locale = useLocale()
   const router = useRouter()
   const pathname = usePathname()
 
-  function switchLocale(newLocale: string) {
-    const segments = pathname.split('/')
-    segments[1] = newLocale
-    router.push(segments.join('/'))
+  function switchLocale(newLocale: LocaleCode) {
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (
@@ -25,6 +25,7 @@ export default function LanguageSwitcher() {
         <button
           key={code}
           onClick={() => switchLocale(code)}
+          aria-pressed={locale === code}
           className={`px-2 py-1 text-sm rounded ${
             locale === code
               ? 'bg-emerald-600 text-white'

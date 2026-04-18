@@ -8,12 +8,22 @@ jest.mock('next-intl', () => ({
 
 jest.mock('@/lib/supabase/client', () => ({
   createClient: () => ({
-    auth: { getUser: jest.fn().mockResolvedValue({ data: { user: null } }) },
+    auth: {
+      getSession: jest.fn().mockResolvedValue({ data: { session: null } }),
+      onAuthStateChange: jest.fn().mockReturnValue({
+        data: { subscription: { unsubscribe: jest.fn() } },
+      }),
+    },
   }),
 }))
 
 jest.mock('next/navigation', () => ({
   useRouter: () => ({ push: jest.fn() }),
+  usePathname: () => '/de',
+}))
+
+jest.mock('@/lib/navigation', () => ({
+  useRouter: () => ({ replace: jest.fn() }),
   usePathname: () => '/de',
 }))
 
