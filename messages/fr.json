@@ -1,0 +1,40 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "alltag": "Quotidien",
+    "portfolio": "Portfolio",
+    "hajj": "Hajj & Umrah",
+    "vereine": "Associations",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "register": "S'inscrire"
+  },
+  "home": {
+    "hero_title": "Bienvenue",
+    "hero_subtitle": "Famille · Foi · Éducation · IT",
+    "about_title": "À propos",
+    "about_bio": "Je suis un développeur IT passionné, axé sur la famille, les valeurs islamiques et les solutions numériques pour les associations.",
+    "contact": "Contact"
+  },
+  "sections": {
+    "alltag": "Quotidien",
+    "alltag_desc": "Famille, arabe & apprentissage du Coran",
+    "portfolio": "Portfolio",
+    "portfolio_desc": "Projets, compétences & CV",
+    "hajj": "Hajj & Umrah",
+    "hajj_desc": "Planification & guides de voyage",
+    "vereine": "Associations",
+    "vereine_desc": "UMTA e.V. & AIKF e.V."
+  },
+  "auth": {
+    "login_title": "Connexion",
+    "register_title": "S'inscrire",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "full_name": "Nom complet",
+    "submit_login": "Se connecter",
+    "submit_register": "Créer un compte",
+    "no_account": "Pas encore de compte ?",
+    "has_account": "Déjà un compte ?"
+  }
+}
