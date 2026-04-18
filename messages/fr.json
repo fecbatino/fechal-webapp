@@ -35,6 +35,8 @@
     "submit_login": "Se connecter",
     "submit_register": "Créer un compte",
     "no_account": "Pas encore de compte ?",
-    "has_account": "Déjà un compte ?"
+    "has_account": "Déjà un compte ?",
+    "login": "Se connecter",
+    "register": "S'inscrire"
   }
 }

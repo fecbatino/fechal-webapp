@@ -35,6 +35,8 @@
     "submit_login": "Anmelden",
     "submit_register": "Konto erstellen",
     "no_account": "Noch kein Konto?",
-    "has_account": "Bereits ein Konto?"
+    "has_account": "Bereits ein Konto?",
+    "login": "Anmelden",
+    "register": "Registrieren"
   }
 }
