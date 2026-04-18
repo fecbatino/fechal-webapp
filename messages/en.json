@@ -38,5 +38,37 @@
     "has_account": "Already have an account?",
     "login": "Sign In",
     "register": "Register"
+  },
+  "alltag": {
+    "title": "Daily Life",
+    "subtitle": "Family · Arabic · Quran",
+    "familie": "Family",
+    "familie_desc": "Calendar, tasks & notes",
+    "arabisch": "Learn Arabic",
+    "arabisch_desc": "Vocabulary & progress",
+    "koran": "Learn Quran",
+    "koran_desc": "Reader, Tajweed & progress"
+  },
+  "familie": {
+    "title": "Family",
+    "kalender": "Calendar",
+    "aufgaben": "Tasks",
+    "einkauf": "Shopping",
+    "notizen": "Notes",
+    "mitglieder": "Members",
+    "add_event": "Add event",
+    "add_task": "Add task",
+    "add_note": "Write note",
+    "event_title": "Title",
+    "event_date": "Date",
+    "event_desc": "Description (optional)",
+    "save": "Save",
+    "delete": "Delete",
+    "no_events": "No events",
+    "no_tasks": "No tasks",
+    "no_notes": "No notes",
+    "task_category_task": "Task",
+    "task_category_shopping": "Shopping",
+    "family_id_missing": "No family ID. Please contact admin."
   }
 }

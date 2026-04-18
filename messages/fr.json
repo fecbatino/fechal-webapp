@@ -38,5 +38,37 @@
     "has_account": "Déjà un compte ?",
     "login": "Se connecter",
     "register": "S'inscrire"
+  },
+  "alltag": {
+    "title": "Quotidien",
+    "subtitle": "Famille · Arabe · Coran",
+    "familie": "Famille",
+    "familie_desc": "Calendrier, tâches & notes",
+    "arabisch": "Apprendre l'arabe",
+    "arabisch_desc": "Vocabulaire & progression",
+    "koran": "Apprendre le Coran",
+    "koran_desc": "Lecteur, Tajweed & progression"
+  },
+  "familie": {
+    "title": "Famille",
+    "kalender": "Calendrier",
+    "aufgaben": "Tâches",
+    "einkauf": "Courses",
+    "notizen": "Notes",
+    "mitglieder": "Membres",
+    "add_event": "Ajouter un événement",
+    "add_task": "Ajouter une tâche",
+    "add_note": "Écrire une note",
+    "event_title": "Titre",
+    "event_date": "Date",
+    "event_desc": "Description (optionnel)",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "no_events": "Aucun événement",
+    "no_tasks": "Aucune tâche",
+    "no_notes": "Aucune note",
+    "task_category_task": "Tâche",
+    "task_category_shopping": "Courses",
+    "family_id_missing": "Pas d'ID famille. Contacter l'administrateur."
   }
 }

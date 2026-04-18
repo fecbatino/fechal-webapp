@@ -38,5 +38,37 @@
     "has_account": "Bereits ein Konto?",
     "login": "Anmelden",
     "register": "Registrieren"
+  },
+  "alltag": {
+    "title": "Alltag",
+    "subtitle": "Familie · Arabisch · Koran",
+    "familie": "Familie",
+    "familie_desc": "Kalender, Aufgaben & Notizen",
+    "arabisch": "Arabisch lernen",
+    "arabisch_desc": "Vokabeln & Fortschritt",
+    "koran": "Koran lernen",
+    "koran_desc": "Leser, Tajweed & Fortschritt"
+  },
+  "familie": {
+    "title": "Familie",
+    "kalender": "Kalender",
+    "aufgaben": "Aufgaben",
+    "einkauf": "Einkauf",
+    "notizen": "Notizen",
+    "mitglieder": "Mitglieder",
+    "add_event": "Termin hinzufügen",
+    "add_task": "Aufgabe hinzufügen",
+    "add_note": "Notiz schreiben",
+    "event_title": "Titel",
+    "event_date": "Datum",
+    "event_desc": "Beschreibung (optional)",
+    "save": "Speichern",
+    "delete": "Löschen",
+    "no_events": "Keine Termine",
+    "no_tasks": "Keine Aufgaben",
+    "no_notes": "Keine Notizen",
+    "task_category_task": "Aufgabe",
+    "task_category_shopping": "Einkauf",
+    "family_id_missing": "Keine Familien-ID. Bitte Admin kontaktieren."
   }
 }
