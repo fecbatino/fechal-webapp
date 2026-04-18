@@ -30,6 +30,6 @@ describe('SectionCards', () => {
     render(<SectionCards />)
     const links = screen.getAllByRole('link')
     const hrefs = links.map(l => l.getAttribute('href'))
-    expect(hrefs).toContain('/de/alltag')
+    expect(hrefs).toContain('/alltag')
   })
 })

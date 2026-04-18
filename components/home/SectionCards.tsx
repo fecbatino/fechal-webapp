@@ -1,5 +1,5 @@
 'use client'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 
 const sections = [
@@ -11,7 +11,6 @@ const sections = [
 
 export default function SectionCards() {
   const t = useTranslations('sections')
-  const locale = useLocale()
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-16">
@@ -19,7 +18,7 @@ export default function SectionCards() {
         {sections.map(({ key, href, emoji }) => (
           <Link
             key={key}
-            href={`/${locale}${href}`}
+            href={href}
             className="block p-6 rounded-2xl border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all bg-white text-center group"
           >
             <div className="text-4xl mb-3">{emoji}</div>
