@@ -1,3 +1,13 @@
+import Hero from '@/components/home/Hero'
+import SectionCards from '@/components/home/SectionCards'
+import AboutSection from '@/components/home/AboutSection'
+
 export default function HomePage() {
-  return <main><p>Startseite kommt in Task 4</p></main>
+  return (
+    <>
+      <Hero />
+      <SectionCards />
+      <AboutSection />
+    </>
+  )
 }
