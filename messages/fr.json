@@ -69,6 +69,9 @@
     "no_notes": "Aucune note",
     "task_category_task": "Tâche",
     "task_category_shopping": "Courses",
-    "family_id_missing": "Pas d'ID famille. Contacter l'administrateur."
+    "family_id_missing": "Pas d'ID famille. Contacter l'administrateur.",
+    "role_parent": "Parent",
+    "role_child": "Enfant",
+    "role_member": "Membre"
   }
 }

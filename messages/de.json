@@ -69,6 +69,9 @@
     "no_notes": "Keine Notizen",
     "task_category_task": "Aufgabe",
     "task_category_shopping": "Einkauf",
-    "family_id_missing": "Keine Familien-ID. Bitte Admin kontaktieren."
+    "family_id_missing": "Keine Familien-ID. Bitte Admin kontaktieren.",
+    "role_parent": "Elternteil",
+    "role_child": "Kind",
+    "role_member": "Mitglied"
   }
 }
