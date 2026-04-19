@@ -32,18 +32,17 @@ export default function ArabischPage() {
         ])
 
         if (cardsResult.error) throw cardsResult.error
+        if (progressResult.error) throw progressResult.error
 
         const pMap: Record<string, UserCardProgress> = {}
-        const progressCardIds = new Set<string>()
         for (const p of (progressResult.data ?? [])) {
           pMap[p.card_id] = p
-          progressCardIds.add(p.card_id)
         }
 
-        const due = (cardsResult.data ?? []).filter(
-          (card: ArabicCard) => !progressCardIds.has(card.id) || pMap[card.id]?.next_due <= today
-        )
-
+        const due = (cardsResult.data ?? []).filter((card: ArabicCard) => {
+          const progress = pMap[card.id]
+          return !progress || progress.next_due <= today
+        })
         setProgressMap(pMap)
         setDueCards(due)
       } catch (err) {

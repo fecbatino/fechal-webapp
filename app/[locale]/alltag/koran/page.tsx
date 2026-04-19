@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
 import { fetchSurahs } from '@/lib/quran-api'
 import { Surah, QuranProgress } from '@/lib/types'
@@ -8,7 +8,6 @@ import SurahList from '@/components/alltag/koran/SurahList'
 
 export default function KoranPage() {
   const t = useTranslations('koran')
-  const locale = useLocale()
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [surahs, setSurahs] = useState<Surah[]>([])
@@ -61,7 +60,7 @@ export default function KoranPage() {
         <p className="text-gray-500">{t('subtitle')}</p>
       </div>
       <h2 className="text-lg font-semibold text-gray-700 mb-4">{t('surah_list')}</h2>
-      <SurahList surahs={surahs} progressMap={progressMap} locale={locale} />
+      <SurahList surahs={surahs} progressMap={progressMap} />
     </div>
   )
 }

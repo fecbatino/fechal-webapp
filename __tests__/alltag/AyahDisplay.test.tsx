@@ -30,8 +30,15 @@ describe('AyahDisplay', () => {
   })
 
   it('renders tajweed chars in Arabic region', () => {
-    render(<AyahDisplay ayah={mockAyah} translation="Im Namen Allahs" tajweedChars={mockTajweedChars} />)
+    render(
+      <AyahDisplay
+        ayah={mockAyah}
+        translation="Im Namen Allahs"
+        tajweedChars={mockTajweedChars}
+      />
+    )
     const arabicContainer = screen.getByRole('region', { name: /arabic/i })
     expect(arabicContainer).toBeInTheDocument()
+    expect(arabicContainer).toHaveTextContent('بِسْمِ')
   })
 })

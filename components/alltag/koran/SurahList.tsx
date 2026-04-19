@@ -7,7 +7,6 @@ import ProgressBadge from './ProgressBadge'
 interface Props {
   surahs: Surah[]
   progressMap: Record<number, QuranProgress>
-  locale: string
 }
 
 export default function SurahList({ surahs, progressMap }: Props) {

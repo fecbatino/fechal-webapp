@@ -15,6 +15,13 @@ const TRANSLATION_EDITIONS: Record<string, string> = {
   en: 'en.sahih',
 }
 
+export async function fetchSurahMeta(surahNumber: number): Promise<{ name: string; englishName: string }> {
+  const res = await fetch(`${BASE}/surah/${surahNumber}`)
+  if (!res.ok) throw new Error(`Failed to fetch surah ${surahNumber} meta`)
+  const json = await res.json()
+  return { name: json.data.name, englishName: json.data.englishName }
+}
+
 export async function fetchSurahWithTranslation(
   surahNumber: number,
   locale: string

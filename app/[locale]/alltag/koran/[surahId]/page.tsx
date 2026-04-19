@@ -2,8 +2,8 @@
 import { use, useEffect, useState } from 'react'
 import { useTranslations, useLocale } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { fetchSurahWithTranslation } from '@/lib/quran-api'
-import { applyTajweed, TajweedChar } from '@/lib/tajweed'
+import { fetchSurahWithTranslation, fetchSurahMeta } from '@/lib/quran-api'
+import { applyTajweed, TajweedChar, TAJWEED_COLORS } from '@/lib/tajweed'
 import { Ayah, QuranProgressStatus } from '@/lib/types'
 import AyahDisplay from '@/components/alltag/koran/AyahDisplay'
 
@@ -25,9 +25,11 @@ export default function SurahReaderPage({ params }: Props) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [ayahs, setAyahs] = useState<AyahWithTajweed[]>([])
+  const [surahName, setSurahName] = useState('')
   const [surahEnglishName, setSurahEnglishName] = useState('')
   const [currentStatus, setCurrentStatus] = useState<QuranProgressStatus>('not_started')
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
   const [userId, setUserId] = useState<string | null>(null)
 
   const surahNumber = parseInt(surahId, 10)
@@ -39,11 +41,12 @@ export default function SurahReaderPage({ params }: Props) {
         const { data: { user } } = await supabase.auth.getUser()
         if (user) setUserId(user.id)
 
-        const [surahData, progressResult] = await Promise.all([
+        const [surahData, progressResult, surahMeta] = await Promise.all([
           fetchSurahWithTranslation(surahNumber, locale),
           user
             ? supabase.from('quran_progress').select('*').eq('user_id', user.id).eq('surah_number', surahNumber).maybeSingle()
             : Promise.resolve({ data: null, error: null }),
+          fetchSurahMeta(surahNumber),
         ])
 
         const combined: AyahWithTajweed[] = surahData.arabic.map((arabicAyah, i) => ({
@@ -52,7 +55,8 @@ export default function SurahReaderPage({ params }: Props) {
           tajweedChars: applyTajweed(arabicAyah.text),
         }))
         setAyahs(combined)
-        setSurahEnglishName(`Surah ${surahNumber}`)
+        setSurahName(surahMeta.name)
+        setSurahEnglishName(surahMeta.englishName)
 
         if (progressResult.data) {
           setCurrentStatus(progressResult.data.status as QuranProgressStatus)
@@ -71,16 +75,23 @@ export default function SurahReaderPage({ params }: Props) {
     setSaving(true)
     try {
       const supabase = createClient()
-      await supabase.from('quran_progress').upsert({
+      const { error: upsertError } = await supabase.from('quran_progress').upsert({
         user_id: userId,
         surah_number: surahNumber,
         status,
         updated_at: new Date().toISOString(),
       })
+      if (upsertError) throw upsertError
       setCurrentStatus(status)
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Save failed')
     } finally {
       setSaving(false)
     }
+  }
+
+  if (isNaN(surahNumber) || surahNumber < 1 || surahNumber > 114) {
+    return <div className="max-w-2xl mx-auto px-4 py-12 text-center text-red-500">Invalid surah</div>
   }
 
   if (loading) {
@@ -105,10 +116,10 @@ export default function SurahReaderPage({ params }: Props) {
       <details className="mb-6 bg-gray-50 rounded-xl p-4">
         <summary className="cursor-pointer text-sm font-medium text-gray-600">{t('tajweed_legend')}</summary>
         <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-          <span><span style={{ color: '#DD0008' }}>■</span> Qalqalah</span>
-          <span><span style={{ color: '#537FFF' }}>■</span> Madd</span>
-          <span><span style={{ color: '#168B24' }}>■</span> Ghunna</span>
-          <span><span style={{ color: '#26BEC9' }}>■</span> Idgham</span>
+          <span><span style={{ color: TAJWEED_COLORS.qalqalah }}>■</span> Qalqalah</span>
+          <span><span style={{ color: TAJWEED_COLORS.madd }}>■</span> Madd</span>
+          <span><span style={{ color: TAJWEED_COLORS.ghunna }}>■</span> Ghunna</span>
+          <span><span style={{ color: TAJWEED_COLORS.idgham }}>■</span> Idgham</span>
         </div>
       </details>
 
@@ -128,6 +139,7 @@ export default function SurahReaderPage({ params }: Props) {
           >
             {t('mark_memorized')}
           </button>
+          {saveError && <p className="text-red-500 text-sm">{saveError}</p>}
         </div>
       )}
 

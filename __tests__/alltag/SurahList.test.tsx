@@ -43,35 +43,38 @@ const mockProgressMap: Record<number, QuranProgress> = {
 
 describe('SurahList', () => {
   it('renders surah english names', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
     expect(screen.getByText('Al-Faatiha')).toBeInTheDocument()
     expect(screen.getByText('Al-Baqara')).toBeInTheDocument()
   })
 
   it('renders surah numbers', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
-    expect(screen.getByText('1')).toBeInTheDocument()
-    expect(screen.getByText('2')).toBeInTheDocument()
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
+    // Each number badge has only digits — use getAllByText to avoid ambiguity
+    const ones = screen.getAllByText('1')
+    expect(ones.length).toBeGreaterThanOrEqual(1)
+    const twos = screen.getAllByText('2')
+    expect(twos.length).toBeGreaterThanOrEqual(1)
   })
 
   it('renders ayah counts', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
     expect(screen.getByText('7 koran.ayahs')).toBeInTheDocument()
   })
 
   it('renders arabic names', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
     expect(screen.getByText('سُورَةُ ٱلْفَاتِحَةِ')).toBeInTheDocument()
   })
 
   it('links each surah to its reader page', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
     const links = screen.getAllByRole('link')
     expect(links[0]).toHaveAttribute('href', '/koran/1')
   })
 
   it('shows progress badge for surah with progress', () => {
-    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} locale="de" />)
+    render(<SurahList surahs={mockSurahs} progressMap={mockProgressMap} />)
     expect(screen.getByText('koran.status_memorized')).toBeInTheDocument()
   })
 })
