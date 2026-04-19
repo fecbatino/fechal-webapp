@@ -9,6 +9,8 @@ interface Props {
   initialProjects: PortfolioProject[]
 }
 
+type UpsertPayload = Omit<PortfolioProject, 'id' | 'created_at'> & { id?: string }
+
 type FormData = {
   id?: string
   category: ProjectCategory
@@ -86,7 +88,7 @@ export default function ProjectAdmin({ initialProjects }: Props) {
   async function handleSave() {
     if (!form) return
     const supabase = createClient()
-    const payload: Omit<PortfolioProject, 'created_at'> & { id?: string } = {
+    const payload: UpsertPayload = {
       ...(form.id ? { id: form.id } : {}),
       category: form.category,
       title_de: form.title_de,
@@ -101,24 +103,21 @@ export default function ProjectAdmin({ initialProjects }: Props) {
       screenshot_url: form.screenshot_url.trim() || null,
       sort_order: form.sort_order,
     }
-    const { error } = await supabase.from('portfolio_projects').upsert(payload)
+    const { data: saved, error } = await supabase
+      .from('portfolio_projects')
+      .upsert(payload)
+      .select()
+      .single()
     if (error) {
       console.error('upsert error:', error.message)
       return
     }
     if (form.id) {
       setProjects((prev) =>
-        prev.map((p) =>
-          p.id === form.id ? ({ ...p, ...payload } as PortfolioProject) : p
-        )
+        prev.map((p) => (p.id === form.id ? (saved as PortfolioProject) : p))
       )
     } else {
-      const tempProject: PortfolioProject = {
-        id: `temp-${Date.now()}`,
-        created_at: new Date().toISOString(),
-        ...(payload as Omit<PortfolioProject, 'id' | 'created_at'>),
-      }
-      setProjects((prev) => [...prev, tempProject])
+      setProjects((prev) => [...prev, saved as PortfolioProject])
     }
     setForm(null)
   }

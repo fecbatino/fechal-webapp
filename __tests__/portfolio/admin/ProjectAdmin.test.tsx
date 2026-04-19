@@ -3,7 +3,15 @@ import ProjectAdmin from '@/components/portfolio/admin/ProjectAdmin'
 import { PortfolioProject } from '@/lib/types'
 
 // --- Supabase mock ---
-const mockUpsert = jest.fn().mockResolvedValue({ error: null })
+let lastUpsertPayload: Record<string, unknown> = {}
+const mockSingle = jest.fn().mockImplementation(() =>
+  Promise.resolve({ data: { id: 'new-id', created_at: '2026-04-19T00:00:00Z', ...lastUpsertPayload }, error: null })
+)
+const mockSelect = jest.fn().mockReturnValue({ single: mockSingle })
+const mockUpsert = jest.fn().mockImplementation((payload: Record<string, unknown>) => {
+  lastUpsertPayload = payload
+  return { select: mockSelect }
+})
 const mockDelete = jest.fn().mockResolvedValue({ error: null })
 jest.mock('@/lib/supabase/client', () => ({
   createClient: () => ({
@@ -39,6 +47,9 @@ const baseProject: PortfolioProject = {
 beforeEach(() => {
   mockUpsert.mockClear()
   mockDelete.mockClear()
+  mockSelect.mockClear()
+  mockSingle.mockClear()
+  lastUpsertPayload = {}
 })
 
 describe('ProjectAdmin', () => {
