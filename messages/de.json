@@ -101,5 +101,26 @@
     "select_translation": "Übersetzung wählen",
     "daily_goal": "Tagesziel",
     "tajweed_legend": "Tajweed-Legende"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Projekte, Skills & Lebenslauf",
+    "projects_title": "Projekte",
+    "skills_title": "Skills & Tools",
+    "cv_title": "Lebenslauf",
+    "category_all": "Alle",
+    "category_web": "Web-Projekte",
+    "category_ai": "KI & Neue Technologien",
+    "category_vereine": "IT für Vereine",
+    "skill_category_frontend": "Frontend",
+    "skill_category_backend": "Backend",
+    "skill_category_ai": "KI & AI",
+    "skill_category_tools": "Tools",
+    "github": "GitHub",
+    "live_demo": "Live-Demo",
+    "cv_present": "heute",
+    "cv_experience": "Berufserfahrung",
+    "cv_education": "Ausbildung",
+    "no_projects": "Keine Projekte in dieser Kategorie"
   }
 }

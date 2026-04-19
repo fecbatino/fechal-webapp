@@ -101,5 +101,26 @@
     "select_translation": "Select translation",
     "daily_goal": "Daily goal",
     "tajweed_legend": "Tajweed legend"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Projects, Skills & CV",
+    "projects_title": "Projects",
+    "skills_title": "Skills & Tools",
+    "cv_title": "Curriculum Vitae",
+    "category_all": "All",
+    "category_web": "Web Projects",
+    "category_ai": "AI & New Technologies",
+    "category_vereine": "IT for Associations",
+    "skill_category_frontend": "Frontend",
+    "skill_category_backend": "Backend",
+    "skill_category_ai": "AI & Machine Learning",
+    "skill_category_tools": "Tools",
+    "github": "GitHub",
+    "live_demo": "Live Demo",
+    "cv_present": "present",
+    "cv_experience": "Work Experience",
+    "cv_education": "Education",
+    "no_projects": "No projects in this category"
   }
 }

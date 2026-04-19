@@ -86,3 +86,46 @@ export interface Ayah {
   numberInSurah: number
   text: string
 }
+
+export type ProjectCategory = 'web' | 'ai' | 'vereine'
+export type SkillCategory = 'frontend' | 'backend' | 'ai' | 'tools'
+export type CvEntryType = 'experience' | 'education'
+
+export interface PortfolioProject {
+  id: string
+  category: ProjectCategory
+  title_de: string
+  title_fr: string
+  title_en: string
+  description_de: string
+  description_fr: string
+  description_en: string
+  tech_stack: string[]
+  github_url: string | null
+  live_url: string | null
+  screenshot_url: string | null
+  sort_order: number
+  created_at: string
+}
+
+export interface PortfolioSkill {
+  id: string
+  name: string
+  category: SkillCategory
+  sort_order: number
+}
+
+export interface CvEntry {
+  id: string
+  type: CvEntryType
+  title_de: string
+  title_fr: string
+  title_en: string
+  organization: string
+  start_year: number
+  end_year: number | null
+  description_de: string | null
+  description_fr: string | null
+  description_en: string | null
+  sort_order: number
+}
