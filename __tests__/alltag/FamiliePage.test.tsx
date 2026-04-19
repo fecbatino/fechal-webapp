@@ -23,4 +23,9 @@ describe('FamiliePage', () => {
     expect(screen.getByRole('link', { name: /familie\.aufgaben/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /familie\.notizen/i })).toBeInTheDocument()
   })
+
+  it('renders mitglieder link', () => {
+    render(<FamiliePage />)
+    expect(screen.getByRole('link', { name: /familie\.mitglieder/i })).toBeInTheDocument()
+  })
 })
