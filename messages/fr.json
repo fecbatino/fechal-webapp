@@ -147,5 +147,29 @@
     "admin_field_end_year": "À (année, vide = aujourd''hui)",
     "admin_field_name": "Nom",
     "admin_not_authorized": "Accès refusé"
+  },
+  "hajj": {
+    "title": "Hajj & Umrah",
+    "subtitle": "Guide · Prières · Liste de contrôle",
+    "section_hajj": "Hajj — Étape par étape",
+    "section_hajj_desc": "Les rites du grand pèlerinage",
+    "section_umrah": "Guide Umrah",
+    "section_umrah_desc": "Le petit pèlerinage",
+    "section_duas": "Prières & Douaa",
+    "section_duas_desc": "Prières importantes pour le Hajj et l''Umrah",
+    "section_checklist": "Liste de bagages & Documents",
+    "section_checklist_desc": "Ce que vous devez emporter",
+    "checklist_cat_documents": "Documents",
+    "checklist_cat_clothing": "Vêtements",
+    "checklist_cat_health": "Santé",
+    "checklist_cat_essentials": "Essentiels",
+    "dua_transliteration": "Translittération",
+    "dua_meaning": "Signification",
+    "dua_context": "Contexte",
+    "step_label": "Étape",
+    "check_all": "Tout cocher",
+    "items_checked": "{count} sur {total} accomplis",
+    "section_links": "Liens officiels",
+    "section_links_desc": "Autorités et organisations islamiques"
   }
 }

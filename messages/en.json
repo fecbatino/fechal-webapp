@@ -147,5 +147,29 @@
     "admin_field_end_year": "To (year, empty = present)",
     "admin_field_name": "Name",
     "admin_not_authorized": "Access denied"
+  },
+  "hajj": {
+    "title": "Hajj & Umrah",
+    "subtitle": "Guide · Prayers · Checklist",
+    "section_hajj": "Hajj — Step by Step",
+    "section_hajj_desc": "The rites of the major pilgrimage",
+    "section_umrah": "Umrah Guide",
+    "section_umrah_desc": "The minor pilgrimage",
+    "section_duas": "Prayers & Du\u2019a",
+    "section_duas_desc": "Important supplications for Hajj and Umrah",
+    "section_checklist": "Packing List & Documents",
+    "section_checklist_desc": "What you need to bring",
+    "checklist_cat_documents": "Documents",
+    "checklist_cat_clothing": "Clothing",
+    "checklist_cat_health": "Health",
+    "checklist_cat_essentials": "Essentials",
+    "dua_transliteration": "Transliteration",
+    "dua_meaning": "Meaning",
+    "dua_context": "Context",
+    "step_label": "Step",
+    "check_all": "Check all",
+    "items_checked": "{count} of {total} completed",
+    "section_links": "Official Links",
+    "section_links_desc": "Authorities and Islamic organizations"
   }
 }

@@ -147,5 +147,29 @@
     "admin_field_end_year": "Bis (Jahr, leer = heute)",
     "admin_field_name": "Name",
     "admin_not_authorized": "Kein Zugriff"
+  },
+  "hajj": {
+    "title": "Hajj & Umrah",
+    "subtitle": "Leitfaden · Gebete · Checkliste",
+    "section_hajj": "Hajj — Schritt für Schritt",
+    "section_hajj_desc": "Die Riten der großen Pilgerfahrt",
+    "section_umrah": "Umrah-Leitfaden",
+    "section_umrah_desc": "Die kleine Pilgerfahrt",
+    "section_duas": "Gebete & Dua",
+    "section_duas_desc": "Wichtige Gebete für Hajj und Umrah",
+    "section_checklist": "Packliste & Dokumente",
+    "section_checklist_desc": "Was du mitnehmen musst",
+    "checklist_cat_documents": "Dokumente",
+    "checklist_cat_clothing": "Kleidung",
+    "checklist_cat_health": "Gesundheit",
+    "checklist_cat_essentials": "Wichtige Gegenstände",
+    "dua_transliteration": "Umschrift",
+    "dua_meaning": "Bedeutung",
+    "dua_context": "Kontext",
+    "step_label": "Schritt",
+    "check_all": "Alle abhaken",
+    "items_checked": "{count} von {total} erledigt",
+    "section_links": "Offizielle Links",
+    "section_links_desc": "Behörden und islamische Organisationen"
   }
 }
