@@ -73,5 +73,33 @@
     "role_parent": "Parent",
     "role_child": "Enfant",
     "role_member": "Membre"
+  },
+  "arabisch": {
+    "title": "Apprendre l'arabe",
+    "subtitle": "Vocabulaire & Doua avec répétition espacée",
+    "cards_due": "Cartes à réviser",
+    "cards_done": "Terminé pour aujourd'hui !",
+    "start_session": "Démarrer la session",
+    "no_cards_due": "Aucune carte à réviser – bravo !",
+    "show_answer": "Voir la réponse",
+    "quality_again": "À revoir",
+    "quality_hard": "Difficile",
+    "quality_good": "Bien",
+    "quality_easy": "Facile",
+    "next_review": "Prochaine révision"
+  },
+  "koran": {
+    "title": "Apprendre le Coran",
+    "subtitle": "Lire, comprendre, mémoriser",
+    "surah_list": "Sourates",
+    "ayahs": "Versets",
+    "status_not_started": "Non commencé",
+    "status_reading": "En cours",
+    "status_memorized": "Mémorisé",
+    "mark_reading": "Marquer comme lu",
+    "mark_memorized": "Marquer comme mémorisé",
+    "select_translation": "Choisir la traduction",
+    "daily_goal": "Objectif quotidien",
+    "tajweed_legend": "Légende Tajweed"
   }
 }

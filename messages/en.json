@@ -73,5 +73,33 @@
     "role_parent": "Parent",
     "role_child": "Child",
     "role_member": "Member"
+  },
+  "arabisch": {
+    "title": "Learn Arabic",
+    "subtitle": "Vocabulary & Dua with spaced repetition",
+    "cards_due": "Cards due",
+    "cards_done": "Done for today!",
+    "start_session": "Start session",
+    "no_cards_due": "No cards due – great job!",
+    "show_answer": "Show answer",
+    "quality_again": "Again",
+    "quality_hard": "Hard",
+    "quality_good": "Good",
+    "quality_easy": "Easy",
+    "next_review": "Next review"
+  },
+  "koran": {
+    "title": "Learn Quran",
+    "subtitle": "Read, understand, memorize",
+    "surah_list": "Surahs",
+    "ayahs": "Verses",
+    "status_not_started": "Not started",
+    "status_reading": "Reading",
+    "status_memorized": "Memorized",
+    "mark_reading": "Mark as reading",
+    "mark_memorized": "Mark as memorized",
+    "select_translation": "Select translation",
+    "daily_goal": "Daily goal",
+    "tajweed_legend": "Tajweed legend"
   }
 }

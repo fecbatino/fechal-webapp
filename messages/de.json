@@ -73,5 +73,33 @@
     "role_parent": "Elternteil",
     "role_child": "Kind",
     "role_member": "Mitglied"
+  },
+  "arabisch": {
+    "title": "Arabisch lernen",
+    "subtitle": "Vokabeln & Dua mit Spaced-Repetition",
+    "cards_due": "Fällige Karten",
+    "cards_done": "Fertig für heute!",
+    "start_session": "Lernsitzung starten",
+    "no_cards_due": "Keine Karten fällig – toll gemacht!",
+    "show_answer": "Antwort zeigen",
+    "quality_again": "Nochmal",
+    "quality_hard": "Schwer",
+    "quality_good": "Gut",
+    "quality_easy": "Einfach",
+    "next_review": "Nächste Wiederholung"
+  },
+  "koran": {
+    "title": "Koran lernen",
+    "subtitle": "Lesen, verstehen, auswendig lernen",
+    "surah_list": "Suren",
+    "ayahs": "Verse",
+    "status_not_started": "Nicht begonnen",
+    "status_reading": "In Bearbeitung",
+    "status_memorized": "Auswendig gelernt",
+    "mark_reading": "Als gelesen markieren",
+    "mark_memorized": "Als auswendig markieren",
+    "select_translation": "Übersetzung wählen",
+    "daily_goal": "Tagesziel",
+    "tajweed_legend": "Tajweed-Legende"
   }
 }
