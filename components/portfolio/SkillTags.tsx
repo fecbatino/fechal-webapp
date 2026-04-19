@@ -11,8 +11,11 @@ const SKILL_CATEGORIES: SkillCategory[] = ['frontend', 'backend', 'ai', 'tools']
 export default function SkillTags({ skills }: Props) {
   const t = useTranslations('portfolio')
 
-  const grouped = SKILL_CATEGORIES.reduce<Record<SkillCategory, PortfolioSkill[]>>(
-    (acc, cat) => ({ ...acc, [cat]: skills.filter((s) => s.category === cat) }),
+  const grouped = skills.reduce<Record<SkillCategory, PortfolioSkill[]>>(
+    (acc, skill) => {
+      acc[skill.category].push(skill)
+      return acc
+    },
     { frontend: [], backend: [], ai: [], tools: [] }
   )
 

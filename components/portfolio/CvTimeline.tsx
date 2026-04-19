@@ -8,10 +8,10 @@ interface Props {
 }
 
 function getLocalizedText(entry: CvEntry, field: 'title' | 'description', locale: string): string | null {
-  const key = `${field}_${locale}` as keyof CvEntry
-  const value = entry[key] as string | null
-  if (value) return value
-  return entry[`${field}_de`] as string | null
+  if (field === 'title') {
+    return (entry[`title_${locale}` as 'title_de' | 'title_fr' | 'title_en'] ?? entry.title_de) || null
+  }
+  return (entry[`description_${locale}` as 'description_de' | 'description_fr' | 'description_en'] ?? entry.description_de) || null
 }
 
 export default function CvTimeline({ entries, locale }: Props) {
