@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
 import { HAJJ_STEPS, UMRAH_STEPS, HAJJ_DUAS, PACKING_CHECKLIST, OFFICIAL_LINKS, HajjLocale } from '@/lib/hajj-data'
 import HajjStepsGuide from '@/components/hajj/HajjStepsGuide'
 import UmrahGuide from '@/components/hajj/UmrahGuide'
@@ -7,6 +8,15 @@ import PackingChecklist from '@/components/hajj/PackingChecklist'
 
 interface Props {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'hajj' })
+  return {
+    title: `${t('title')} | Fechal`,
+    description: t('subtitle'),
+  }
 }
 
 export default async function HajjPage({ params }: Props) {

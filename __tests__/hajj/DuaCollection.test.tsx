@@ -9,7 +9,7 @@ jest.mock('next-intl', () => ({
 describe('DuaCollection', () => {
   it('renders a card for each dua', () => {
     render(<DuaCollection duas={HAJJ_DUAS} locale="de" />)
-    expect(screen.getAllByRole('article')).toHaveLength(3)
+    expect(screen.getAllByRole('article')).toHaveLength(7)
   })
 
   it('renders Arabic text for the Talbiyah', () => {

@@ -6,14 +6,14 @@ jest.mock('next-intl', () => ({
 }))
 
 const mockMembers = [
-  { id: 'user1', email: 'mama@test.de', full_name: 'Mama Batakpalé', family_role: 'parent' as const },
+  { id: 'user1', email: 'mama@test.de', full_name: 'Mama Batakpale', family_role: 'parent' as const },
   { id: 'user2', email: 'kind@test.de', full_name: null, family_role: 'child' as const },
 ]
 
 describe('FamilyMembers', () => {
   it('renders member names', () => {
     render(<FamilyMembers members={mockMembers} currentUserId="user1" />)
-    expect(screen.getByText('Mama Batakpalé')).toBeInTheDocument()
+    expect(screen.getByText('Mama Batakpale')).toBeInTheDocument()
     expect(screen.getByText('kind@test.de')).toBeInTheDocument()
   })
 

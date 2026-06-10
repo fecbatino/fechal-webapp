@@ -3,9 +3,9 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 
 const sections = [
-  { key: 'familie', href: '/familie' as const, emoji: '👨‍👩‍👧‍👦' },
-  { key: 'arabisch', href: '/arabisch' as const, emoji: '🔤' },
-  { key: 'koran', href: '/koran' as const, emoji: '📖' },
+  { key: 'familie', href: '/alltag/familie' as const, emoji: '👨‍👩‍👧‍👦' },
+  { key: 'arabisch', href: '/alltag/arabisch' as const, emoji: '🔤' },
+  { key: 'koran', href: '/alltag/koran' as const, emoji: '📖' },
 ] as const
 
 export default function AlltagPage() {

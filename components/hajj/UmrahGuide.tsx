@@ -19,7 +19,7 @@ export default function UmrahGuide({ steps, locale }: Props) {
     <ol className="space-y-6" role="list">
       {steps.map((step) => (
         <li key={step.id} className="flex gap-4">
-          <div className="flex-shrink-0 w-10 h-10 bg-teal-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+          <div className="flex-shrink-0 w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
             {step.order}
           </div>
           <div className="flex-1 bg-white border border-gray-200 rounded-xl p-5">

@@ -7,9 +7,9 @@ jest.mock('next-intl', () => ({
 }))
 
 describe('HajjStepsGuide', () => {
-  it('renders all 6 Hajj steps', () => {
+  it('renders all 7 Hajj steps', () => {
     render(<HajjStepsGuide steps={HAJJ_STEPS} locale="de" />)
-    expect(screen.getAllByRole('listitem')).toHaveLength(6)
+    expect(screen.getAllByRole('listitem')).toHaveLength(7)
   })
 
   it('renders German step titles in German locale', () => {

@@ -13,8 +13,14 @@
     "hero_title": "Bienvenue",
     "hero_subtitle": "Famille · Foi · Éducation · IT",
     "about_title": "À propos",
-    "about_bio": "Je suis un développeur IT passionné, axé sur la famille, les valeurs islamiques et les solutions numériques pour les associations.",
-    "contact": "Contact"
+    "about_bio_1": "Je suis Fechal Batakpale — ingénieur logiciel à Nuremberg, passionné par les technologies modernes, l'intelligence artificielle et l'éducation islamique.",
+    "about_bio_2": "Le jour, je développe des applications d'entreprise complexes avec Java Spring Boot, React et des bases de données Oracle. Dans mon temps libre, j'automatise des processus avec n8n, j'expérimente avec des agents IA et je construis des systèmes intelligents qui créent une réelle valeur ajoutée pour ma communauté.",
+    "about_bio_3": "En tant que membre actif de l'AIKF e.V. et de l'UMTA, je combine mes compétences techniques avec mon engagement profond pour l'éducation islamique et la communauté africaine-musulmane en Allemagne.",
+    "about_focus": "Points forts",
+    "contact": "Contact",
+    "contact_title": "Contact",
+    "contact_desc": "N'hésitez pas à me contacter pour des projets IT, des associations ou des collaborations.",
+    "contact_cta": "Envoyer un message"
   },
   "sections": {
     "alltag": "Quotidien",
@@ -100,7 +106,9 @@
     "mark_memorized": "Marquer comme mémorisé",
     "select_translation": "Choisir la traduction",
     "daily_goal": "Objectif quotidien",
-    "tajweed_legend": "Légende Tajweed"
+    "tajweed_legend": "Légende Tajweed",
+    "prev_surah": "Sourate précédente",
+    "next_surah": "Sourate suivante"
   },
   "portfolio": {
     "title": "Portfolio",
@@ -114,7 +122,7 @@
     "category_vereine": "IT pour Associations",
     "skill_category_frontend": "Frontend",
     "skill_category_backend": "Backend",
-    "skill_category_ai": "IA & AI",
+    "skill_category_ai": "IA & Apprentissage Automatique",
     "skill_category_tools": "Outils",
     "github": "GitHub",
     "live_demo": "Démo en direct",

@@ -14,5 +14,6 @@ export async function GET(request: Request) {
     }
   }
 
-  return NextResponse.redirect(`${origin}/de/auth/login?error=auth`)
+  const locale = new URL(request.url).pathname.split('/')[1] ?? 'de'
+  return NextResponse.redirect(`${origin}/${locale}/auth/login?error=auth`)
 }

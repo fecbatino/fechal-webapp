@@ -2,32 +2,31 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { getFamilyId } from '@/lib/family'
+import { useFamilyId } from '@/lib/family-context'
 import TaskList from '@/components/alltag/familie/TaskList'
 import { FamilyTask } from '@/lib/types'
 
 export default function AufgabenPage() {
   const t = useTranslations('familie')
+  const { familyId, loading: familyLoading } = useFamilyId()
   const [tasks, setTasks] = useState<FamilyTask[]>([])
-  const [familyId, setFamilyId] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (familyLoading) return
+    if (!familyId) { setLoading(false); return }
     async function load() {
-      const fid = await getFamilyId()
-      setFamilyId(fid)
-      if (!fid) { setLoading(false); return }
       const supabase = createClient()
       const { data } = await supabase
         .from('family_tasks')
         .select('*')
-        .eq('family_id', fid)
+        .eq('family_id', familyId)
         .order('created_at', { ascending: false })
       setTasks(data ?? [])
       setLoading(false)
     }
     load()
-  }, [])
+  }, [familyId, familyLoading])
 
   async function handleAdd(title: string, category: 'task' | 'shopping') {
     if (!familyId) return

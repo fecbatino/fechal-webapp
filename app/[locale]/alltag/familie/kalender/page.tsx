@@ -2,49 +2,46 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { getFamilyId } from '@/lib/family'
+import { useFamilyId } from '@/lib/family-context'
 import FamilyCalendar from '@/components/alltag/familie/FamilyCalendar'
 import EventForm from '@/components/alltag/familie/EventForm'
 import { FamilyEvent } from '@/lib/types'
 
 export default function KalenderPage() {
   const t = useTranslations('familie')
+  const { familyId, loading: familyLoading } = useFamilyId()
   const [events, setEvents] = useState<FamilyEvent[]>([])
-  const [familyId, setFamilyId] = useState<string | null>(null)
   const [userId, setUserId] = useState<string>('')
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    if (familyLoading) return
     let cleanup: (() => void) | undefined
 
     async function load() {
       const supabase = createClient()
-      const [fid, { data: { user } }] = await Promise.all([
-        getFamilyId(),
-        supabase.auth.getUser(),
-      ])
-      setFamilyId(fid)
+      const { data: { user } } = await supabase.auth.getUser()
       setUserId(user?.id ?? '')
-      if (!fid) { setLoading(false); return }
+      if (!familyId) { setLoading(false); return }
 
       const today = new Date().toISOString().split('T')[0]
       const { data } = await supabase
         .from('family_events')
         .select('*')
-        .eq('family_id', fid)
+        .eq('family_id', familyId)
         .gte('event_date', today)
         .order('event_date', { ascending: true })
       setEvents(data ?? [])
       setLoading(false)
 
       const channel = supabase
-        .channel('family_events_' + fid)
+        .channel('family_events_' + familyId)
         .on('postgres_changes',
-          { event: 'INSERT', schema: 'public', table: 'family_events', filter: `family_id=eq.${fid}` },
+          { event: 'INSERT', schema: 'public', table: 'family_events', filter: `family_id=eq.${familyId}` },
           (payload) => setEvents((prev) => [...prev, payload.new as FamilyEvent].sort((a, b) => a.event_date.localeCompare(b.event_date)))
         )
         .on('postgres_changes',
-          { event: 'DELETE', schema: 'public', table: 'family_events', filter: `family_id=eq.${fid}` },
+          { event: 'DELETE', schema: 'public', table: 'family_events', filter: `family_id=eq.${familyId}` },
           (payload) => setEvents((prev) => prev.filter((e) => e.id !== (payload.old as { id: string }).id))
         )
         .subscribe()
@@ -54,7 +51,7 @@ export default function KalenderPage() {
 
     load()
     return () => { cleanup?.() }
-  }, [])
+  }, [familyId, familyLoading])
 
   async function handleAdd(title: string, date: string, description: string) {
     if (!familyId || !userId) return

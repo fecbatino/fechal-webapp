@@ -13,8 +13,14 @@
     "hero_title": "Willkommen",
     "hero_subtitle": "Familie · Glaube · Bildung · IT",
     "about_title": "Über mich",
-    "about_bio": "Ich bin leidenschaftlicher IT-Entwickler mit Fokus auf Familie, islamische Werte und digitale Lösungen für Vereine.",
-    "contact": "Kontakt"
+    "about_bio_1": "Ich bin Fechal Batakpale — Software Engineer aus Nürnberg mit Leidenschaft für moderne Technologie, künstliche Intelligenz und islamische Bildung.",
+    "about_bio_2": "Tagsüber entwickle ich komplexe Enterprise-Anwendungen mit Java Spring Boot, React und Oracle-Datenbanken. In meiner Freizeit automatisiere ich Prozesse mit n8n, experimentiere mit KI-Agenten und baue intelligente Systeme, die echten Mehrwert für meine Community schaffen.",
+    "about_bio_3": "Als aktives Mitglied des AIKF e.V. (Afrikanisches Islamisches Kultur Franken) und der UMTA (Union des Musulmans Togolais en Allemagne) verbinde ich meine technischen Fähigkeiten mit meinem tiefen Engagement für islamische Bildung und die afrikanisch-muslimische Gemeinschaft in Deutschland.",
+    "about_focus": "Schwerpunkte",
+    "contact": "Kontakt",
+    "contact_title": "Kontakt",
+    "contact_desc": "Ich freue mich über Anfragen zu IT-Projekten, Vereinsarbeit oder Zusammenarbeit.",
+    "contact_cta": "Nachricht schreiben"
   },
   "sections": {
     "alltag": "Alltag",
@@ -100,7 +106,9 @@
     "mark_memorized": "Als auswendig markieren",
     "select_translation": "Übersetzung wählen",
     "daily_goal": "Tagesziel",
-    "tajweed_legend": "Tajweed-Legende"
+    "tajweed_legend": "Tajweed-Legende",
+    "prev_surah": "Vorherige Sure",
+    "next_surah": "Nächste Sure"
   },
   "portfolio": {
     "title": "Portfolio",

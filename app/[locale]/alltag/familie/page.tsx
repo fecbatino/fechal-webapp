@@ -3,10 +3,10 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 
 const subPages = [
-  { key: 'kalender', href: '/familie/kalender' as const, emoji: '📅' },
-  { key: 'aufgaben', href: '/familie/aufgaben' as const, emoji: '✅' },
-  { key: 'notizen', href: '/familie/notizen' as const, emoji: '📝' },
-  { key: 'mitglieder', href: '/familie/mitglieder' as const, emoji: '👨‍👩‍👧' },
+  { key: 'kalender', href: '/alltag/familie/kalender' as const, emoji: '📅' },
+  { key: 'aufgaben', href: '/alltag/familie/aufgaben' as const, emoji: '✅' },
+  { key: 'notizen', href: '/alltag/familie/notizen' as const, emoji: '📝' },
+  { key: 'mitglieder', href: '/alltag/familie/mitglieder' as const, emoji: '👨‍👩‍👧' },
 ] as const
 
 export default function FamiliePage() {

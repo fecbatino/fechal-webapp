@@ -47,11 +47,11 @@ export default function Flashcard({ card, locale, onRate }: Props) {
           <p className="text-center text-xl font-medium text-gray-800">
             {getTranslation(card, locale)}
           </p>
-          <div className="grid grid-cols-4 gap-2">
-            <button onClick={() => handleRate(1)} className="py-2 rounded-xl bg-red-100 text-red-700 text-sm font-semibold hover:bg-red-200 transition-colors">{t('quality_again')}</button>
-            <button onClick={() => handleRate(3)} className="py-2 rounded-xl bg-orange-100 text-orange-700 text-sm font-semibold hover:bg-orange-200 transition-colors">{t('quality_hard')}</button>
-            <button onClick={() => handleRate(4)} className="py-2 rounded-xl bg-blue-100 text-blue-700 text-sm font-semibold hover:bg-blue-200 transition-colors">{t('quality_good')}</button>
-            <button onClick={() => handleRate(5)} className="py-2 rounded-xl bg-green-100 text-green-700 text-sm font-semibold hover:bg-green-200 transition-colors">{t('quality_easy')}</button>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button onClick={() => handleRate(1)} className="py-3 sm:py-2 rounded-xl bg-red-100 text-red-700 text-sm font-semibold hover:bg-red-200 transition-colors">{t('quality_again')}</button>
+            <button onClick={() => handleRate(3)} className="py-3 sm:py-2 rounded-xl bg-orange-100 text-orange-700 text-sm font-semibold hover:bg-orange-200 transition-colors">{t('quality_hard')}</button>
+            <button onClick={() => handleRate(4)} className="py-3 sm:py-2 rounded-xl bg-blue-100 text-blue-700 text-sm font-semibold hover:bg-blue-200 transition-colors">{t('quality_good')}</button>
+            <button onClick={() => handleRate(5)} className="py-3 sm:py-2 rounded-xl bg-green-100 text-green-700 text-sm font-semibold hover:bg-green-200 transition-colors">{t('quality_easy')}</button>
           </div>
         </div>
       )}

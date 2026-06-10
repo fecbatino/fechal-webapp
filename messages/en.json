@@ -13,8 +13,14 @@
     "hero_title": "Welcome",
     "hero_subtitle": "Family · Faith · Education · IT",
     "about_title": "About Me",
-    "about_bio": "I am a passionate IT developer focused on family, Islamic values, and digital solutions for associations.",
-    "contact": "Contact"
+    "about_bio_1": "I'm Fechal Batakpale — a software engineer from Nuremberg with a passion for modern technology, artificial intelligence, and Islamic education.",
+    "about_bio_2": "By day, I build complex enterprise applications with Java Spring Boot, React, and Oracle databases. In my spare time, I automate processes with n8n, experiment with AI agents, and build intelligent systems that create real value for my community.",
+    "about_bio_3": "As an active member of AIKF e.V. and UMTA, I combine my technical skills with a deep commitment to Islamic education and the African-Muslim community in Germany.",
+    "about_focus": "Focus areas",
+    "contact": "Contact",
+    "contact_title": "Contact",
+    "contact_desc": "Feel free to reach out for IT projects, association work, or collaboration.",
+    "contact_cta": "Send a message"
   },
   "sections": {
     "alltag": "Daily Life",
@@ -100,7 +106,9 @@
     "mark_memorized": "Mark as memorized",
     "select_translation": "Select translation",
     "daily_goal": "Daily goal",
-    "tajweed_legend": "Tajweed legend"
+    "tajweed_legend": "Tajweed legend",
+    "prev_surah": "Previous Surah",
+    "next_surah": "Next Surah"
   },
   "portfolio": {
     "title": "Portfolio",

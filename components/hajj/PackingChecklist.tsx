@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { ChecklistItem, ChecklistCategory, HajjLocale } from '@/lib/hajj-data'
 
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const CATEGORY_ORDER: ChecklistCategory[] = ['documents', 'clothing', 'health', 'essentials']
+const STORAGE_KEY = 'hajjPackingChecklist'
 
 function getText(text: { de: string; fr: string; en: string }, locale: string): string {
   return text[locale as HajjLocale] ?? text.de
@@ -19,6 +20,13 @@ export default function PackingChecklist({ items, locale }: Props) {
   const t = useTranslations('hajj')
   const [checked, setChecked] = useState<Set<string>>(new Set())
 
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY)
+      if (stored) setChecked(new Set(JSON.parse(stored) as string[]))
+    } catch {}
+  }, [])
+
   function toggle(id: string) {
     setChecked((prev) => {
       const next = new Set(prev)
@@ -27,6 +35,9 @@ export default function PackingChecklist({ items, locale }: Props) {
       } else {
         next.add(id)
       }
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify([...next]))
+      } catch {}
       return next
     })
   }

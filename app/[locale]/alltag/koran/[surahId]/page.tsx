@@ -6,6 +6,7 @@ import { fetchSurahWithTranslation, fetchSurahMeta } from '@/lib/quran-api'
 import { applyTajweed, TajweedChar, TAJWEED_COLORS } from '@/lib/tajweed'
 import { Ayah, QuranProgressStatus } from '@/lib/types'
 import AyahDisplay from '@/components/alltag/koran/AyahDisplay'
+import { Link } from '@/lib/navigation'
 
 interface AyahWithTajweed {
   ayah: Ayah
@@ -108,9 +109,32 @@ export default function SurahReaderPage({ params }: Props) {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
+      {/* Navigation */}
+      <div className="flex items-center justify-between mb-6">
+        {surahNumber > 1 ? (
+          <Link
+            href={`/alltag/koran/${surahNumber - 1}`}
+            className="flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+          >
+            ← {t('prev_surah')}
+          </Link>
+        ) : <span />}
+        <Link href="/alltag/koran" className="text-sm text-gray-400 hover:text-gray-600">
+          {t('surah_list')}
+        </Link>
+        {surahNumber < 114 ? (
+          <Link
+            href={`/alltag/koran/${surahNumber + 1}`}
+            className="flex items-center gap-1 text-sm text-emerald-600 hover:text-emerald-700 font-medium"
+          >
+            {t('next_surah')} →
+          </Link>
+        ) : <span />}
+      </div>
+
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900 mb-1">{surahEnglishName}</h1>
-        <p className="text-gray-400 text-sm">{ayahs.length} {t('ayahs')}</p>
+        <p className="text-gray-400 text-sm">{surahName} · {ayahs.length} {t('ayahs')}</p>
       </div>
 
       <details className="mb-6 bg-gray-50 rounded-xl p-4">

@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Claude/Codex artifacts
+.claude/
+.codex/
+.mcp.json
+
+# test outputs
+test-results/
+playwright-report/
+
+# supabase temp
+supabase/.temp/

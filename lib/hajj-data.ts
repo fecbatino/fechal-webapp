@@ -130,9 +130,24 @@ export const HAJJ_STEPS: HajjStep[] = [
       en: 'Sacrifice, Hair & Tawaf al-Ifadah',
     },
     description: {
-      de: "Das Opfertier schlachten (Qurbani), Haare rasieren oder kürzen (Tahallul), dann den Tawaf al-Ifadah und Sa'i vollziehen. Abschluss: Abschiedstawaf (Tawaf al-Wada).",
-      fr: "Immoler l'animal de sacrifice (Qurbani), se raser ou se couper les cheveux (Tahallul), puis effectuer le Tawaf al-Ifadah et le Sa'i. Fin : Tawaf d'adieu (Tawaf al-Wada).",
-      en: "Slaughter the sacrificial animal (Qurbani), shave or trim hair (Tahallul), then perform Tawaf al-Ifadah and Sa'i. Final step: Farewell Tawaf (Tawaf al-Wada).",
+      de: "Am 10. Dhul Hijjah: Das Opfertier schlachten (Qurbani), Haare rasieren oder kürzen (Tahallul), dann den Tawaf al-Ifadah und Sa'i in der Masjid al-Haram vollziehen.",
+      fr: "Le 10 Dhul Hijjah : Immoler l'animal de sacrifice (Qurbani), se raser ou se couper les cheveux (Tahallul), puis effectuer le Tawaf al-Ifadah et le Sa'i à la Masjid al-Haram.",
+      en: "On the 10th of Dhul Hijjah: Slaughter the sacrificial animal (Qurbani), shave or trim hair (Tahallul), then perform Tawaf al-Ifadah and Sa'i at Masjid al-Haram.",
+    },
+  },
+  {
+    id: 'tashreeq',
+    order: 7,
+    arabic: 'أَيَّامُ التَّشْرِيقِ',
+    title: {
+      de: 'Ayyam at-Tashreeq — Mina & Abschiedstawaf',
+      fr: 'Ayyam at-Tashreeq — Mina & Tawaf al-Wada',
+      en: 'Ayyam at-Tashreeq — Mina & Farewell Tawaf',
+    },
+    description: {
+      de: "An den 11., 12. und 13. Dhul Hijjah in Mina übernachten und täglich alle drei Jamarat (kleine, mittlere und große Säule) mit je 7 Steinen bewerfen. Wer früher abreist, verlässt Mina bis zum Sonnenuntergang des 12. Als letzten Pflicht vor der Abreise den Abschiedstawaf (Tawaf al-Wada) vollziehen.",
+      fr: "Les 11, 12 et 13 Dhul Hijjah, passer la nuit à Mina et lapider quotidiennement les trois Jamarat (petite, moyenne et grande colonne) avec 7 pierres chacune. Ceux qui partent plus tôt doivent quitter Mina avant le coucher du soleil du 12. En dernier devoir avant de quitter La Mecque, effectuer le Tawaf d'adieu (Tawaf al-Wada).",
+      en: "On the 11th, 12th, and 13th of Dhul Hijjah, stay overnight in Mina and stone all three Jamarat (small, middle, and large pillar) with 7 pebbles each daily. Those leaving early must depart Mina before sunset on the 12th. As a final obligation before leaving Mecca, perform the Farewell Tawaf (Tawaf al-Wada).",
     },
   },
 ]
@@ -229,6 +244,66 @@ export const HAJJ_DUAS: HajjDua[] = [
       de: 'Beim ersten Anblick der Kaaba gesprochen. Es ist Sunnah, in diesem Moment du\'a zu machen, da es eine Zeit der Erhörung ist.',
       fr: "Prononcée à la première vue de la Ka'ba. C'est la Sunnah de faire du'a en ce moment, car c'est un moment d'exaucement.",
       en: "Recited upon the first sight of the Ka'bah. It is Sunnah to make du'a at this moment, as it is a time of answered prayers.",
+    },
+  },
+  {
+    id: 'dua-tawaf',
+    arabic: 'بِسْمِ اللهِ وَاللهُ أَكْبَرُ، اللَّهُمَّ إِيمَانًا بِكَ وَتَصْدِيقًا بِكِتَابِكَ وَوَفَاءً بِعَهْدِكَ وَاتِّبَاعًا لِسُنَّةِ نَبِيِّكَ مُحَمَّدٍ ﷺ',
+    transliteration: "Bismillāhi wa-llāhu akbar, Allāhumma īmānan bika wa-taṣdīqan bi-kitābika wa-wafāʾan bi-ʿahdika wa-ttibāʿan li-sunnati nabiyyika Muḥammadin ﷺ",
+    meaning: {
+      de: 'Im Namen Allahs, und Allah ist der Größte. O Allah, im Glauben an Dich, in der Bestätigung Deines Buches, in der Erfüllung meines Bundes mit Dir und in der Nachfolge der Sunnah Deines Propheten Muhammad ﷺ.',
+      fr: "Au nom d'Allah, et Allah est le Plus Grand. Ô Allah, en croyance en Toi, en confirmant Ton Livre, en tenant mon pacte avec Toi et en suivant la Sunna de Ton Prophète Muhammad ﷺ.",
+      en: 'In the name of Allah, and Allah is the Greatest. O Allah, in faith in You, in confirmation of Your Book, in fulfillment of my covenant with You, and in following the Sunnah of Your Prophet Muhammad ﷺ.',
+    },
+    context: {
+      de: 'Beim Beginn jeder Tawaf-Runde gesprochen, wenn der Pilger am Hajar al-Aswad (Schwarzen Stein) vorbeigeht.',
+      fr: "Prononcée au début de chaque tour du Tawaf, lorsque le pèlerin passe devant la Hajar al-Aswad (Pierre Noire).",
+      en: 'Recited at the start of each Tawaf circuit when passing the Hajar al-Aswad (Black Stone).',
+    },
+  },
+  {
+    id: 'dua-safa',
+    arabic: 'إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللهِ، أَبْدَأُ بِمَا بَدَأَ اللهُ بِهِ',
+    transliteration: "Inna ṣ-ṣafā wa-l-marwata min shaʿāʾiri llāh, abdaʾu bi-mā badaʾa llāhu bih",
+    meaning: {
+      de: 'Wahrlich, Safa und Marwa gehören zu den Zeichen Allahs. Ich beginne mit dem, womit Allah begonnen hat.',
+      fr: "En vérité, Safa et Marwa font partie des signes d'Allah. Je commence par ce qu'Allah a commencé.",
+      en: 'Truly, Safa and Marwa are among the signs of Allah. I begin with what Allah has begun.',
+    },
+    context: {
+      de: 'Gesprochen beim Betreten des Sa\'i, wenn man sich dem Hügel Safa nähert. Der Prophet ﷺ rezitierte diesen Vers und begann den Sa\'i.',
+      fr: "Prononcée en entrant dans le Sa'i, en approchant de la colline de Safa. Le Prophète ﷺ récitait ce verset et commençait le Sa'i.",
+      en: "Recited when approaching the hill of Safa to begin Sa'i. The Prophet ﷺ recited this verse and began the Sa'i.",
+    },
+  },
+  {
+    id: 'dua-zamzam',
+    arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا وَرِزْقًا وَاسِعًا وَشِفَاءً مِنْ كُلِّ دَاءٍ',
+    transliteration: "Allāhumma innī asʾaluka ʿilman nāfiʿan wa-rizqan wāsiʿan wa-shifāʾan min kulli dāʾ",
+    meaning: {
+      de: 'O Allah, ich bitte Dich um nützliches Wissen, reichliche Versorgung und Heilung von jeder Krankheit.',
+      fr: "Ô Allah, je Te demande une science utile, une subsistance abondante et une guérison de toute maladie.",
+      en: 'O Allah, I ask You for beneficial knowledge, abundant provision, and healing from every illness.',
+    },
+    context: {
+      de: 'Beim Trinken von Zamzam-Wasser. Es ist Sunnah, in Richtung Kaaba zu stehen, in drei Schlucken zu trinken und dabei du\'a zu machen.',
+      fr: "Lors de la consommation de l'eau de Zamzam. C'est la Sunnah de se tenir face à la Ka'ba, de boire en trois gorgées et de faire du'a.",
+      en: "When drinking Zamzam water. It is Sunnah to face the Ka'bah, drink in three sips, and make du'a.",
+    },
+  },
+  {
+    id: 'dua-rami',
+    arabic: 'اللهُ أَكْبَرُ، اللهُ أَكْبَرُ، اللهُ أَكْبَرُ',
+    transliteration: "Allāhu akbar, Allāhu akbar, Allāhu akbar",
+    meaning: {
+      de: 'Allah ist der Größte, Allah ist der Größte, Allah ist der Größte.',
+      fr: "Allah est le Plus Grand, Allah est le Plus Grand, Allah est le Plus Grand.",
+      en: 'Allah is the Greatest, Allah is the Greatest, Allah is the Greatest.',
+    },
+    context: {
+      de: 'Beim Werfen jedes einzelnen Steines auf die Jamarat (Teufelssäulen) gesprochen. Für jeden der 7 Steine einmal laut ausgesprochen.',
+      fr: "Prononcée lors du lancer de chaque pierre sur les Jamarat (piliers). Dite à voix haute pour chacune des 7 pierres.",
+      en: 'Recited with each individual stone thrown at the Jamarat (pillars). Said aloud for each of the 7 pebbles.',
     },
   },
   {

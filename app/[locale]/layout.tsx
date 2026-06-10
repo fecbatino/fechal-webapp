@@ -8,7 +8,7 @@ import Footer from '@/components/layout/Footer'
 import '../globals.css'
 
 export const metadata: Metadata = {
-  title: 'Fechal Batakpalé',
+  title: 'Fechal Batakpale',
   description: 'Portfolio · Alltag · Hajj & Umrah · Vereine',
 }
 
@@ -28,14 +28,12 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className="h-full">
-      <body className="min-h-full flex flex-col antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <div className="min-h-full flex flex-col antialiased" lang={locale}>
+      <NextIntlClientProvider messages={messages}>
+        <Header />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </NextIntlClientProvider>
+    </div>
   )
 }
