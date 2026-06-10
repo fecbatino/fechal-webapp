@@ -61,6 +61,8 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
   const t = useTranslations('portfolio')
   const [entries, setEntries] = useState<CvEntry[]>(initialEntries)
   const [form, setForm] = useState<FormData | null>(null)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   function openNew() { setForm(emptyForm()) }
   function openEdit(entry: CvEntry) { setForm(entryToForm(entry)) }
@@ -75,46 +77,64 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
 
   async function handleSave() {
     if (!form) return
-    const supabase = createClient()
-    const payload: UpsertPayload = {
-      ...(form.id ? { id: form.id } : {}),
-      type: form.type,
-      title_de: form.title_de,
-      title_fr: form.title_fr,
-      title_en: form.title_en,
-      organization: form.organization,
-      start_year: form.start_year,
-      end_year: form.end_year.trim() ? Number(form.end_year) : null,
-      description_de: form.description_de.trim() || null,
-      description_fr: form.description_fr.trim() || null,
-      description_en: form.description_en.trim() || null,
-      sort_order: form.sort_order,
+    setSaving(true)
+    setError(null)
+    try {
+      const supabase = createClient()
+      const payload: UpsertPayload = {
+        ...(form.id ? { id: form.id } : {}),
+        type: form.type,
+        title_de: form.title_de,
+        title_fr: form.title_fr,
+        title_en: form.title_en,
+        organization: form.organization,
+        start_year: form.start_year,
+        end_year: form.end_year.trim() ? Number(form.end_year) : null,
+        description_de: form.description_de.trim() || null,
+        description_fr: form.description_fr.trim() || null,
+        description_en: form.description_en.trim() || null,
+        sort_order: form.sort_order,
+      }
+      const { data: saved, error } = await supabase
+        .from('cv_entries')
+        .upsert(payload)
+        .select()
+        .single()
+      if (error) {
+        throw new Error(error.message)
+      }
+      if (form.id) {
+        setEntries((prev) => prev.map((e) => (e.id === form.id ? (saved as CvEntry) : e)))
+      } else {
+        setEntries((prev) => [...prev, saved as CvEntry])
+      }
+      setForm(null)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      console.error('upsert error:', message)
+      setError(message)
+    } finally {
+      setSaving(false)
     }
-    const { data: saved, error } = await supabase
-      .from('cv_entries')
-      .upsert(payload)
-      .select()
-      .single()
-    if (error) {
-      console.error('upsert error:', error.message)
-      return
-    }
-    if (form.id) {
-      setEntries((prev) => prev.map((e) => (e.id === form.id ? (saved as CvEntry) : e)))
-    } else {
-      setEntries((prev) => [...prev, saved as CvEntry])
-    }
-    setForm(null)
   }
 
   async function handleDelete(entry: CvEntry) {
-    const supabase = createClient()
-    const { error } = await supabase.from('cv_entries').delete().eq('id', entry.id)
-    if (error) {
-      console.error('delete error:', error.message)
-      return
+    setSaving(true)
+    setError(null)
+    try {
+      const supabase = createClient()
+      const { error } = await supabase.from('cv_entries').delete().eq('id', entry.id)
+      if (error) {
+        throw new Error(error.message)
+      }
+      setEntries((prev) => prev.filter((e) => e.id !== entry.id))
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      console.error('delete error:', message)
+      setError(message)
+    } finally {
+      setSaving(false)
     }
-    setEntries((prev) => prev.filter((e) => e.id !== entry.id))
   }
 
   return (
@@ -132,10 +152,10 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
         <div className="border border-gray-200 rounded-xl p-4 space-y-3 bg-gray-50">
           <div className="grid grid-cols-1 gap-3">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_type')}</label>
               <select name="type" value={form.type} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
-                <option value="experience">experience</option>
-                <option value="education">education</option>
+                <option value="experience">{t('type_experience')}</option>
+                <option value="education">{t('type_education')}</option>
               </select>
             </div>
             <div>
@@ -179,11 +199,12 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
               <input aria-label={t('admin_field_sort_order')} name="sort_order" type="number" value={form.sort_order} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
             </div>
           </div>
+          {error && <div role="alert" className="text-red-600 text-sm">{error}</div>}
           <div className="flex gap-2 pt-2">
-            <button onClick={handleSave} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700">
-              {t('admin_save')}
+            <button onClick={handleSave} disabled={saving} className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 disabled:opacity-50">
+              {saving ? 'Speichert...' : t('admin_save')}
             </button>
-            <button onClick={closeForm} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
+            <button onClick={closeForm} disabled={saving} className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300">
               {t('admin_cancel')}
             </button>
           </div>
@@ -198,7 +219,7 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
               <button onClick={() => openEdit(entry)} className="px-3 py-1 text-sm bg-yellow-100 text-yellow-800 rounded hover:bg-yellow-200">
                 {t('admin_edit')}
               </button>
-              <button onClick={() => handleDelete(entry)} className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200">
+              <button onClick={() => handleDelete(entry)} disabled={saving} className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200 disabled:opacity-50">
                 {t('admin_delete')}
               </button>
             </div>

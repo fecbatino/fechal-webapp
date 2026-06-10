@@ -1,22 +1,20 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useTranslations } from 'next-intl'
-import { ChecklistItem, ChecklistCategory, HajjLocale } from '@/lib/hajj-data'
+import { useTranslations, useLocale } from 'next-intl'
+import { ChecklistItem, ChecklistCategory, getMultilingualText } from '@/lib/hajj-data'
 
 interface Props {
   items: ChecklistItem[]
-  locale: string
+  locale?: string
 }
 
 const CATEGORY_ORDER: ChecklistCategory[] = ['documents', 'clothing', 'health', 'essentials']
 const STORAGE_KEY = 'hajjPackingChecklist'
 
-function getText(text: { de: string; fr: string; en: string }, locale: string): string {
-  return text[locale as HajjLocale] ?? text.de
-}
-
-export default function PackingChecklist({ items, locale }: Props) {
+export default function PackingChecklist({ items, locale: propLocale }: Props) {
+  const hookLocale = useLocale()
+  const locale = propLocale ?? hookLocale
   const t = useTranslations('hajj')
   const [checked, setChecked] = useState<Set<string>>(new Set())
 
@@ -61,9 +59,9 @@ export default function PackingChecklist({ items, locale }: Props) {
         if (catItems.length === 0) return null
         return (
           <div key={cat}>
-            <h3 className="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">
+            <h2 className="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">
               {t(`checklist_cat_${cat}`)}
-            </h3>
+            </h2>
             <ul className="space-y-2">
               {catItems.map((item) => (
                 <li key={item.id} className="flex items-center gap-3">
@@ -78,7 +76,7 @@ export default function PackingChecklist({ items, locale }: Props) {
                     htmlFor={item.id}
                     className={`text-sm cursor-pointer ${checked.has(item.id) ? 'line-through text-gray-400' : 'text-gray-700'}`}
                   >
-                    {getText(item.label, locale)}
+                    {getMultilingualText(item.label, locale)}
                   </label>
                 </li>
               ))}

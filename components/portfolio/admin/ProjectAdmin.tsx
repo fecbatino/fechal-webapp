@@ -64,6 +64,8 @@ export default function ProjectAdmin({ initialProjects }: Props) {
   const t = useTranslations('portfolio')
   const [projects, setProjects] = useState<PortfolioProject[]>(initialProjects)
   const [form, setForm] = useState<FormData | null>(null)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   function openNew() {
     setForm(emptyForm())
@@ -87,52 +89,70 @@ export default function ProjectAdmin({ initialProjects }: Props) {
 
   async function handleSave() {
     if (!form) return
-    const supabase = createClient()
-    const payload: UpsertPayload = {
-      ...(form.id ? { id: form.id } : {}),
-      category: form.category,
-      title_de: form.title_de,
-      title_fr: form.title_fr,
-      title_en: form.title_en,
-      description_de: form.description_de,
-      description_fr: form.description_fr,
-      description_en: form.description_en,
-      tech_stack: form.tech_stack.split(',').map((s) => s.trim()).filter(Boolean),
-      github_url: form.github_url.trim() || null,
-      live_url: form.live_url.trim() || null,
-      screenshot_url: form.screenshot_url.trim() || null,
-      sort_order: form.sort_order,
+    setSaving(true)
+    setError(null)
+    try {
+      const supabase = createClient()
+      const payload: UpsertPayload = {
+        ...(form.id ? { id: form.id } : {}),
+        category: form.category,
+        title_de: form.title_de,
+        title_fr: form.title_fr,
+        title_en: form.title_en,
+        description_de: form.description_de,
+        description_fr: form.description_fr,
+        description_en: form.description_en,
+        tech_stack: form.tech_stack.split(',').map((s) => s.trim()).filter(Boolean),
+        github_url: form.github_url.trim() || null,
+        live_url: form.live_url.trim() || null,
+        screenshot_url: form.screenshot_url.trim() || null,
+        sort_order: form.sort_order,
+      }
+      const { data: saved, error } = await supabase
+        .from('portfolio_projects')
+        .upsert(payload)
+        .select()
+        .single()
+      if (error) {
+        throw new Error(error.message)
+      }
+      if (form.id) {
+        setProjects((prev) =>
+          prev.map((p) => (p.id === form.id ? (saved as PortfolioProject) : p))
+        )
+      } else {
+        setProjects((prev) => [...prev, saved as PortfolioProject])
+      }
+      setForm(null)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      console.error('upsert error:', message)
+      setError(message)
+    } finally {
+      setSaving(false)
     }
-    const { data: saved, error } = await supabase
-      .from('portfolio_projects')
-      .upsert(payload)
-      .select()
-      .single()
-    if (error) {
-      console.error('upsert error:', error.message)
-      return
-    }
-    if (form.id) {
-      setProjects((prev) =>
-        prev.map((p) => (p.id === form.id ? (saved as PortfolioProject) : p))
-      )
-    } else {
-      setProjects((prev) => [...prev, saved as PortfolioProject])
-    }
-    setForm(null)
   }
 
   async function handleDelete(project: PortfolioProject) {
-    const supabase = createClient()
-    const { error } = await supabase
-      .from('portfolio_projects')
-      .delete()
-      .eq('id', project.id)
-    if (error) {
-      console.error('delete error:', error.message)
-      return
+    setSaving(true)
+    setError(null)
+    try {
+      const supabase = createClient()
+      const { error } = await supabase
+        .from('portfolio_projects')
+        .delete()
+        .eq('id', project.id)
+      if (error) {
+        throw new Error(error.message)
+      }
+      setProjects((prev) => prev.filter((p) => p.id !== project.id))
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Unknown error'
+      console.error('delete error:', message)
+      setError(message)
+    } finally {
+      setSaving(false)
     }
-    setProjects((prev) => prev.filter((p) => p.id !== project.id))
   }
 
   return (
@@ -229,7 +249,7 @@ export default function ProjectAdmin({ initialProjects }: Props) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
-                Category
+                {t('admin_field_category')}
               </label>
               <select
                 name="category"
@@ -304,15 +324,18 @@ export default function ProjectAdmin({ initialProjects }: Props) {
               />
             </div>
           </div>
+          {error && <div role="alert" className="text-red-600 text-sm">{error}</div>}
           <div className="flex gap-2 pt-2">
             <button
               onClick={handleSave}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700"
+              disabled={saving}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm hover:bg-green-700 disabled:opacity-50"
             >
-              {t('admin_save')}
+              {saving ? 'Speichert...' : t('admin_save')}
             </button>
             <button
               onClick={closeForm}
+              disabled={saving}
               className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm hover:bg-gray-300"
             >
               {t('admin_cancel')}
@@ -337,7 +360,8 @@ export default function ProjectAdmin({ initialProjects }: Props) {
               </button>
               <button
                 onClick={() => handleDelete(project)}
-                className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200"
+                disabled={saving}
+                className="px-3 py-1 text-sm bg-red-100 text-red-700 rounded hover:bg-red-200 disabled:opacity-50"
               >
                 {t('admin_delete')}
               </button>

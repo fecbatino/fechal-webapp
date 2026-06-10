@@ -154,7 +154,11 @@
     "admin_field_start_year": "Von (Jahr)",
     "admin_field_end_year": "Bis (Jahr, leer = heute)",
     "admin_field_name": "Name",
-    "admin_not_authorized": "Kein Zugriff"
+    "admin_not_authorized": "Kein Zugriff",
+    "admin_field_category": "Kategorie",
+    "admin_field_type": "Typ",
+    "type_experience": "Berufserfahrung",
+    "type_education": "Ausbildung"
   },
   "hajj": {
     "title": "Hajj & Umrah",

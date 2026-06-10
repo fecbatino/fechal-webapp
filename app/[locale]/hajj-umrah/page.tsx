@@ -33,7 +33,7 @@ export default async function HajjPage({ params }: Props) {
       <section className="mb-16" id="hajj-steps">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('section_hajj')}</h2>
         <p className="text-gray-500 mb-6">{t('section_hajj_desc')}</p>
-        <HajjStepsGuide steps={HAJJ_STEPS} locale={locale} />
+        <HajjStepsGuide steps={HAJJ_STEPS} />
       </section>
 
       <hr className="border-gray-200 my-12" />
@@ -41,7 +41,7 @@ export default async function HajjPage({ params }: Props) {
       <section className="mb-16" id="umrah">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('section_umrah')}</h2>
         <p className="text-gray-500 mb-6">{t('section_umrah_desc')}</p>
-        <UmrahGuide steps={UMRAH_STEPS} locale={locale} />
+        <UmrahGuide steps={UMRAH_STEPS} />
       </section>
 
       <hr className="border-gray-200 my-12" />
@@ -49,7 +49,7 @@ export default async function HajjPage({ params }: Props) {
       <section className="mb-16" id="duas">
         <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('section_duas')}</h2>
         <p className="text-gray-500 mb-6">{t('section_duas_desc')}</p>
-        <DuaCollection duas={HAJJ_DUAS} locale={locale} />
+        <DuaCollection duas={HAJJ_DUAS} />
       </section>
 
       <hr className="border-gray-200 my-12" />
@@ -58,7 +58,7 @@ export default async function HajjPage({ params }: Props) {
         <h2 className="text-2xl font-bold text-gray-800 mb-2">{t('section_checklist')}</h2>
         <p className="text-gray-500 mb-6">{t('section_checklist_desc')}</p>
         <div className="bg-white border border-gray-200 rounded-2xl p-8">
-          <PackingChecklist items={PACKING_CHECKLIST} locale={locale} />
+          <PackingChecklist items={PACKING_CHECKLIST} />
         </div>
       </section>
 

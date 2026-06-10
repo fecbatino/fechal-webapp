@@ -2,18 +2,21 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { PortfolioProject, ProjectCategory } from '@/lib/types'
+import { useLocale } from 'next-intl'
 import ProjectCard from './ProjectCard'
 
 type FilterCategory = 'all' | ProjectCategory
 
 interface Props {
   projects: PortfolioProject[]
-  locale: string
+  locale?: string
 }
 
 const FILTER_CATEGORIES: FilterCategory[] = ['all', 'web', 'ai', 'vereine']
 
-export default function ProjectGrid({ projects, locale }: Props) {
+export default function ProjectGrid({ projects, locale: propLocale }: Props) {
+  const hookLocale = useLocale()
+  const locale = propLocale ?? hookLocale
   const t = useTranslations('portfolio')
   const [active, setActive] = useState<FilterCategory>('all')
 
@@ -26,6 +29,7 @@ export default function ProjectGrid({ projects, locale }: Props) {
           <button
             key={cat}
             onClick={() => setActive(cat)}
+            aria-pressed={active === cat}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
               active === cat
                 ? 'bg-emerald-600 text-white'
@@ -40,9 +44,9 @@ export default function ProjectGrid({ projects, locale }: Props) {
       {filtered.length === 0 ? (
         <p className="text-gray-400 text-center py-12">{t('no_projects')}</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
           {filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} locale={locale} />
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       )}

@@ -33,7 +33,7 @@ export default async function PortfolioPage({ params }: Props) {
 
       <section className="mb-16">
         <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('projects_title')}</h2>
-        <ProjectGrid projects={(projects ?? []) as PortfolioProject[]} locale={locale} />
+        <ProjectGrid projects={(projects ?? []) as PortfolioProject[]} />
       </section>
 
       <section className="mb-16">
@@ -45,7 +45,7 @@ export default async function PortfolioPage({ params }: Props) {
 
       <section>
         <h2 className="text-2xl font-bold text-gray-800 mb-6">{t('cv_title')}</h2>
-        <CvTimeline entries={(cvEntries ?? []) as CvEntry[]} locale={locale} />
+        <CvTimeline entries={(cvEntries ?? []) as CvEntry[]} />
       </section>
     </div>
   )

@@ -44,6 +44,30 @@ export interface OfficialLink {
   country: MultilingualText
 }
 
+
+// ── Helper Functions ──────────────────────────────────────
+
+/** Lokalisiere einen mehrsprachigen Text anhand der Locale */
+export function getMultilingualText(
+  text: { de: string; fr: string; en: string },
+  locale: string
+): string {
+  return text[locale as HajjLocale] ?? text.de
+}
+
+/** Lokalisiere ein suffixed DB-Feld (z.B. title_de) anhand der Locale */
+export function getLocalizedText<T extends Record<string, unknown>>(
+  obj: T,
+  field: string,
+  locale: string,
+  defaultLocale = 'de'
+): string | null {
+  const localized = obj[`${field}_${locale}`]
+  if (localized && typeof localized === 'string' && localized.trim()) return localized
+  const fallback = obj[`${field}_${defaultLocale}`]
+  if (fallback && typeof fallback === 'string' && fallback.trim()) return fallback
+  return null
+}
 export const HAJJ_STEPS: HajjStep[] = [
   {
     id: 'ihram',

@@ -1,18 +1,16 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { HajjStep, HajjLocale } from '@/lib/hajj-data'
+import { useTranslations, useLocale } from 'next-intl'
+import { HajjStep, getMultilingualText } from '@/lib/hajj-data'
 
 interface Props {
   steps: HajjStep[]
-  locale: string
+  locale?: string
 }
 
-function getText(text: { de: string; fr: string; en: string }, locale: string): string {
-  return text[locale as HajjLocale] ?? text.de
-}
-
-export default function HajjStepsGuide({ steps, locale }: Props) {
+export default function HajjStepsGuide({ steps, locale: propLocale }: Props) {
+  const hookLocale = useLocale()
+  const locale = propLocale ?? hookLocale
   const t = useTranslations('hajj')
 
   return (
@@ -26,14 +24,14 @@ export default function HajjStepsGuide({ steps, locale }: Props) {
             <div className="flex items-start justify-between gap-4 mb-2">
               <h3 className="font-bold text-gray-900 text-base">
                 <span>{t('step_label')} {step.order}: </span>
-                <span>{getText(step.title, locale)}</span>
+                <span>{getMultilingualText(step.title, locale)}</span>
               </h3>
               <span className="text-xl text-gray-600 flex-shrink-0" dir="rtl">
                 {step.arabic}
               </span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed">
-              {getText(step.description, locale)}
+              {getMultilingualText(step.description, locale)}
             </p>
           </div>
         </li>

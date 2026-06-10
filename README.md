@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# fechal-webapp
 
-## Getting Started
+Fechal Batakpales persönliche Webapp — Portfolio, Hajj & Umrah Guides, Alltag & Familie, Arabisch lernen, Koran-Rezitation.
 
-First, run the development server:
+## Tech-Stack
+
+| Komponente | Version |
+|---|---|
+| Framework | **Next.js 16** (App Router, src-los) |
+| Frontend | **React 19**, **Tailwind CSS 4**, **TypeScript 5** |
+| i18n | **next-intl 4** (DE / FR / EN) |
+| Auth + DB | **Supabase** (SSR, PostgreSQL, Row-Level Security) |
+| Unit-Tests | **Jest 30** + **@testing-library/react** |
+| E2E-Tests | **Playwright** |
+
+## Seiten
+
+| Route | Sektion | Datenquelle |
+|---|---|---|
+| `/` | Startseite | Statisch |
+| `/portfolio` | Projekte, Skills, CV | Supabase: `portfolio_projects`, `portfolio_skills`, `cv_entries` |
+| `/hajj-umrah` | Hajj & Umrah Guides | Statisch: `lib/hajj-data.ts` |
+| `/alltag/familie` | Kalender, Aufgaben, Notizen | Supabase: `family_events`, `family_tasks`, `family_notes` |
+| `/alltag/arabisch` | Arabisch-Vokabeln (SM-2) | Supabase: `arabic_cards`, `user_card_progress` |
+| `/alltag/koran` | Koran-Rezitation | Extern: `api.alquran.cloud/v1` (24h ISR) |
+| `/vereine` | Vereins-Übersicht | Statisch |
+
+## Schnellstart
 
 ```bash
+# 1. Umgebungsvariablen
+cp .env.example .env
+# NEXT_PUBLIC_SUPABASE_URL und NEXT_PUBLIC_SUPABASE_ANON_KEY eintragen
+
+# 2. Abhängigkeiten installieren
+npm install
+
+# 3. Entwicklungs-Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# 4. Tests
+npm test                    # Unit + Component Tests
+npm run test:e2e            # Playwright E2E Tests
+npm run test:coverage       # Coverage-Bericht
+
+# 5. Build
+npm run build
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Architektur
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+app/[locale]/               ← Locale-basierte Routen (next-intl Middleware)
+  ├── portfolio/            ← Server Component + Client Components
+  ├── hajj-umrah/           ← Server Component + Client Components
+  ├── alltag/familie/       ← FamilyProvider (Context)
+  ├── alltag/arabisch/      ← SM-2 Spaced Repetition
+  ├── alltag/koran/         ← ISR (24h)
+  └── ...
+lib/
+  ├── hajj-data.ts          ← Statische Hajj/Umrah-Daten + Helpers
+  ├── types.ts              ← TypeScript Interfaces (DB-korrespondierend)
+  ├── supabase/client.ts    ← Supabase Browser-Client
+  ├── supabase/server.ts    ← Supabase SSR-Client (Cookies)
+  ├── sm2.ts                ← SM-2 Algorithmus
+  └── ...
+components/
+  ├── hajj/                 ← DuaCollection, HajjStepsGuide, UmrahGuide, PackingChecklist
+  ├── portfolio/            ← ProjectCard, ProjectGrid, CvTimeline, SkillTags
+  ├── portfolio/admin/      ← ProjectAdmin, SkillAdmin, CvEntryAdmin
+  ├── home/                 ← Hero, AboutSection, SectionCards
+  ├── alltag/               ← Familie, Arabisch, Koran Componenten
+  └── ...
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Datenbank
 
-## Learn More
+7 Migrationen unter `supabase/migrations/` decken Auth, Profile, Familie, Arabisch-Karten, Koran-Fortschritt und Portfolio ab. Jede Tabelle hat RLS-Policies (SELECT/INSERT/UPDATE/DELETE je nach Rolle und Besitzer).
 
-To learn more about Next.js, take a look at the following resources:
+## Testen
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Jest:** `__tests__/` — 24 Unit-Tests für Komponenten + Libs
+- **Playwright:** `e2e/` — 6 E2E-Tests für kritische User-Flows
+- `locale` wird via `useLocale()` von next-intl bezogen — kein Prop-Drilling nötig
