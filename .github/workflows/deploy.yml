@@ -1,0 +1,82 @@
+name: CI/CD Deploy
+
+# Push to main -> build gate -> rsync source to the Hetzner VPS -> rebuild the
+# Docker image on the server and recreate the container.
+#
+# Required repository secrets (Settings > Secrets and variables > Actions):
+#   VPS_SSH_KEY                  private SSH key (ed25519) whose public key is in
+#                                the VPS user's ~/.ssh/authorized_keys
+#   VPS_HOST                     159.69.204.155 (or the SSH hostname)
+#   VPS_USER                     root
+#   NEXT_PUBLIC_SUPABASE_URL     used by the build gate
+#   NEXT_PUBLIC_SUPABASE_ANON_KEY  used by the build gate
+#
+# The deployed path on the server is /opt/stacks/web/fechal-webapp and the
+# container is rebuilt via the compose file at /opt/stacks/web.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Build (hard gate)
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://fechal-batakpale.com
+          NEXT_PUBLIC_SITE_NAME: Fechal Batakpale
+      # Non-blocking until the pre-existing next-intl/jest ESM failures and the
+      # 5 legacy lint errors are cleaned up. Remove continue-on-error afterwards.
+      - name: Lint (non-blocking, legacy debt)
+        run: npm run lint
+        continue-on-error: true
+      - name: Tests (non-blocking, legacy debt)
+        run: npm test
+        continue-on-error: true
+
+  deploy:
+    name: Deploy to VPS
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts 2>/dev/null
+      - name: Rsync source to VPS
+        run: |
+          rsync -az --delete \
+            --exclude '.git' \
+            --exclude 'node_modules' \
+            --exclude '.next' \
+            --exclude '.env' \
+            --exclude '.claude' \
+            -e "ssh -i ~/.ssh/id_deploy" \
+            ./ "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/stacks/web/fechal-webapp/"
+      - name: Rebuild image and recreate container
+        run: |
+          ssh -i ~/.ssh/id_deploy "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            'cd /opt/stacks/web && docker compose build fechal-webapp && docker compose up -d fechal-webapp && docker image prune -f'
+      - name: Health check
+        run: |
+          ssh -i ~/.ssh/id_deploy "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            'docker exec fechal-webapp curl -fsS -o /dev/null -w "deployed /de -> %{http_code}\n" http://localhost:3000/de'

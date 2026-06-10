@@ -3,10 +3,10 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 
 const sections = [
-  { key: 'alltag', href: '/alltag', emoji: '🏠' },
-  { key: 'portfolio', href: '/portfolio', emoji: '💼' },
-  { key: 'hajj', href: '/hajj-umrah', emoji: '🕋' },
-  { key: 'vereine', href: '/vereine', emoji: '🤝' },
+  { key: 'alltag', href: '/alltag', emoji: '\u{1F3E0}' },
+  { key: 'portfolio', href: '/portfolio', emoji: '\u{1F4BC}' },
+  { key: 'hajj', href: '/hajj-umrah', emoji: '\u{1F547}' },
+  { key: 'vereine', href: '/vereine', emoji: '\u{1F91D}' },
 ] as const
 
 export default function SectionCards() {

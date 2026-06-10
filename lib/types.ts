@@ -6,7 +6,7 @@ export interface Profile {
   email: string
   full_name: string | null
   role: Role
-  preferred_locale: 'de' | 'fr' | 'en'
+  preferred_locale: 'de' | 'fr' | 'en' | 'ar'
   created_at: string
   family_id: string | null
   family_role: FamilyRole

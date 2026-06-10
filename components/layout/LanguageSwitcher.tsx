@@ -6,9 +6,10 @@ const locales = [
   { code: 'de', label: 'DE' },
   { code: 'fr', label: 'FR' },
   { code: 'en', label: 'EN' },
+  { code: 'ar', label: 'ع' },
 ] as const
 
-type LocaleCode = 'de' | 'fr' | 'en'
+type LocaleCode = 'de' | 'fr' | 'en' | 'ar'
 
 export default function LanguageSwitcher() {
   const locale = useLocale()

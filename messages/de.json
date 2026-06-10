@@ -7,7 +7,8 @@
     "vereine": "Vereine",
     "login": "Anmelden",
     "logout": "Abmelden",
-    "register": "Registrieren"
+    "register": "Registrieren",
+    "blog": "Blog"
   },
   "home": {
     "hero_title": "Willkommen",
@@ -30,7 +31,9 @@
     "hajj": "Hajj & Umrah",
     "hajj_desc": "Reiseplanung & Guides",
     "vereine": "Vereine",
-    "vereine_desc": "UMTA e.V. & AIKF e.V."
+    "vereine_desc": "UMTA e.V. & AIKF e.V.",
+    "blog": "Blog",
+    "blog_desc": "Artikel, Gedanken & Geschichten"
   },
   "auth": {
     "login_title": "Anmelden",
@@ -183,5 +186,12 @@
     "items_checked": "{count} von {total} erledigt",
     "section_links": "Offizielle Links",
     "section_links_desc": "Behörden und islamische Organisationen"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Artikel, Gedanken & Updates",
+    "read": "Min.",
+    "empty": "Noch keine Blog-Artikel veröffentlicht.",
+    "back": "Zurück zum Blog"
   }
 }

@@ -1,0 +1,74 @@
+{
+  "name": "fechal-webapp Uptime Monitor",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            { "field": "minutes", "minutesInterval": 5 }
+          ]
+        }
+      },
+      "id": "schedule-5min",
+      "name": "Every 5 min",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://fechal-batakpale.com/de",
+        "options": {
+          "timeout": 10000,
+          "response": { "response": { "fullResponse": true, "neverError": true } }
+        }
+      },
+      "id": "http-check",
+      "name": "GET /de",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "typeValidation": "loose" },
+          "combinator": "and",
+          "conditions": [
+            {
+              "leftValue": "={{ $json.statusCode }}",
+              "rightValue": 200,
+              "operator": { "type": "number", "operation": "notEquals" }
+            }
+          ]
+        }
+      },
+      "id": "if-down",
+      "name": "Status != 200?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 300]
+    },
+    {
+      "parameters": {
+        "chatId": "__TELEGRAM_CHAT_ID__",
+        "text": "=🔴 fechal-batakpale.com DOWN\nStatus: {{ $json.statusCode }}\nURL: https://fechal-batakpale.com/de\nZeit: {{ $now.format('yyyy-MM-dd HH:mm') }}",
+        "additionalFields": {}
+      },
+      "id": "telegram-alert",
+      "name": "Telegram Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [880, 200],
+      "credentials": {
+        "telegramApi": { "id": "__TELEGRAM_CRED_ID__", "name": "Telegram account" }
+      }
+    }
+  ],
+  "connections": {
+    "Every 5 min": { "main": [[{ "node": "GET /de", "type": "main", "index": 0 }]] },
+    "GET /de": { "main": [[{ "node": "Status != 200?", "type": "main", "index": 0 }]] },
+    "Status != 200?": { "main": [[{ "node": "Telegram Alert", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" }
+}

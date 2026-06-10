@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
 import { notFound } from 'next/navigation'
-import { routing } from '@/i18n/routing'
+import { routing, type Locale } from '@/i18n/routing'
 import Header from '@/components/layout/Header'
 import Footer from '@/components/layout/Footer'
 import '../globals.css'
@@ -21,14 +21,15 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params
 
-  if (!routing.locales.includes(locale as 'de' | 'fr' | 'en')) {
+  if (!routing.locales.includes(locale as Locale)) {
     notFound()
   }
 
   const messages = await getMessages()
+  const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
   return (
-    <div className="min-h-full flex flex-col antialiased" lang={locale}>
+    <div className="min-h-full flex flex-col antialiased" lang={locale} dir={dir}>
       <NextIntlClientProvider messages={messages}>
         <Header />
         <main className="flex-1">{children}</main>
