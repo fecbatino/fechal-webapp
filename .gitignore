@@ -51,3 +51,6 @@ playwright-report/
 
 # supabase temp
 supabase/.temp/
+
+# temporary task tracking
+.pending-telegram-task.txt
