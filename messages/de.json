@@ -39,6 +39,16 @@
     "blog": "Blog",
     "blog_desc": "Artikel & Gedanken"
   },
+  "social": {
+    "github_url": "https://github.com/fecbatino",
+    "instagram_url": "https://www.instagram.com/fechal",
+    "tiktok_url": "https://www.tiktok.com/@fecbatino",
+    "youtube_url": "https://www.youtube.com/@fechal",
+    "github_label": "GitHub",
+    "instagram_label": "Instagram",
+    "tiktok_label": "TikTok",
+    "youtube_label": "YouTube"
+  },
   "auth": {
     "login_title": "Anmelden",
     "register_title": "Registrieren",

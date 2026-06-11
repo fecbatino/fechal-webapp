@@ -2,39 +2,40 @@ import { getTranslations } from 'next-intl/server'
 import LogoMark from '@/components/ui/LogoMark'
 import { Mail, MessageCircle, Code, Camera, Music, Video } from 'lucide-react'
 
-const socialItems = [
-  {
-    href: 'https://github.com/fecbatino',
-    label: 'GitHub',
-    icon: Code,
-    btnColor: 'hover:bg-card hover:text-foreground hover:border-border',
-    iconColor: 'text-muted-fg',
-  },
-  {
-    href: 'https://www.instagram.com/fecbatino',
-    label: 'Instagram',
-    icon: Camera,
-    btnColor: 'hover:bg-pink-500/10 hover:text-pink-400 hover:border-pink-500/30',
-    iconColor: 'text-muted-fg',
-  },
-  {
-    href: 'https://www.tiktok.com/@fecbatino',
-    label: 'TikTok',
-    icon: Music,
-    btnColor: 'hover:bg-card hover:text-foreground hover:border-border',
-    iconColor: 'text-muted-fg',
-  },
-  {
-    href: 'https://www.youtube.com/@fecbatino',
-    label: 'YouTube',
-    icon: Video,
-    btnColor: 'hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30',
-    iconColor: 'text-muted-fg',
-  },
-]
-
 export default async function ContactSection() {
   const t = await getTranslations('home')
+  const s = await getTranslations('social')
+
+  const socialItems = [
+    {
+      href: s('github_url'),
+      label: s('github_label'),
+      icon: Code,
+      btnColor: 'hover:bg-card hover:text-foreground hover:border-border',
+      iconColor: 'text-muted-fg',
+    },
+    {
+      href: s('instagram_url'),
+      label: s('instagram_label'),
+      icon: Camera,
+      btnColor: 'hover:bg-pink-500/10 hover:text-pink-400 hover:border-pink-500/30',
+      iconColor: 'text-muted-fg',
+    },
+    {
+      href: s('tiktok_url'),
+      label: s('tiktok_label'),
+      icon: Music,
+      btnColor: 'hover:bg-card hover:text-foreground hover:border-border',
+      iconColor: 'text-muted-fg',
+    },
+    {
+      href: s('youtube_url'),
+      label: s('youtube_label'),
+      icon: Video,
+      btnColor: 'hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/30',
+      iconColor: 'text-muted-fg',
+    },
+  ]
 
   return (
     <section className="bg-background border-t border-border py-20 px-4" id="kontakt">
@@ -62,75 +63,37 @@ export default async function ContactSection() {
               <div>
                 <h3 className="text-xl font-bold text-foreground">Fechal Batakpale</h3>
                 <p className="text-accent font-medium text-sm mt-0.5">Software Engineer · KI · Islamische Bildung</p>
-                <p className="text-muted-fg text-xs mt-1">Nürnberg, Deutschland</p>
               </div>
             </div>
 
-            {/* Contact & CTA grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-              <a
-                href="mailto:fecbatino@gmail.com"
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border hover:border-accent/30 hover:bg-accent/5 transition-all group"
-              >
-                <span className="w-9 h-9 flex items-center justify-center rounded-lg bg-accent-light text-accent flex-shrink-0">
-                  <Mail size={18} strokeWidth={1.5} />
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs text-muted-fg font-medium uppercase tracking-wide">E-Mail</p>
-                  <p className="text-sm text-subtle-fg font-medium truncate group-hover:text-accent">fecbatino@gmail.com</p>
-                </div>
-              </a>
-
-              <a
-                href="https://www.umta.de"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-border hover:border-accent/30 hover:bg-accent/5 transition-all group"
-              >
-                <span className="w-9 h-9 flex items-center justify-center rounded-lg bg-accent-light text-accent flex-shrink-0 text-base">
-                  🕌
-                </span>
-                <div className="min-w-0">
-                  <p className="text-xs text-muted-fg font-medium uppercase tracking-wide">UMTA e.V.</p>
-                  <p className="text-sm text-subtle-fg font-medium group-hover:text-accent">IT-Verantwortlicher & Webmaster</p>
-                </div>
-              </a>
-
-              <a
-                href="mailto:fecbatino@gmail.com"
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border border-dashed border-accent/30 bg-accent/5 hover:bg-accent/10 transition-all group"
-              >
-                <span className="w-9 h-9 flex items-center justify-center rounded-lg bg-teal-600 text-foreground flex-shrink-0">
-                  <MessageCircle size={16} strokeWidth={2.5} />
-                </span>
-                <div>
-                  <p className="text-xs text-accent font-medium uppercase tracking-wide">{t('contact')}</p>
-                  <p className="text-sm text-accent-hover font-semibold group-hover:text-teal-200">{t('contact_cta')}</p>
-                </div>
-              </a>
+            {/* Social Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
+              {socialItems.map(({ href, label, icon: Icon, btnColor, iconColor }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`
+                    flex flex-col items-center gap-2 p-4 rounded-xl border border-border
+                    bg-subtle transition-all ${btnColor}
+                  `}
+                  aria-label={label}
+                >
+                  <Icon size={22} strokeWidth={1.5} className={iconColor} />
+                  <span className="text-xs font-medium text-muted-fg">{label}</span>
+                </a>
+              ))}
             </div>
 
-            {/* Social Media row */}
-            <div className="border-t border-border pt-5">
-              <p className="text-[10px] font-medium text-muted uppercase tracking-wider mb-3">
-                Social Media
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {socialItems.map(({ href, label, icon: Icon, btnColor }) => (
-                  <a
-                    key={label}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center gap-2 px-3.5 py-2 rounded-lg border border-border transition-all ${btnColor}`}
-                    aria-label={label}
-                  >
-                    <Icon size={16} strokeWidth={1.5} />
-                    <span className="text-xs font-medium">{label}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
+            {/* CTA */}
+            <a
+              href="mailto:fecbatino@gmail.com"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-light border border-accent/20 text-accent hover:bg-accent/20 transition-all text-sm font-medium"
+            >
+              <MessageCircle size={16} strokeWidth={1.5} />
+              {t('contact_cta')}
+            </a>
           </div>
         </div>
       </div>

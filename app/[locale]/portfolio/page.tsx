@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { PortfolioProject, PortfolioSkill, CvEntry } from '@/lib/types'
 import { cvEntries as staticCvEntries } from '@/lib/cv-data'
+import { staticProjects, staticSkills } from '@/lib/portfolio-data'
 import ProjectGrid from '@/components/portfolio/ProjectGrid'
 import SkillTags from '@/components/portfolio/SkillTags'
 import CvTimeline from '@/components/portfolio/CvTimeline'
@@ -16,17 +17,19 @@ export default async function PortfolioPage({ params }: Props) {
   const supabase = await createClient()
 
   const [
-    { data: projects },
-    { data: skills },
-    { data: cvEntries },
+    { data: dbProjects },
+    { data: dbSkills },
+    { data: dbCvEntries },
   ] = await Promise.all([
     supabase.from('portfolio_projects').select('*').order('sort_order'),
     supabase.from('portfolio_skills').select('*').order('sort_order'),
     supabase.from('cv_entries').select('*').order('sort_order'),
   ])
 
-  // Use static CV data as primary source; fall back to Supabase if empty
-  const resolvedCvEntries = (cvEntries && cvEntries.length > 0 ? cvEntries : staticCvEntries) as CvEntry[]
+  // Use static data as primary; fall back to Supabase if static is empty
+  const resolvedProjects = (dbProjects && dbProjects.length > 0 ? dbProjects : staticProjects) as PortfolioProject[]
+  const resolvedSkills = (dbSkills && dbSkills.length > 0 ? dbSkills : staticSkills) as PortfolioSkill[]
+  const resolvedCvEntries = (dbCvEntries && dbCvEntries.length > 0 ? dbCvEntries : staticCvEntries) as CvEntry[]
 
   return (
     <div className="min-h-screen bg-background">
@@ -50,7 +53,7 @@ export default async function PortfolioPage({ params }: Props) {
             </svg>
             {t('projects_title')}
           </h2>
-          <ProjectGrid projects={(projects ?? []) as PortfolioProject[]} />
+          <ProjectGrid projects={resolvedProjects} />
         </section>
 
         {/* Skills */}
@@ -63,7 +66,7 @@ export default async function PortfolioPage({ params }: Props) {
             {t('skills_title')}
           </h2>
           <div className="glass-card rounded-2xl p-8">
-            <SkillTags skills={(skills ?? []) as PortfolioSkill[]} />
+            <SkillTags skills={resolvedSkills} />
           </div>
         </section>
 

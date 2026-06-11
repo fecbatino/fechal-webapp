@@ -97,9 +97,11 @@ export interface PortfolioProject {
   title_de: string
   title_fr: string
   title_en: string
+  title_ar: string
   description_de: string
   description_fr: string
   description_en: string
+  description_ar: string
   tech_stack: string[]
   github_url: string | null
   live_url: string | null

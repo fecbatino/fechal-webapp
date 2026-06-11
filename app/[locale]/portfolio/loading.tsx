@@ -58,9 +58,9 @@ export default function PortfolioLoading() {
           <div className="h-6 w-24 bg-card rounded-lg mb-8 animate-pulse" />
           <div className="space-y-4">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-subtle animate-pulse" />
-                <div className="flex-1 glass-card rounded-xl p-5 space-y-2">
+              <div key={i} className="relative pl-8">
+                <div className="absolute left-0 top-1.5 w-3 h-3 rounded-full bg-subtle animate-pulse" />
+                <div className="glass-card rounded-xl p-5 space-y-2">
                   <div className="h-5 w-1/2 bg-card rounded animate-pulse" />
                   <div className="h-4 w-1/3 bg-subtle rounded animate-pulse" />
                   <div className="h-4 w-3/4 bg-subtle rounded animate-pulse" />

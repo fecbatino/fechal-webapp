@@ -17,9 +17,11 @@ type FormData = {
   title_de: string
   title_fr: string
   title_en: string
+  title_ar: string
   description_de: string
   description_fr: string
   description_en: string
+  description_ar: string
   tech_stack: string
   github_url: string
   live_url: string
@@ -32,9 +34,11 @@ const emptyForm = (): FormData => ({
   title_de: '',
   title_fr: '',
   title_en: '',
+  title_ar: '',
   description_de: '',
   description_fr: '',
   description_en: '',
+  description_ar: '',
   tech_stack: '',
   github_url: '',
   live_url: '',
@@ -49,9 +53,11 @@ function projectToForm(p: PortfolioProject): FormData {
     title_de: p.title_de,
     title_fr: p.title_fr,
     title_en: p.title_en,
+    title_ar: p.title_ar,
     description_de: p.description_de,
     description_fr: p.description_fr,
     description_en: p.description_en,
+    description_ar: p.description_ar,
     tech_stack: p.tech_stack.join(', '),
     github_url: p.github_url ?? '',
     live_url: p.live_url ?? '',
@@ -99,9 +105,11 @@ export default function ProjectAdmin({ initialProjects }: Props) {
         title_de: form.title_de,
         title_fr: form.title_fr,
         title_en: form.title_en,
+        title_ar: form.title_ar,
         description_de: form.description_de,
         description_fr: form.description_fr,
         description_en: form.description_en,
+        description_ar: form.description_ar,
         tech_stack: form.tech_stack.split(',').map((s) => s.trim()).filter(Boolean),
         github_url: form.github_url.trim() || null,
         live_url: form.live_url.trim() || null,
@@ -210,6 +218,19 @@ export default function ProjectAdmin({ initialProjects }: Props) {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('admin_field_title_ar')}
+              </label>
+              <input
+                aria-label={t('admin_field_title_ar')}
+                name="title_ar"
+                value={form.title_ar}
+                onChange={handleChange}
+                dir="rtl"
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
                 {t('admin_field_desc_de')}
               </label>
               <textarea
@@ -243,6 +264,20 @@ export default function ProjectAdmin({ initialProjects }: Props) {
                 name="description_en"
                 value={form.description_en}
                 onChange={handleChange}
+                rows={3}
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                {t('admin_field_desc_ar')}
+              </label>
+              <textarea
+                aria-label={t('admin_field_desc_ar')}
+                name="description_ar"
+                value={form.description_ar}
+                onChange={handleChange}
+                dir="rtl"
                 rows={3}
                 className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm"
               />
