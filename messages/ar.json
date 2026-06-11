@@ -199,16 +199,16 @@
     "back": "العودة إلى المدونة"
   },
   "tech": {
-    "tech_title": "النظام التقني",
-    "tech_desc": "الهياكل الحديثة وسير العمل التي أستخدمها يومياً",
-    "tech_agents_title": "العوامل المستقلة",
-    "tech_agents_desc": "التنسيق باستخدام Hermes Agent وDesktop وClaude Code وCowork – سير عمل متعدد الوكلاء لـ DevOps ومراجعة الكود وأتمتة الخوادم.",
-    "tech_ai_title": "استدلال الذكاء الاصطناعي والنماذج اللغوية",
-    "tech_ai_desc": "استدلال محلي وعلى الخوادم عبر Ollama Pro بخطة سحابية ثابتة مع نماذج مثل Gemma 4. مدعوم بـ Google AI Studio وNotebookLM وOpenRouter.",
-    "tech_data_title": "البيانات والمصادقة",
-    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) وFirebase – خدمات خلفية حديثة لتطبيقات ويب وجوال قابلة للتوسع.",
-    "tech_devops_title": "DevOps والأتمتة",
-    "tech_devops_desc": "أتمتة سير العمل بـ n8n وNginx Proxy Manager وDocker Compose على Hetzner VPS – CI/CD مع GitHub Actions ونشر آلي بالكامل."
+    "title": "النظام التقني",
+    "desc": "الهياكل الحديثة وسير العمل التي أستخدمها يومياً",
+    "agents_title": "العوامل المستقلة",
+    "agents_desc": "التنسيق باستخدام Hermes Agent وDesktop وClaude Code وCowork – سير عمل متعدد الوكلاء لـ DevOps ومراجعة الكود وأتمتة الخوادم.",
+    "ai_title": "استدلال الذكاء الاصطناعي والنماذج اللغوية",
+    "ai_desc": "استدلال محلي وعلى الخوادم عبر Ollama Pro بخطة سحابية ثابتة مع نماذج مثل Gemma 4. مدعوم بـ Google AI Studio وNotebookLM وOpenRouter.",
+    "data_title": "البيانات والمصادقة",
+    "data_desc": "Supabase (PostgreSQL, Auth, Realtime) وFirebase – خدمات خلفية حديثة لتطبيقات ويب وجوال قابلة للتوسع.",
+    "devops_title": "DevOps والأتمتة",
+    "devops_desc": "أتمتة سير العمل بـ n8n وNginx Proxy Manager وDocker Compose على Hetzner VPS – CI/CD مع GitHub Actions ونشر آلي بالكامل."
   },
   "kiosk": {
     "kiosk_title": "كشك AIKF",

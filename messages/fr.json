@@ -199,16 +199,16 @@
     "back": "Retour au blog"
   },
   "tech": {
-    "tech_title": "Écosystème Tech",
-    "tech_desc": "Architectures modernes & workflows que j'utilise au quotidien",
-    "tech_agents_title": "Agents Autonomes",
-    "tech_agents_desc": "Orchestration avec Hermes Agent & Desktop, Claude Code et Cowork – workflows multi-agents pour DevOps, révision de code et automatisation serveur.",
-    "tech_ai_title": "Inférence IA & LLMs",
-    "tech_ai_desc": "Inférence locale et serveur via Ollama Pro forfait cloud avec des modèles comme Gemma 4. Complété par Google AI Studio, NotebookLM & OpenRouter.",
-    "tech_data_title": "Données & Auth",
-    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) et Firebase – services backend modernes pour applications web et mobiles évolutives.",
-    "tech_devops_title": "DevOps & Automation",
-    "tech_devops_desc": "Automatisation de workflows n8n, Nginx Proxy Manager, Docker Compose sur Hetzner VPS – CI/CD avec GitHub Actions et déploiement entièrement automatisé."
+    "title": "Écosystème Tech",
+    "desc": "Architectures modernes & workflows que j'utilise au quotidien",
+    "agents_title": "Agents Autonomes",
+    "agents_desc": "Orchestration avec Hermes Agent & Desktop, Claude Code et Cowork – workflows multi-agents pour DevOps, révision de code et automatisation serveur.",
+    "ai_title": "Inférence IA & LLMs",
+    "ai_desc": "Inférence locale et serveur via Ollama Pro forfait cloud avec des modèles comme Gemma 4. Complété par Google AI Studio, NotebookLM & OpenRouter.",
+    "data_title": "Données & Auth",
+    "data_desc": "Supabase (PostgreSQL, Auth, Realtime) et Firebase – services backend modernes pour applications web et mobiles évolutives.",
+    "devops_title": "DevOps & Automation",
+    "devops_desc": "Automatisation de workflows n8n, Nginx Proxy Manager, Docker Compose sur Hetzner VPS – CI/CD avec GitHub Actions et déploiement entièrement automatisé."
   },
   "kiosk": {
     "kiosk_title": "AIKF-Kiosk",

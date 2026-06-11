@@ -75,13 +75,13 @@ export default function TechStack() {
         {/* Section header */}
         <div className="text-center mb-14">
           <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
-            ⚡ {t('tech_title')}
+            ⚡ {t('title')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-            {t('tech_title')}
+            {t('title')}
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            {t('tech_desc')}
+            {t('desc')}
           </p>
         </div>
 
