@@ -6,7 +6,7 @@ const sections = [
   { key: 'blog', href: '/blog', emoji: '📝' },
   { key: 'alltag', href: '/alltag', emoji: '\u{1F3E0}' },
   { key: 'portfolio', href: '/portfolio', emoji: '\u{1F4BC}' },
-  { key: 'hajj', href: '/hajj-umrah', emoji: '\u{1F547}' },
+  { key: 'hajj', href: '/hajj-umrah', emoji: '\u{1F54B}' },
   { key: 'vereine', href: '/vereine', emoji: '\u{1F91D}' },
 ] as const
 
