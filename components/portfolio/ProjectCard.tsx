@@ -23,6 +23,7 @@ export default function ProjectCard({ project, locale: propLocale }: Props) {
           <img
             src={project.screenshot_url}
             alt={title ?? ''}
+            loading="lazy"
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent" />

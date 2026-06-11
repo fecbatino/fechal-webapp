@@ -8,6 +8,18 @@ const nextConfig: NextConfig = {
   // Standalone output for Docker deployment
   output: 'standalone',
 
+  // Responsive image sizes
+  images: {
+    deviceSizes: [480, 768, 1024, 1280, 1536],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'blog.fechal-batakpale.com',
+        pathname: '/content/images/**',
+      },
+    ],
+  },
+
   // next-intl ships ESM-only bundles; Jest (CommonJS) cannot parse them without
   // this transpilation step. Remove only once Jest is configured for ESM or
   // replaced by a native ESM test runner (e.g. Vitest).

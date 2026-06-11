@@ -30,6 +30,7 @@ export default async function LocaleLayout({
 
   return (
     <div className="min-h-full flex flex-col antialiased" lang={locale} dir={dir}>
+      <link rel="preconnect" href="https://blog.fechal-batakpale.com" />
       <NextIntlClientProvider messages={messages}>
         <Header />
         <main className="flex-1">{children}</main>
