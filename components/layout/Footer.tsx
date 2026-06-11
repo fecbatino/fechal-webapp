@@ -6,7 +6,7 @@ const socialLinks = [
     href: 'https://github.com/fecbatino',
     label: 'GitHub',
     icon: Code,
-    color: 'hover:text-white hover:border-white/20',
+    color: 'hover:text-foreground hover:border-accent/40',
   },
   {
     href: 'https://www.instagram.com/fecbatino',
@@ -18,7 +18,7 @@ const socialLinks = [
     href: 'https://www.tiktok.com/@fecbatino',
     label: 'TikTok',
     icon: Music,
-    color: 'hover:text-white hover:border-white/20',
+    color: 'hover:text-foreground hover:border-accent/40',
   },
   {
     href: 'https://www.youtube.com/@fecbatino',
@@ -30,33 +30,33 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-gray-950 mt-auto py-10 px-4">
+    <footer className="border-t border-border bg-background mt-auto py-10 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Top row: copyright + legal */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-muted-fg">
             © {new Date().getFullYear()} Fechal Batakpale
           </span>
           <div className="flex items-center gap-4 text-sm">
-            <Link href="/impressum" className="text-gray-500 hover:text-teal-400 transition-colors">
+            <Link href="/impressum" className="text-muted-fg hover:text-accent transition-colors">
               Impressum
             </Link>
-            <span className="text-gray-700">·</span>
-            <Link href="/datenschutz" className="text-gray-500 hover:text-teal-400 transition-colors">
+            <span className="text-muted">·</span>
+            <Link href="/datenschutz" className="text-muted-fg hover:text-accent transition-colors">
               Datenschutz
             </Link>
           </div>
         </div>
 
         {/* Bottom row: social icons */}
-        <div className="flex items-center justify-center gap-4 pt-4 border-t border-white/5">
+        <div className="flex items-center justify-center gap-4 pt-4 border-t border-border">
           {socialLinks.map(({ href, label, icon: Icon, color }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`w-9 h-9 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all ${color}`}
+              className={`w-9 h-9 rounded-lg border border-border bg-subtle flex items-center justify-center text-muted-fg transition-all ${color}`}
               aria-label={label}
             >
               <Icon size={16} strokeWidth={1.5} />

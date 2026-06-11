@@ -62,22 +62,22 @@ export default async function AboutSection() {
   }, {})
 
   return (
-    <section className="bg-gray-950 py-20 px-4 border-t border-white/5" id="ueber-mich">
+    <section className="bg-background py-20 px-4 border-t border-border" id="ueber-mich">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-4 mb-10">
           <div className="relative">
-            <div className="absolute inset-0 bg-teal-500/20 rounded-xl blur-md" />
+            <div className="absolute inset-0 rounded-xl blur-md" style={{background: 'color-mix(in srgb, var(--accent) 20%, transparent)'}} />
             <LogoMark size={48} className="relative" />
           </div>
           <div>
-            <h2 className="text-3xl font-bold text-white">{t('about_title')}</h2>
-            <p className="text-teal-400 text-sm font-medium mt-0.5">Software Engineer · Nürnberg</p>
+            <h2 className="text-3xl font-bold text-foreground">{t('about_title')}</h2>
+            <p className="text-accent text-sm font-medium mt-0.5">Software Engineer · Nürnberg</p>
           </div>
         </div>
 
         {/* Bio paragraphs */}
-        <div className="space-y-4 text-gray-300 leading-relaxed mb-10">
+        <div className="space-y-4 text-subtle-fg leading-relaxed mb-10">
           <p>{t('about_bio_1')}</p>
           <p>{t('about_bio_2')}</p>
           <p>{t('about_bio_3')}</p>
@@ -85,7 +85,7 @@ export default async function AboutSection() {
 
         {/* Tags by group */}
         <div>
-          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-5">
+          <p className="text-xs font-semibold text-muted-fg uppercase tracking-wide mb-5">
             {t('about_focus')}
           </p>
           <div className="space-y-4">
@@ -94,7 +94,7 @@ export default async function AboutSection() {
               if (!groupTags) return null
               return (
                 <div key={group}>
-                  <p className="text-[10px] font-medium text-gray-600 uppercase tracking-wider mb-2">
+                  <p className="text-[10px] font-medium text-muted uppercase tracking-wider mb-2">
                     {label}
                   </p>
                   <div className="flex flex-wrap gap-1.5">

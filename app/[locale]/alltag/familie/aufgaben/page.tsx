@@ -53,11 +53,11 @@ export default function AufgabenPage() {
     setTasks((prev) => prev.filter((t) => t.id !== id))
   }
 
-  if (loading) return <div className="p-8 text-center text-gray-400">…</div>
+  if (loading) return <div className="p-8 text-center text-muted-fg">…</div>
 
   if (!familyId) {
     return (
-      <div className="max-w-lg mx-auto px-4 py-12 text-center text-gray-500">
+      <div className="max-w-lg mx-auto px-4 py-12 text-center text-muted-fg">
         {t('family_id_missing')}
       </div>
     )
@@ -65,7 +65,7 @@ export default function AufgabenPage() {
 
   return (
     <div className="max-w-lg mx-auto px-4 py-12">
-      <h1 className="text-2xl font-bold text-gray-900 mb-8">{t('aufgaben')}</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-8">{t('aufgaben')}</h1>
       <TaskList tasks={tasks} onToggle={handleToggle} onDelete={handleDelete} onAdd={handleAdd} />
     </div>
   )

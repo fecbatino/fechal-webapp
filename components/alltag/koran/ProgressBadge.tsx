@@ -7,7 +7,7 @@ interface Props {
 }
 
 const statusStyles: Record<QuranProgressStatus, string> = {
-  not_started: 'bg-gray-100 text-gray-500',
+  not_started: 'bg-gray-100 text-muted-fg',
   reading: 'bg-blue-100 text-blue-700',
   memorized: 'bg-green-100 text-green-700',
 }

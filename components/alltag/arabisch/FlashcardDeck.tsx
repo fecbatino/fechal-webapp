@@ -54,15 +54,15 @@ export default function FlashcardDeck({ cards, progressMap, userId, locale, onCo
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between text-sm text-gray-500">
+      <div className="flex items-center justify-between text-sm text-muted-fg">
         <span>{t('cards_due')}</span>
-        <span className="font-semibold text-gray-700">{currentIndex + 1} / {cards.length}</span>
+        <span className="font-semibold text-muted">{currentIndex + 1} / {cards.length}</span>
       </div>
       <div className="w-full bg-gray-100 rounded-full h-2">
         <div className="bg-emerald-500 h-2 rounded-full transition-all" style={{ width: `${(currentIndex / cards.length) * 100}%` }} />
       </div>
       {saving ? (
-        <div className="text-center text-gray-400 py-8">...</div>
+        <div className="text-center text-muted-fg py-8">...</div>
       ) : (
         <Flashcard key={currentCard.id} card={currentCard} locale={locale} onRate={handleRate} />
       )}

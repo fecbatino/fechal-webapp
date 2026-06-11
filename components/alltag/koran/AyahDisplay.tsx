@@ -29,7 +29,7 @@ export default function AyahDisplay({ ayah, translation, tajweedChars }: Props) 
               </span>
             ))}
           </p>
-          <p className="text-gray-600 text-sm leading-relaxed">{translation}</p>
+          <p className="text-muted text-sm leading-relaxed">{translation}</p>
         </div>
       </div>
     </div>

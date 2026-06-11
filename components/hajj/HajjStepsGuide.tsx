@@ -22,15 +22,15 @@ export default function HajjStepsGuide({ steps, locale: propLocale }: Props) {
           </div>
           <div className="flex-1 glass-card rounded-xl p-5">
             <div className="flex items-start justify-between gap-4 mb-2">
-              <h3 className="font-bold text-white text-base">
-                <span className="text-teal-400">{t('step_label')} {step.order}: </span>
+              <h3 className="font-bold text-foreground text-base">
+                <span className="text-accent">{t('step_label')} {step.order}: </span>
                 <span>{getMultilingualText(step.title, locale)}</span>
               </h3>
-              <span className="text-xl text-teal-400/60 flex-shrink-0" dir="rtl">
+              <span className="text-xl text-accent/60 flex-shrink-0" dir="rtl">
                 {step.arabic}
               </span>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
+            <p className="text-muted-fg text-sm leading-relaxed">
               {getMultilingualText(step.description, locale)}
             </p>
           </div>

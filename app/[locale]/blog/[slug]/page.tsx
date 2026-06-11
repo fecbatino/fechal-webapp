@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="max-w-3xl mx-auto px-4">
         <Link
           href={'/' + locale + '/blog'}
-          className="inline-flex items-center gap-2 text-gray-400 hover:text-teal-400 transition-colors mb-8"
+          className="inline-flex items-center gap-2 text-muted-fg hover:text-accent transition-colors mb-8"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
               <Link
                 key={tag.id}
                 href={'/' + locale + '/blog/tag/' + tag.slug}
-                className="text-xs px-3 py-1 rounded-full bg-white/10 text-gray-300 hover:text-teal-400 transition-colors"
+                className="text-xs px-3 py-1 rounded-full bg-subtle text-subtle-fg hover:text-accent transition-colors"
               >
                 {tag.name}
               </Link>
@@ -76,7 +76,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <h1 className="text-3xl md:text-4xl font-bold mb-4">{post.title}</h1>
 
-        <div className="flex items-center gap-4 text-sm text-gray-500 mb-8">
+        <div className="flex items-center gap-4 text-sm text-muted-fg mb-8">
           <time>
             {new Date(post.published_at || post.created_at).toLocaleDateString(
               locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-SA' : 'en-US',
@@ -87,9 +87,9 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div
           className="prose prose-invert prose-lg max-w-none
-            prose-headings:text-white prose-a:text-teal-400 prose-a:no-underline hover:prose-a:underline
-            prose-img:rounded-xl prose-code:text-teal-300 prose-pre:bg-white/10 prose-pre:border prose-pre:border-white/10
-            prose-blockquote:border-teal-500 prose-blockquote:text-gray-300"
+            prose-headings:text-foreground prose-a:text-accent prose-a:no-underline hover:prose-a:underline
+            prose-img:rounded-xl prose-code:text-accent-hover prose-pre:bg-card prose-pre:border prose-pre:border-border
+            prose-blockquote:border-teal-500 prose-blockquote:text-subtle-fg"
           dangerouslySetInnerHTML={{ __html: post.html }}
         />
       </article>

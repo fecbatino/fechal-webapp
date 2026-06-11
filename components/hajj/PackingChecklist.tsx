@@ -13,7 +13,7 @@ const CATEGORY_ORDER: ChecklistCategory[] = ['documents', 'clothing', 'health', 
 const STORAGE_KEY = 'hajjPackingChecklist'
 
 const categoryAccents: Record<ChecklistCategory, { color: string; bg: string; border: string }> = {
-  documents: { color: 'text-teal-400', bg: 'bg-teal-500/10', border: 'border-teal-500/20' },
+  documents: { color: 'text-accent', bg: 'bg-teal-500/10', border: 'border-teal-500/20' },
   clothing: { color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20' },
   health: { color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
   essentials: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
@@ -64,12 +64,12 @@ export default function PackingChecklist({ items, locale: propLocale }: Props) {
       {/* Progress bar */}
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-sm text-gray-400">
+          <span className="text-sm text-muted-fg">
             {t('items_checked', { count: totalChecked, total: totalItems })}
           </span>
-          <span className="text-xs text-teal-400 font-medium">{progress}%</span>
+          <span className="text-xs text-accent font-medium">{progress}%</span>
         </div>
-        <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+        <div className="w-full h-1.5 rounded-full bg-subtle overflow-hidden">
           <div
             className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-500"
             style={{ width: `${progress}%` }}
@@ -94,14 +94,14 @@ export default function PackingChecklist({ items, locale: propLocale }: Props) {
                     className={`w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-all ${
                       checked.has(item.id)
                         ? `${accent.bg} ${accent.border}`
-                        : 'border-white/10 hover:border-teal-500/30'
+                        : 'border-border hover:border-teal-500/30'
                     }`}
                     role="checkbox"
                     aria-checked={checked.has(item.id)}
                     aria-label={getMultilingualText(item.label, locale)}
                   >
                     {checked.has(item.id) && (
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-teal-400">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-accent">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
                     )}
@@ -109,7 +109,7 @@ export default function PackingChecklist({ items, locale: propLocale }: Props) {
                   <label
                     onClick={() => toggle(item.id)}
                     className={`text-sm cursor-pointer transition-colors ${
-                      checked.has(item.id) ? 'line-through text-gray-500' : 'text-gray-300 hover:text-white'
+                      checked.has(item.id) ? 'line-through text-muted-fg' : 'text-subtle-fg hover:text-foreground'
                     }`}
                   >
                     {getMultilingualText(item.label, locale)}

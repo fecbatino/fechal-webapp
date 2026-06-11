@@ -28,20 +28,20 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 bg-[#0B1F3A]">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-background">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <LogoMark size={56} className="shadow-lg" />
           </div>
-          <h1 className="text-2xl font-bold text-white">{t('login_title')}</h1>
-          <p className="text-gray-300 text-sm mt-1">Fechal · Familie · Glaube · IT</p>
+          <h1 className="text-2xl font-bold text-foreground">{t('login_title')}</h1>
+          <p className="text-subtle-fg text-sm mt-1">Fechal · Familie · Glaube · IT</p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+        <div className="bg-card rounded-2xl border-border shadow-sm p-8">
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-muted mb-1">
                 {t('email')}
               </label>
               <input
@@ -54,7 +54,7 @@ export default function LoginPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-muted mb-1">
                 {t('password')}
               </label>
               <input
@@ -80,7 +80,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="text-center text-sm text-muted-fg mt-6">
             {t('no_account')}{' '}
             <Link href="/auth/register" className="text-emerald-600 hover:underline font-medium">
               {t('register')}

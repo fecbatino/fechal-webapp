@@ -30,15 +30,15 @@ export default function CvTimeline({ entries, locale: propLocale }: Props) {
         <div className="glass-card rounded-xl p-5">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0">
-              <h3 className="text-base font-semibold text-white">{title}</h3>
-              <p className="text-sm text-teal-400">{entry.organization}</p>
+              <h3 className="text-base font-semibold text-foreground">{title}</h3>
+              <p className="text-sm text-accent">{entry.organization}</p>
             </div>
-            <span className="text-xs text-gray-500 whitespace-nowrap flex-shrink-0 bg-white/5 px-2.5 py-1 rounded-full border border-white/5">
+            <span className="text-xs text-muted-fg whitespace-nowrap flex-shrink-0 bg-subtle px-2.5 py-1 rounded-full border border-border">
               {entry.start_year} – {entry.end_year ?? t('cv_present')}
             </span>
           </div>
           {description && (
-            <p className="text-sm text-gray-400 mt-3 leading-relaxed">{description}</p>
+            <p className="text-sm text-muted-fg mt-3 leading-relaxed">{description}</p>
           )}
         </div>
       </li>
@@ -49,7 +49,7 @@ export default function CvTimeline({ entries, locale: propLocale }: Props) {
     <div className="space-y-10">
       {experience.length > 0 && (
         <section>
-          <h2 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
               <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
@@ -64,7 +64,7 @@ export default function CvTimeline({ entries, locale: propLocale }: Props) {
 
       {education.length > 0 && (
         <section>
-          <h2 className="text-lg font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
               <path d="M6 12v5c3 3 9 3 12 0v-5" />

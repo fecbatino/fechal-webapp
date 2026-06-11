@@ -119,7 +119,7 @@ export default function SurahReaderPage({ params }: Props) {
             ← {t('prev_surah')}
           </Link>
         ) : <span />}
-        <Link href="/alltag/koran" className="text-sm text-gray-400 hover:text-gray-600">
+        <Link href="/alltag/koran" className="text-sm text-muted-fg hover:text-gray-600">
           {t('surah_list')}
         </Link>
         {surahNumber < 114 ? (
@@ -133,12 +133,12 @@ export default function SurahReaderPage({ params }: Props) {
       </div>
 
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-1">{surahEnglishName}</h1>
-        <p className="text-gray-400 text-sm">{surahName} · {ayahs.length} {t('ayahs')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-1">{surahEnglishName}</h1>
+        <p className="text-muted-fg text-sm">{surahName} · {ayahs.length} {t('ayahs')}</p>
       </div>
 
-      <details className="mb-6 bg-gray-50 rounded-xl p-4">
-        <summary className="cursor-pointer text-sm font-medium text-gray-600">{t('tajweed_legend')}</summary>
+      <details className="mb-6 bg-subtle rounded-xl p-4">
+        <summary className="cursor-pointer text-sm font-medium text-muted">{t('tajweed_legend')}</summary>
         <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
           <span><span style={{ color: TAJWEED_COLORS.qalqalah }}>■</span> Qalqalah</span>
           <span><span style={{ color: TAJWEED_COLORS.madd }}>■</span> Madd</span>
@@ -167,7 +167,7 @@ export default function SurahReaderPage({ params }: Props) {
         </div>
       )}
 
-      <div className="bg-white rounded-2xl border border-gray-200 divide-y divide-gray-100">
+      <div className="bg-background rounded-2xl border border-border divide-y divide-gray-100">
         {ayahs.map(({ ayah, translation, tajweedChars }) => (
           <AyahDisplay key={ayah.number} ayah={ayah} translation={translation} tajweedChars={tajweedChars} />
         ))}

@@ -39,18 +39,18 @@ export default async function HajjPage({ params }: Props) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-20">
         {/* Header */}
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-4">
-            <Compass className="w-7 h-7 text-teal-400" strokeWidth={1.5} />
-            <span className="text-xs font-semibold tracking-widest uppercase text-teal-400">
+            <Compass className="w-7 h-7 text-accent" strokeWidth={1.5} />
+            <span className="text-xs font-semibold tracking-widest uppercase text-accent">
               {t('title')}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{t('title')}</h1>
-          <p className="text-gray-400 text-lg max-w-xl">{t('subtitle')}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">{t('title')}</h1>
+          <p className="text-muted-fg text-lg max-w-xl">{t('subtitle')}</p>
         </div>
 
         {/* Sections */}
@@ -60,10 +60,10 @@ export default async function HajjPage({ params }: Props) {
             return (
               <section key={section.id} id={section.id}>
                 <div className="flex items-center gap-3 mb-8">
-                  <Icon className="w-5 h-5 text-teal-400" strokeWidth={1.5} />
+                  <Icon className="w-5 h-5 text-accent" strokeWidth={1.5} />
                   <div>
-                    <h2 className="text-2xl font-bold text-white">{t(section.titleKey)}</h2>
-                    <p className="text-gray-400 text-sm">{t(section.descKey)}</p>
+                    <h2 className="text-2xl font-bold text-foreground">{t(section.titleKey)}</h2>
+                    <p className="text-muted-fg text-sm">{t(section.descKey)}</p>
                   </div>
                 </div>
                 {sectionContent[section.id]}
@@ -74,10 +74,10 @@ export default async function HajjPage({ params }: Props) {
           {/* Official Links */}
           <section id="links">
             <div className="flex items-center gap-3 mb-8">
-              <Globe className="w-5 h-5 text-teal-400" strokeWidth={1.5} />
+              <Globe className="w-5 h-5 text-accent" strokeWidth={1.5} />
               <div>
-                <h2 className="text-2xl font-bold text-white">{t('section_links')}</h2>
-                <p className="text-gray-400 text-sm">{t('section_links_desc')}</p>
+                <h2 className="text-2xl font-bold text-foreground">{t('section_links')}</h2>
+                <p className="text-muted-fg text-sm">{t('section_links_desc')}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -90,14 +90,14 @@ export default async function HajjPage({ params }: Props) {
                   className="glass-card rounded-xl p-5 flex items-center justify-between group"
                 >
                   <div className="min-w-0">
-                    <p className="font-medium text-white text-sm group-hover:text-teal-400 transition-colors">
+                    <p className="font-medium text-foreground text-sm group-hover:text-accent transition-colors">
                       {link.title[locale as HajjLocale] ?? link.title.de}
                     </p>
-                    <p className="text-xs text-gray-500 mt-0.5">
+                    <p className="text-xs text-muted-fg mt-0.5">
                       {link.country[locale as HajjLocale] ?? link.country.de}
                     </p>
                   </div>
-                  <Globe className="text-teal-400 flex-shrink-0 ml-3" size={16} strokeWidth={1.5} />
+                  <Globe className="text-accent flex-shrink-0 ml-3" size={16} strokeWidth={1.5} />
                 </a>
               ))}
             </div>

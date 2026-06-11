@@ -12,7 +12,7 @@ export default async function BlogPreview({ locale }: Props) {
   const posts = await getFeaturedPosts(3)
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 py-20 px-4">
+    <section className="relative overflow-hidden bg-gradient-to-b from-background via-card to-background py-20 px-4">
       {/* Background glow orbs */}
       <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-teal-500/10 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/4 -right-32 w-96 h-96 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
@@ -20,13 +20,13 @@ export default async function BlogPreview({ locale }: Props) {
       <div className="relative max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-12">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
             ✦ {t('blog_preview_title')}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             {t('blog_preview_title')}
           </h2>
-          <p className="text-gray-400 max-w-xl mx-auto">
+          <p className="text-muted-fg max-w-xl mx-auto">
             {t('blog_preview_desc')}
           </p>
         </div>
@@ -49,7 +49,7 @@ export default async function BlogPreview({ locale }: Props) {
                       sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
                   </div>
                 ) : (
                   <div className="h-28 bg-gradient-to-br from-teal-900/30 to-emerald-900/30 flex items-center justify-center">
@@ -66,22 +66,22 @@ export default async function BlogPreview({ locale }: Props) {
                   {post.tags && post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-2">
                       {post.tags.slice(0, 2).map((tag) => (
-                        <span key={tag.id} className="text-[10px] px-2 py-0.5 rounded-full bg-teal-500/10 text-teal-400 font-medium">
+                        <span key={tag.id} className="text-[10px] px-2 py-0.5 rounded-full bg-accent-light text-accent font-medium">
                           {tag.name}
                         </span>
                       ))}
                     </div>
                   )}
 
-                  <h3 className="text-base font-semibold text-white mb-2 group-hover:text-teal-400 transition-colors line-clamp-2">
+                  <h3 className="text-base font-semibold text-foreground mb-2 group-hover:text-accent transition-colors line-clamp-2">
                     {post.title}
                   </h3>
 
-                  <p className="text-sm text-gray-400 line-clamp-2 mb-3">
+                  <p className="text-sm text-muted-fg line-clamp-2 mb-3">
                     {post.custom_excerpt || post.excerpt || ''}
                   </p>
 
-                  <time className="text-xs text-gray-500">
+                  <time className="text-xs text-muted-fg">
                     {new Date(post.published_at || post.created_at).toLocaleDateString(
                       locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-SA' : 'en-US',
                       { year: 'numeric', month: 'short', day: 'numeric' }
@@ -98,7 +98,7 @@ export default async function BlogPreview({ locale }: Props) {
                 <path d="M12 6v6l4 2" />
                 <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" />
               </svg>
-              <p className="text-gray-400">{t('blog_preview_empty')}</p>
+              <p className="text-muted-fg">{t('blog_preview_empty')}</p>
             </div>
           </div>
         )}
@@ -107,7 +107,7 @@ export default async function BlogPreview({ locale }: Props) {
         <div className="text-center mt-10">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 hover:bg-teal-500/20 hover:border-teal-500/50 transition-all text-sm font-medium"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent-light border border-accent/30 text-accent hover:bg-accent/20 hover:border-accent/50 transition-all text-sm font-medium"
           >
             {t('blog_preview_cta')}
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

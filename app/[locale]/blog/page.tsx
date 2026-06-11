@@ -34,7 +34,7 @@ export default async function BlogPage({ params }: Props) {
     <main className="min-h-screen pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('title')}</h1>
-        <p className="text-lg text-gray-400 mb-10">{t('subtitle')}</p>
+        <p className="text-lg text-muted-fg mb-10">{t('subtitle')}</p>
 
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-3 mb-12">
@@ -42,7 +42,7 @@ export default async function BlogPage({ params }: Props) {
               <Link
                 key={tag.id}
                 href={'/' + locale + '/blog/tag/' + tag.slug}
-                className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-white/10 hover:border-teal-500/50 hover:text-teal-400 transition-all"
+                className="px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-border hover:border-accent/50 hover:text-accent transition-all"
                 style={tag.accent_color ? { borderColor: tag.accent_color + '40', color: tag.accent_color } : {}}
               >
                 {tag.name}
@@ -57,7 +57,7 @@ export default async function BlogPage({ params }: Props) {
               <Link
                 key={post.id}
                 href={'/' + locale + '/blog/' + post.slug}
-                className="group backdrop-blur-sm bg-white/5 rounded-2xl overflow-hidden border border-white/10 hover:border-teal-500/30 transition-all duration-300 hover:-translate-y-1"
+                className="group backdrop-blur-sm bg-card rounded-2xl overflow-hidden border border-border hover:border-teal-500/30 transition-all duration-300 hover:-translate-y-1"
               >
                 {post.feature_image && (
                   <div className="relative w-full h-48 overflow-hidden">
@@ -75,22 +75,22 @@ export default async function BlogPage({ params }: Props) {
                   {post.tags && post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-2 mb-3">
                       {post.tags.slice(0, 2).map((tag) => (
-                        <span key={tag.id} className="text-xs px-2 py-0.5 rounded-full bg-white/10 text-gray-300">
+                        <span key={tag.id} className="text-xs px-2 py-0.5 rounded-full bg-subtle text-subtle-fg">
                           {tag.name}
                         </span>
                       ))}
                     </div>
                   )}
 
-                  <h2 className="text-xl font-semibold mb-2 group-hover:text-teal-400 transition-colors">
+                  <h2 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
                     {post.title}
                   </h2>
 
-                  <p className="text-sm text-gray-400 line-clamp-3">
+                  <p className="text-sm text-muted-fg line-clamp-3">
                     {post.custom_excerpt || post.excerpt || ''}
                   </p>
 
-                  <time className="text-xs text-gray-500 mt-3 block">
+                  <time className="text-xs text-muted-fg mt-3 block">
                     {new Date(post.published_at || post.created_at).toLocaleDateString(
                       locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-SA' : 'en-US',
                       { year: 'numeric', month: 'long', day: 'numeric' }
@@ -102,7 +102,7 @@ export default async function BlogPage({ params }: Props) {
           </div>
         ) : (
           <div className="text-center py-20">
-            <p className="text-gray-500 text-lg">{t('empty')}</p>
+            <p className="text-muted-fg text-lg">{t('empty')}</p>
           </div>
         )}
       </div>

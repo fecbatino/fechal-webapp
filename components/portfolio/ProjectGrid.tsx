@@ -48,7 +48,7 @@ export default function ProjectGrid({ projects, locale: propLocale }: Props) {
               className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
                 isActive
                   ? activeStyles[color]
-                  : 'border-white/10 text-gray-400 hover:border-white/20 hover:text-gray-200'
+                  : 'border-border text-muted-fg hover:border-border hover:text-subtle-fg'
               }`}
             >
               {t(`category_${cat}`)}
@@ -58,7 +58,7 @@ export default function ProjectGrid({ projects, locale: propLocale }: Props) {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-gray-500 text-center py-12">{t('no_projects')}</p>
+        <p className="text-muted-fg text-center py-12">{t('no_projects')}</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
           {filtered.map((project) => (

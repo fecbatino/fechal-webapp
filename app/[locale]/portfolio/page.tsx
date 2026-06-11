@@ -25,20 +25,20 @@ export default async function PortfolioPage({ params }: Props) {
   ])
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-background">
       <div className="max-w-5xl mx-auto px-4 py-20">
         {/* Header */}
         <div className="mb-16">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
             ✦ {t('title')}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{t('title')}</h1>
-          <p className="text-gray-400 text-lg max-w-xl">{t('subtitle')}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">{t('title')}</h1>
+          <p className="text-muted-fg text-lg max-w-xl">{t('subtitle')}</p>
         </div>
 
         {/* Projects */}
         <section className="mb-20">
-          <h2 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground mb-8 flex items-center gap-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
               <line x1="8" y1="21" x2="16" y2="21" />
@@ -51,7 +51,7 @@ export default async function PortfolioPage({ params }: Props) {
 
         {/* Skills */}
         <section className="mb-20">
-          <h2 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground mb-8 flex items-center gap-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 2a4 4 0 0 1 4 4c0 2-2 4-4 4s-4-2-4-4a4 4 0 0 1 4-4z" />
               <path d="M2 22c0-5 4.5-8 10-8s10 3 10 8" />
@@ -65,7 +65,7 @@ export default async function PortfolioPage({ params }: Props) {
 
         {/* CV */}
         <section>
-          <h2 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-foreground mb-8 flex items-center gap-2">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
               <polyline points="14 2 14 8 20 8" />

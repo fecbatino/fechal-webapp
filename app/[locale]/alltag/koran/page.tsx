@@ -56,10 +56,10 @@ export default function KoranPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-1">{t('title')}</h1>
-        <p className="text-gray-500">{t('subtitle')}</p>
+        <h1 className="text-3xl font-bold text-foreground mb-1">{t('title')}</h1>
+        <p className="text-muted-fg">{t('subtitle')}</p>
       </div>
-      <h2 className="text-lg font-semibold text-gray-700 mb-4">{t('surah_list')}</h2>
+      <h2 className="text-lg font-semibold text-muted mb-4">{t('surah_list')}</h2>
       <SurahList surahs={surahs} progressMap={progressMap} />
     </div>
   )

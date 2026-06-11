@@ -20,13 +20,13 @@ export default function SectionCards() {
           <Link
             key={key}
             href={href}
-            className="block p-6 rounded-2xl border border-gray-200 hover:border-emerald-400 hover:shadow-md transition-all bg-white text-center group"
+            className="block p-6 rounded-2xl border border-border hover:border-accent hover:shadow-md transition-all bg-background text-center group"
           >
             <div className="text-4xl mb-3">{emoji}</div>
-            <h2 className="font-semibold text-gray-800 group-hover:text-emerald-600">
+            <h2 className="font-semibold text-foreground group-hover:text-accent">
               {t(key)}
             </h2>
-            <p className="text-sm text-gray-500 mt-1">{t(`${key}_desc`)}</p>
+            <p className="text-sm text-muted-fg mt-1">{t(`${key}_desc`)}</p>
           </Link>
         ))}
       </div>

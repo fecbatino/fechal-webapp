@@ -77,15 +77,15 @@ export default async function VereinePage({ params }: Props) {
   const l = (labels[locale as Locale] ?? labels.de)
 
   return (
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 py-20">
         {/* Header */}
         <div className="mb-16">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
             🤝 {t('vereine')}
           </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{t('vereine')}</h1>
-          <p className="text-gray-400 text-lg max-w-xl">{t('vereine_desc')}</p>
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3">{t('vereine')}</h1>
+          <p className="text-muted-fg text-lg max-w-xl">{t('vereine_desc')}</p>
         </div>
 
         <div className="space-y-8">
@@ -98,18 +98,18 @@ export default async function VereinePage({ params }: Props) {
               >
                 <div className="flex items-start gap-5 mb-6">
                   {/* Logo placeholder */}
-                  <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-14 h-14 rounded-xl bg-subtle border-border flex items-center justify-center flex-shrink-0">
                     <LogoMark size={36} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-white">{v.name}</h2>
-                    <p className="text-gray-400 text-sm mt-1">
+                    <h2 className="text-2xl font-bold text-foreground">{v.name}</h2>
+                    <p className="text-muted-fg text-sm mt-1">
                       {v.subtitle[locale as Locale] ?? v.subtitle.de}
                     </p>
                   </div>
                 </div>
 
-                <p className="text-gray-300 leading-relaxed mb-6">
+                <p className="text-subtle-fg leading-relaxed mb-6">
                   {v.description[locale as Locale] ?? v.description.de}
                 </p>
 

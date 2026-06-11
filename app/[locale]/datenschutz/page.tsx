@@ -24,7 +24,7 @@ const sections = [
         Diese Website wird extern gehostet. Die personenbezogenen Daten, die auf dieser Website
         erfasst werden, werden auf den Servern des Hosters gespeichert.
         <br /><br />
-        <span className="font-medium text-gray-800">Hoster:</span>{' '}
+        <span className="font-medium text-foreground">Hoster:</span>{' '}
         Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Deutschland.
       </p>
     ),
@@ -36,7 +36,7 @@ const sections = [
       <p>
         Wenn Sie den auf der Website angebotenen Newsletter beziehen möchten, benötigen wir von
         Ihnen eine E-Mail-Adresse. Wir nutzen für den Versand{' '}
-        <span className="font-medium text-gray-800">Gmail (Google)</span> als SMTP-Dienstleister.
+        <span className="font-medium text-foreground">Gmail (Google)</span> als SMTP-Dienstleister.
         Ihre Daten werden ausschließlich für den Versand der angeforderten Informationen verwendet.
       </p>
     ),
@@ -46,7 +46,7 @@ const sections = [
     title: 'Verantwortliche Stelle',
     content: (
       <div className="space-y-1">
-        <p className="font-medium text-gray-800">Fechal Batakpale</p>
+        <p className="font-medium text-foreground">Fechal Batakpale</p>
         <p>Sigelsdorfer Str. 34</p>
         <p>90431 Nürnberg</p>
         <p>Deutschland</p>
@@ -64,14 +64,14 @@ const sections = [
 export default function DatenschutzPage() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold text-gray-900 mb-2">Datenschutzerklärung</h1>
-      <p className="text-gray-400 text-sm mb-10">Stand: {new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long' })}</p>
+      <h1 className="text-3xl font-bold text-foreground mb-2">Datenschutzerklärung</h1>
+      <p className="text-muted-fg text-sm mb-10">Stand: {new Date().toLocaleDateString('de-DE', { year: 'numeric', month: 'long' })}</p>
 
       <div className="space-y-6">
         {sections.map((s) => (
-          <section key={s.id} className="bg-white border border-gray-200 rounded-2xl p-6">
-            <h2 className="font-bold text-gray-900 mb-3">{s.title}</h2>
-            <div className="text-gray-600 leading-relaxed text-sm">{s.content}</div>
+          <section key={s.id} className="bg-card border-border rounded-2xl p-6">
+            <h2 className="font-bold text-foreground mb-3">{s.title}</h2>
+            <div className="text-muted leading-relaxed text-sm">{s.content}</div>
           </section>
         ))}
       </div>

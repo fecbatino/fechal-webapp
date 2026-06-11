@@ -33,7 +33,7 @@ export default async function KioskSection({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'kiosk' })
 
   return (
-    <section className="relative overflow-hidden bg-gray-950 py-20 px-4 border-t border-white/5">
+    <section className="relative overflow-hidden bg-background py-20 px-4 border-t border-border">
       {/* Decorative side accent */}
       <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-gradient-to-l from-teal-500/5 to-transparent pointer-events-none" />
 
@@ -64,13 +64,13 @@ export default async function KioskSection({ locale }: Props) {
 
           {/* Right: content */}
           <div className="flex-1 min-w-0">
-            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
               🏪 {t('kiosk_title')}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
               {t('kiosk_title')}
             </h2>
-            <p className="text-gray-400 max-w-xl mb-8">
+            <p className="text-muted-fg max-w-xl mb-8">
               {t('kiosk_desc')}
             </p>
 
@@ -78,10 +78,10 @@ export default async function KioskSection({ locale }: Props) {
             <div className="space-y-4 mb-8">
               {features.map((featKey, i) => (
                 <div key={featKey} className="flex items-start gap-3">
-                  <span className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center flex-shrink-0">
+                  <span className="w-8 h-8 rounded-lg bg-accent-light border border-accent/20 flex items-center justify-center flex-shrink-0">
                     {featureIcons[i]}
                   </span>
-                  <p className="text-sm text-gray-300 pt-1.5">
+                  <p className="text-sm text-subtle-fg pt-1.5">
                     {t(featKey)}
                   </p>
                 </div>
@@ -91,7 +91,7 @@ export default async function KioskSection({ locale }: Props) {
             {/* CTA */}
             <Link
               href="/vereine"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-teal-500/10 border border-teal-500/30 text-teal-400 hover:bg-teal-500/20 hover:border-teal-500/50 transition-all text-sm font-medium"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-accent-light border border-accent/30 text-accent hover:bg-accent/20 hover:border-accent/50 transition-all text-sm font-medium"
             >
               {t('kiosk_cta')}
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

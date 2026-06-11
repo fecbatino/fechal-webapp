@@ -46,7 +46,7 @@ export default function TaskList({ tasks, onToggle, onDelete, onAdd }: Props) {
         </button>
       </form>
       {tasks.length === 0 ? (
-        <p className="text-gray-400 text-sm text-center py-8">{t('no_tasks')}</p>
+        <p className="text-muted-fg text-sm text-center py-8">{t('no_tasks')}</p>
       ) : (
         <ul>
           {tasks.map((task) => (

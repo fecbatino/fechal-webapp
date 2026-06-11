@@ -5,11 +5,11 @@ export default async function Hero() {
   const t = await getTranslations('home')
 
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-28 px-4">
+    <section className="relative overflow-hidden bg-background py-28 px-4">
       {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      <div className="absolute inset-0" style={{background: 'var(--gradient-hero)'}}>
         {/* Glowing orbs */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-teal-500/20 blur-3xl animate-pulse" />
+        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{background: 'color-mix(in srgb, var(--accent) 20%, transparent)'}} />
         <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
@@ -31,33 +31,33 @@ export default async function Hero() {
         {/* Logo mark with glow */}
         <div className="flex justify-center mb-8">
           <div className="relative">
-            <div className="absolute inset-0 bg-teal-500/20 rounded-full blur-xl" />
+            <div className="absolute inset-0 rounded-full blur-xl" style={{background: 'color-mix(in srgb, var(--accent) 20%, transparent)'}} />
             <LogoMark size={80} className="relative shadow-2xl" />
           </div>
         </div>
 
         {/* Name */}
-        <h1 className="text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-2">
+        <h1 className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight mb-2">
           Fechal
         </h1>
-        <p className="text-teal-400 text-sm font-medium tracking-[0.2em] uppercase mb-4">
+        <p className="text-accent text-sm font-medium tracking-[0.2em] uppercase mb-4">
           Batakpale
         </p>
 
         {/* Separator */}
         <div className="flex items-center justify-center gap-3 mb-6">
-          <span className="h-px w-16 bg-gradient-to-r from-transparent via-teal-400/60 to-transparent" />
-          <span className="text-teal-400/80 text-xs">✦</span>
-          <span className="h-px w-16 bg-gradient-to-r from-transparent via-teal-400/60 to-transparent" />
+          <span className="h-px w-16 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+          <span className="text-accent/80 text-xs">✦</span>
+          <span className="h-px w-16 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
         </div>
 
         {/* Tagline */}
-        <p className="text-gray-300 text-lg md:text-xl font-light max-w-xl mx-auto">
+        <p className="text-subtle-fg text-lg md:text-xl font-light max-w-xl mx-auto">
           {t('hero_subtitle')}
         </p>
 
         {/* Subtle bottom fade */}
-        <div className="absolute -bottom-20 left-0 right-0 h-20 bg-gradient-to-t from-gray-900 to-transparent" />
+        <div className="absolute -bottom-20 left-0 right-0 h-20" style={{background: 'linear-gradient(to top, var(--background), transparent)'}} />
       </div>
     </section>
   )

@@ -11,8 +11,8 @@ const techItems = [
         <line x1="12" y1="17" x2="12" y2="21" />
       </svg>
     ),
-    gradient: 'from-teal-500/20 via-teal-500/5 to-transparent',
-    borderGlow: 'group-hover:border-teal-500/40',
+    gradient: 'from-accent/20 via-accent/5 to-transparent',
+    borderGlow: 'group-hover:border-accent/40',
     tags: ['Hermes Agent', 'Claude Code', 'Cowork', 'Multi-Agent'],
   },
   {
@@ -60,7 +60,7 @@ export default function TechStack() {
   const t = useTranslations('tech')
 
   return (
-    <section className="relative overflow-hidden bg-gray-900 py-20 px-4">
+    <section className="relative overflow-hidden bg-card py-20 px-4">
       {/* Background grid pattern */}
       <svg className="absolute inset-0 w-full h-full opacity-5 pointer-events-none" aria-hidden="true">
         <defs>
@@ -74,13 +74,13 @@ export default function TechStack() {
       <div className="relative max-w-6xl mx-auto">
         {/* Section header */}
         <div className="text-center mb-14">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
             ⚡ {t('title')}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
             {t('title')}
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-muted-fg max-w-2xl mx-auto">
             {t('desc')}
           </p>
         </div>
@@ -90,20 +90,20 @@ export default function TechStack() {
           {techItems.map((item) => (
             <div
               key={item.key}
-              className={`relative overflow-hidden rounded-2xl border border-white/5 bg-gradient-to-br ${item.gradient} p-6 transition-all duration-300 ${item.borderGlow}`}
+              className={`relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${item.gradient} p-6 transition-all duration-300 ${item.borderGlow}`}
             >
               {/* Hover glow */}
               <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
 
               <div className="relative flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-subtle border border-border flex items-center justify-center flex-shrink-0">
                   {item.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-white mb-1.5">
+                  <h3 className="text-lg font-semibold text-foreground mb-1.5">
                     {t(item.key + '_title')}
                   </h3>
-                  <p className="text-sm text-gray-400 leading-relaxed">
+                  <p className="text-sm text-muted-fg leading-relaxed">
                     {t(item.key + '_desc')}
                   </p>
                   {/* Tags */}
@@ -111,7 +111,7 @@ export default function TechStack() {
                     {item.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-gray-500 font-medium border border-white/5"
+                        className="text-[10px] px-2 py-0.5 rounded-full bg-subtle text-muted-fg font-medium border border-border"
                       >
                         {tag}
                       </span>
