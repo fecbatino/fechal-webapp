@@ -52,16 +52,34 @@ const GHOST_API_URL = process.env.GHOST_API_URL || 'https://blog.fechal-batakpal
 const GHOST_CONTENT_KEY = process.env.GHOST_CONTENT_KEY || ''
 
 async function ghostFetch<T>(endpoint: string): Promise<T> {
+  if (!GHOST_CONTENT_KEY) {
+    throw new Error('Ghost API key not configured')
+  }
   const url = GHOST_API_URL + '/ghost/api/content/' + endpoint + '&key=' + GHOST_CONTENT_KEY
-  const res = await fetch(url, { next: { revalidate: 300 } })
-  if (!res.ok) throw new Error('Ghost API error: ' + res.status + ' ' + res.statusText)
-  return res.json()
+  const controller = new AbortController()
+  const timeout = setTimeout(() => controller.abort(), 5000)
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 300 },
+      signal: controller.signal,
+    })
+    clearTimeout(timeout)
+    if (!res.ok) throw new Error('Ghost API error: ' + res.status + ' ' + res.statusText)
+    return res.json()
+  } catch (e) {
+    clearTimeout(timeout)
+    throw e
+  }
 }
 
 export async function getPosts(options?: { limit?: number; page?: number }): Promise<GhostPostsResponse> {
-  const limit = options?.limit || 10
-  const page = options?.page || 1
-  return ghostFetch<GhostPostsResponse>('posts/?limit=' + limit + '&page=' + page + '&include=tags,authors')
+  try {
+    const limit = options?.limit || 10
+    const page = options?.page || 1
+    return await ghostFetch<GhostPostsResponse>('posts/?limit=' + limit + '&page=' + page + '&include=tags,authors')
+  } catch {
+    return { posts: [], meta: { pagination: { page: 1, pages: 0, total: 0, limit: 10 } } }
+  }
 }
 
 export async function getPost(slug: string): Promise<GhostPost | null> {
@@ -74,16 +92,28 @@ export async function getPost(slug: string): Promise<GhostPost | null> {
 }
 
 export async function getFeaturedPosts(limit = 3): Promise<GhostPost[]> {
-  const data = await ghostFetch<GhostPostsResponse>('posts/?filter=featured:true&limit=' + limit + '&include=tags,authors')
-  return data.posts || []
+  try {
+    const data = await ghostFetch<GhostPostsResponse>('posts/?filter=featured:true&limit=' + limit + '&include=tags,authors')
+    return data.posts || []
+  } catch {
+    return []
+  }
 }
 
 export async function getTags(): Promise<GhostTag[]> {
-  const data = await ghostFetch<GhostTagsResponse>('tags/?limit=50&include=')
-  return data.tags || []
+  try {
+    const data = await ghostFetch<GhostTagsResponse>('tags/?limit=50&include=')
+    return data.tags || []
+  } catch {
+    return []
+  }
 }
 
 export async function getPostsByTag(tagSlug: string, options?: { limit?: number }): Promise<GhostPostsResponse> {
-  const limit = options?.limit || 10
-  return ghostFetch<GhostPostsResponse>('posts/?filter=tags.slug:' + tagSlug + '&limit=' + limit + '&include=tags,authors')
+  try {
+    const limit = options?.limit || 10
+    return await ghostFetch<GhostPostsResponse>('posts/?filter=tags.slug:' + tagSlug + '&limit=' + limit + '&include=tags,authors')
+  } catch {
+    return { posts: [], meta: { pagination: { page: 1, pages: 0, total: 0, limit: 10 } } }
+  }
 }
