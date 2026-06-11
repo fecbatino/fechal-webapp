@@ -14,6 +14,13 @@ interface Props {
 
 const FILTER_CATEGORIES: FilterCategory[] = ['all', 'web', 'ai', 'vereine']
 
+const categoryColors: Record<string, string> = {
+  all: 'teal',
+  web: 'teal',
+  ai: 'violet',
+  vereine: 'emerald',
+}
+
 export default function ProjectGrid({ projects, locale: propLocale }: Props) {
   const hookLocale = useLocale()
   const locale = propLocale ?? hookLocale
@@ -25,24 +32,33 @@ export default function ProjectGrid({ projects, locale: propLocale }: Props) {
   return (
     <div>
       <div className="flex gap-2 flex-wrap mb-8">
-        {FILTER_CATEGORIES.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            aria-pressed={active === cat}
-            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              active === cat
-                ? 'bg-emerald-600 text-white'
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-            }`}
-          >
-            {t(`category_${cat}`)}
-          </button>
-        ))}
+        {FILTER_CATEGORIES.map((cat) => {
+          const color = categoryColors[cat]
+          const isActive = active === cat
+          const activeStyles: Record<string, string> = {
+            teal: 'bg-teal-500/20 border-teal-500/40 text-teal-300',
+            violet: 'bg-violet-500/20 border-violet-500/40 text-violet-300',
+            emerald: 'bg-emerald-500/20 border-emerald-500/40 text-emerald-300',
+          }
+          return (
+            <button
+              key={cat}
+              onClick={() => setActive(cat)}
+              aria-pressed={isActive}
+              className={`px-4 py-2 rounded-full text-sm font-medium border transition-all ${
+                isActive
+                  ? activeStyles[color]
+                  : 'border-white/10 text-gray-400 hover:border-white/20 hover:text-gray-200'
+              }`}
+            >
+              {t(`category_${cat}`)}
+            </button>
+          )
+        })}
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-gray-400 text-center py-12">{t('no_projects')}</p>
+        <p className="text-gray-500 text-center py-12">{t('no_projects')}</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
           {filtered.map((project) => (
