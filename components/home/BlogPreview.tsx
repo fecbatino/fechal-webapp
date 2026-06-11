@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server'
-import { getPosts } from '@/lib/ghost'
+import { getFeaturedPosts } from '@/lib/ghost'
 import { Link } from '@/lib/navigation'
 import Image from 'next/image'
 
@@ -9,8 +9,7 @@ interface Props {
 
 export default async function BlogPreview({ locale }: Props) {
   const t = await getTranslations({ locale, namespace: 'home' })
-  const data = await getPosts({ limit: 3 })
-  const posts = data.posts || []
+  const posts = await getFeaturedPosts(3)
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-gray-950 via-gray-900 to-gray-950 py-20 px-4">
