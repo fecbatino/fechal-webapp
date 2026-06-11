@@ -17,12 +17,14 @@ type FormData = {
   title_de: string
   title_fr: string
   title_en: string
+  title_ar: string
   organization: string
   start_year: number
   end_year: string
   description_de: string
   description_fr: string
   description_en: string
+  description_ar: string
   sort_order: number
 }
 
@@ -31,12 +33,14 @@ const emptyForm = (): FormData => ({
   title_de: '',
   title_fr: '',
   title_en: '',
+  title_ar: '',
   organization: '',
   start_year: new Date().getFullYear(),
   end_year: '',
   description_de: '',
   description_fr: '',
   description_en: '',
+  description_ar: '',
   sort_order: 0,
 })
 
@@ -47,12 +51,14 @@ function entryToForm(e: CvEntry): FormData {
     title_de: e.title_de,
     title_fr: e.title_fr,
     title_en: e.title_en,
+    title_ar: e.title_ar,
     organization: e.organization,
     start_year: e.start_year,
     end_year: e.end_year !== null ? String(e.end_year) : '',
     description_de: e.description_de ?? '',
     description_fr: e.description_fr ?? '',
     description_en: e.description_en ?? '',
+    description_ar: e.description_ar ?? '',
     sort_order: e.sort_order,
   }
 }
@@ -87,12 +93,14 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
         title_de: form.title_de,
         title_fr: form.title_fr,
         title_en: form.title_en,
+        title_ar: form.title_ar,
         organization: form.organization,
         start_year: form.start_year,
         end_year: form.end_year.trim() ? Number(form.end_year) : null,
         description_de: form.description_de.trim() || null,
         description_fr: form.description_fr.trim() || null,
         description_en: form.description_en.trim() || null,
+        description_ar: form.description_ar.trim() || null,
         sort_order: form.sort_order,
       }
       const { data: saved, error } = await supabase
@@ -171,6 +179,10 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
               <input aria-label={t('admin_field_title_en')} name="title_en" value={form.title_en} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
             </div>
             <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_title_ar')}</label>
+              <input aria-label={t('admin_field_title_ar')} name="title_ar" value={form.title_ar} onChange={handleChange} dir="rtl" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
+            </div>
+            <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_organization')}</label>
               <input aria-label={t('admin_field_organization')} name="organization" value={form.organization} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
             </div>
@@ -193,6 +205,10 @@ export default function CvEntryAdmin({ initialEntries }: Props) {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_desc_en')}</label>
               <textarea aria-label={t('admin_field_desc_en')} name="description_en" value={form.description_en} onChange={handleChange} rows={2} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_desc_ar')}</label>
+              <textarea aria-label={t('admin_field_desc_ar')} name="description_ar" value={form.description_ar} onChange={handleChange} dir="rtl" rows={2} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm" />
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">{t('admin_field_sort_order')}</label>

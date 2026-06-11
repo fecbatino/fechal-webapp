@@ -121,11 +121,13 @@ export interface CvEntry {
   title_de: string
   title_fr: string
   title_en: string
+  title_ar: string
   organization: string
   start_year: number
   end_year: number | null
   description_de: string | null
   description_fr: string | null
   description_en: string | null
+  description_ar: string | null
   sort_order: number
 }

@@ -1,44 +1,70 @@
 'use client'
 import { useTranslations, useLocale } from 'next-intl'
 import { CvEntry } from '@/lib/types'
-import { getLocalizedText } from '@/lib/hajj-data'
+import { getLocalizedCvTitle, getLocalizedCvDescription } from '@/lib/cv-data'
 
 interface Props {
   entries: CvEntry[]
-  locale?: string
 }
 
-export default function CvTimeline({ entries, locale: propLocale }: Props) {
-  const hookLocale = useLocale()
-  const locale = propLocale ?? hookLocale
+export default function CvTimeline({ entries }: Props) {
+  const locale = useLocale()
   const t = useTranslations('portfolio')
 
-  const experience = entries.filter((e) => e.type === 'experience')
-  const education = entries.filter((e) => e.type === 'education')
+  const experience = entries
+    .filter((e) => e.type === 'experience')
+    .sort((a, b) => a.sort_order - b.sort_order)
+  const education = entries
+    .filter((e) => e.type === 'education')
+    .sort((a, b) => a.sort_order - b.sort_order)
+
+  function renderDot(accent = false) {
+    return (
+      <div className={`absolute left-0 top-1.5 w-3 h-3 rounded-full border-2 ${
+        accent
+          ? 'bg-accent border-foreground'
+          : 'bg-accent/30 border-accent'
+      }`} />
+    )
+  }
+
+  function renderLine() {
+    return (
+      <div className="absolute left-[5px] top-4 bottom-0 w-px bg-gradient-to-b from-accent/30 to-transparent" />
+    )
+  }
 
   function renderEntry(entry: CvEntry) {
-    const title = getLocalizedText(entry as unknown as Record<string, unknown>, 'title', locale)
-    const description = getLocalizedText(entry as unknown as Record<string, unknown>, 'description', locale)
+    const title = getLocalizedCvTitle(entry, locale)
+    const description = getLocalizedCvDescription(entry, locale)
+    const isPresent = entry.end_year === null
+    const period = isPresent
+      ? `${entry.start_year} – ${t('cv_present')}`
+      : `${entry.start_year} – ${entry.end_year}`
 
     return (
       <li key={entry.id} className="relative pl-8 pb-8 last:pb-0">
-        {/* Timeline dot */}
-        <div className="absolute left-0 top-1.5 w-3 h-3 rounded-full bg-teal-500/30 border-2 border-teal-400" />
-        {/* Connecting line */}
-        <div className="absolute left-[5px] top-4 bottom-0 w-px bg-gradient-to-b from-teal-500/30 to-transparent" />
+        {renderDot(isPresent)}
+        {renderLine()}
 
         <div className="glass-card rounded-xl p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <h3 className="text-base font-semibold text-foreground">{title}</h3>
-              <p className="text-sm text-accent">{entry.organization}</p>
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+            <div className="min-w-0 flex-1">
+              <h3 className="text-base font-semibold text-foreground">
+                {title}
+              </h3>
+              <p className="text-sm text-accent mt-0.5">{entry.organization}</p>
             </div>
-            <span className="text-xs text-muted-fg whitespace-nowrap flex-shrink-0 bg-subtle px-2.5 py-1 rounded-full border border-border">
-              {entry.start_year} – {entry.end_year ?? t('cv_present')}
-            </span>
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <span className="text-xs text-muted-fg bg-subtle px-2.5 py-1 rounded-full border border-border whitespace-nowrap">
+                {period}
+              </span>
+            </div>
           </div>
           {description && (
-            <p className="text-sm text-muted-fg mt-3 leading-relaxed">{description}</p>
+            <p className="text-sm text-muted-fg mt-3 leading-relaxed" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+              {description}
+            </p>
           )}
         </div>
       </li>
@@ -47,6 +73,7 @@ export default function CvTimeline({ entries, locale: propLocale }: Props) {
 
   return (
     <div className="space-y-10">
+      {/* Experience */}
       {experience.length > 0 && (
         <section>
           <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">
@@ -62,6 +89,7 @@ export default function CvTimeline({ entries, locale: propLocale }: Props) {
         </section>
       )}
 
+      {/* Education */}
       {education.length > 0 && (
         <section>
           <h2 className="text-lg font-bold text-foreground mb-6 flex items-center gap-2">

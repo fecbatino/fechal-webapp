@@ -165,7 +165,9 @@
     "admin_field_category": "الفئة",
     "admin_field_type": "النوع",
     "type_experience": "الخبرة المهنية",
-    "type_education": "التعليم"
+    "type_education": "التعليم",
+    "admin_field_title_ar": "العنوان (AR)",
+    "admin_field_desc_ar": "الوصف (AR)"
   },
   "hajj": {
     "title": "الحج والعمرة",

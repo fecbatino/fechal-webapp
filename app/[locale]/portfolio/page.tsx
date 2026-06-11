@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server'
 import { createClient } from '@/lib/supabase/server'
 import { PortfolioProject, PortfolioSkill, CvEntry } from '@/lib/types'
+import { cvEntries as staticCvEntries } from '@/lib/cv-data'
 import ProjectGrid from '@/components/portfolio/ProjectGrid'
 import SkillTags from '@/components/portfolio/SkillTags'
 import CvTimeline from '@/components/portfolio/CvTimeline'
@@ -23,6 +24,9 @@ export default async function PortfolioPage({ params }: Props) {
     supabase.from('portfolio_skills').select('*').order('sort_order'),
     supabase.from('cv_entries').select('*').order('sort_order'),
   ])
+
+  // Use static CV data as primary source; fall back to Supabase if empty
+  const resolvedCvEntries = (cvEntries && cvEntries.length > 0 ? cvEntries : staticCvEntries) as CvEntry[]
 
   return (
     <div className="min-h-screen bg-background">
@@ -72,7 +76,7 @@ export default async function PortfolioPage({ params }: Props) {
             </svg>
             {t('cv_title')}
           </h2>
-          <CvTimeline entries={(cvEntries ?? []) as CvEntry[]} />
+          <CvTimeline entries={resolvedCvEntries} />
         </section>
       </div>
     </div>

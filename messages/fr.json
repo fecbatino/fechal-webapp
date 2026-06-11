@@ -165,7 +165,9 @@
     "admin_field_category": "Catégorie",
     "admin_field_type": "Type",
     "type_experience": "Expérience",
-    "type_education": "Formation"
+    "type_education": "Formation",
+    "admin_field_title_ar": "Titre (AR)",
+    "admin_field_desc_ar": "Description (AR)"
   },
   "hajj": {
     "title": "Hajj & Umrah",
