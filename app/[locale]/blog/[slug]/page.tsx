@@ -1,11 +1,30 @@
 import { getPost, getPosts } from '@/lib/ghost'
 import { getTranslations } from 'next-intl/server'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 
 interface Props {
   params: Promise<{ locale: string; slug: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params
+  const post = await getPost(slug)
+  if (!post) return { title: 'Not Found' }
+  const siteName = locale === 'ar' ? 'فشال باتاكبالي' : 'Fechal Batakpale'
+  return {
+    title: post.title + ' | ' + siteName,
+    description: post.custom_excerpt || post.excerpt || undefined,
+    openGraph: {
+      title: post.title + ' | ' + siteName,
+      description: post.custom_excerpt || post.excerpt || undefined,
+      type: 'article',
+      publishedTime: post.published_at,
+      images: post.feature_image ? [{ url: post.feature_image }] : [],
+    },
+  }
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -60,7 +79,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="flex items-center gap-4 text-sm text-gray-500 mb-8">
           <time>
             {new Date(post.published_at || post.created_at).toLocaleDateString(
-              locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : 'en-US',
+              locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-SA' : 'en-US',
               { year: 'numeric', month: 'long', day: 'numeric' }
             )}
           </time>
@@ -82,7 +101,7 @@ export async function generateStaticParams() {
   try {
     const data = await getPosts({ limit: 100 })
     const posts = data.posts || []
-    const locales = ['de', 'en', 'fr']
+    const locales = ['de', 'en', 'fr', 'ar']
     return posts.flatMap((post) => locales.map((locale) => ({ locale, slug: post.slug })))
   } catch {
     return []

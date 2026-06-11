@@ -1,10 +1,26 @@
 import { getTranslations } from 'next-intl/server'
 import { getPosts, getTags } from '@/lib/ghost'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 
 interface Props {
   params: Promise<{ locale: string }>
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'blog' })
+  const siteName = locale === 'ar' ? 'فشال باتاكبالي' : 'Fechal Batakpale'
+  return {
+    title: t('title') + ' | ' + siteName,
+    description: t('subtitle'),
+    openGraph: {
+      title: t('title') + ' | ' + siteName,
+      description: t('subtitle'),
+      type: 'website',
+    },
+  }
 }
 
 export default async function BlogPage({ params }: Props) {
@@ -18,7 +34,7 @@ export default async function BlogPage({ params }: Props) {
     <main className="min-h-screen pt-24 pb-16">
       <div className="max-w-6xl mx-auto px-4">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">{t('title')}</h1>
-        <p className="text-lg text-gray-400 mb-10">{t('description')}</p>
+        <p className="text-lg text-gray-400 mb-10">{t('subtitle')}</p>
 
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-3 mb-12">
@@ -76,7 +92,7 @@ export default async function BlogPage({ params }: Props) {
 
                   <time className="text-xs text-gray-500 mt-3 block">
                     {new Date(post.published_at || post.created_at).toLocaleDateString(
-                      locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : 'en-US',
+                      locale === 'de' ? 'de-DE' : locale === 'fr' ? 'fr-FR' : locale === 'ar' ? 'ar-SA' : 'en-US',
                       { year: 'numeric', month: 'long', day: 'numeric' }
                     )}
                   </time>
