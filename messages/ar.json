@@ -21,7 +21,11 @@
     "contact": "تواصل",
     "contact_title": "تواصل معي",
     "contact_desc": "يسعدني تلقّي استفساراتكم حول مشاريع تقنية أو عمل الجمعيات أو التعاون.",
-    "contact_cta": "أرسل رسالة"
+    "contact_cta": "أرسل رسالة",
+    "blog_preview_title": "أحدث المقالات",
+    "blog_preview_desc": "أفكار حديثة حول التقنية والذكاء الاصطناعي والمجتمع",
+    "blog_preview_cta": "عرض جميع المقالات",
+    "blog_preview_empty": "قريباً مقالات جديدة..."
   },
   "sections": {
     "alltag": "الحياة اليومية",
@@ -39,7 +43,7 @@
     "login_title": "تسجيل الدخول",
     "register_title": "إنشاء حساب",
     "email": "البريد الإلكتروني",
-    "password": "كلمة المرور",
+    "password": "***",
     "full_name": "الاسم الكامل",
     "submit_login": "تسجيل الدخول",
     "submit_register": "إنشاء الحساب",
@@ -193,5 +197,25 @@
     "read": "دقيقة",
     "empty": "لم تُنشر أي مقالات بعد.",
     "back": "العودة إلى المدونة"
+  },
+  "tech": {
+    "tech_title": "النظام التقني",
+    "tech_desc": "الهياكل الحديثة وسير العمل التي أستخدمها يومياً",
+    "tech_agents_title": "العوامل المستقلة",
+    "tech_agents_desc": "التنسيق باستخدام Hermes Agent وDesktop وClaude Code وCowork – سير عمل متعدد الوكلاء لـ DevOps ومراجعة الكود وأتمتة الخوادم.",
+    "tech_ai_title": "استدلال الذكاء الاصطناعي والنماذج اللغوية",
+    "tech_ai_desc": "استدلال محلي وعلى الخوادم عبر Ollama Pro بخطة سحابية ثابتة مع نماذج مثل Gemma 4. مدعوم بـ Google AI Studio وNotebookLM وOpenRouter.",
+    "tech_data_title": "البيانات والمصادقة",
+    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) وFirebase – خدمات خلفية حديثة لتطبيقات ويب وجوال قابلة للتوسع.",
+    "tech_devops_title": "DevOps والأتمتة",
+    "tech_devops_desc": "أتمتة سير العمل بـ n8n وNginx Proxy Manager وDocker Compose على Hetzner VPS – CI/CD مع GitHub Actions ونشر آلي بالكامل."
+  },
+  "kiosk": {
+    "kiosk_title": "كشك AIKF",
+    "kiosk_desc": "حل حديث لإدارة الكشك والجمعية لجمعية AIKF نورمبرغ",
+    "kiosk_feature_1": "أتمتة الحجوزات وإدارة الأعضاء عبر n8n",
+    "kiosk_feature_2": "إيصالات وفواتير رقمية بنقرة زر",
+    "kiosk_feature_3": "إدارة المخزون والتقارير في الوقت الفعلي",
+    "kiosk_cta": "اعرف المزيد"
   }
 }

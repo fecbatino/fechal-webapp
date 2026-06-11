@@ -21,7 +21,11 @@
     "contact": "Contact",
     "contact_title": "Contact",
     "contact_desc": "Feel free to reach out for IT projects, association work, or collaboration.",
-    "contact_cta": "Send a message"
+    "contact_cta": "Send a message",
+    "blog_preview_title": "Latest Articles",
+    "blog_preview_desc": "Recent thoughts on technology, AI & community",
+    "blog_preview_cta": "View all articles",
+    "blog_preview_empty": "New articles coming soon..."
   },
   "sections": {
     "alltag": "Daily Life",
@@ -39,7 +43,7 @@
     "login_title": "Sign In",
     "register_title": "Register",
     "email": "Email",
-    "password": "Password",
+    "password": "***",
     "full_name": "Full Name",
     "submit_login": "Sign In",
     "submit_register": "Create Account",
@@ -193,5 +197,25 @@
     "read": "min read",
     "empty": "No blog posts published yet.",
     "back": "Back to blog"
+  },
+  "tech": {
+    "tech_title": "Tech Ecosystem",
+    "tech_desc": "Modern architectures & workflows I use daily",
+    "tech_agents_title": "Autonomous Agents",
+    "tech_agents_desc": "Orchestration with Hermes Agent & Desktop, Claude Code and Cowork – multi-agent workflows for DevOps, code review and server automation.",
+    "tech_ai_title": "AI Inference & LLMs",
+    "tech_ai_desc": "Local and server-based inference via Ollama Pro cloud flat-rate with models like Gemma 4. Supplemented by Google AI Studio, NotebookLM & OpenRouter.",
+    "tech_data_title": "Data & Auth",
+    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) and Firebase – modern backend services for scalable web and mobile apps.",
+    "tech_devops_title": "DevOps & Automation",
+    "tech_devops_desc": "n8n workflow automation, Nginx Proxy Manager, Docker Compose on Hetzner VPS – CI/CD with GitHub Actions and fully automated deployment."
+  },
+  "kiosk": {
+    "kiosk_title": "AIKF-Kiosk",
+    "kiosk_desc": "Modern kiosk & association management solution for AIKF e.V. Nuremberg",
+    "kiosk_feature_1": "n8n-driven automation of bookings & member management",
+    "kiosk_feature_2": "Digital receipts & invoices at the click of a button",
+    "kiosk_feature_3": "Real-time inventory management & reporting",
+    "kiosk_cta": "Learn more"
   }
 }

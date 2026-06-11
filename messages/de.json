@@ -21,7 +21,11 @@
     "contact": "Kontakt",
     "contact_title": "Kontakt",
     "contact_desc": "Ich freue mich über Anfragen zu IT-Projekten, Vereinsarbeit oder Zusammenarbeit.",
-    "contact_cta": "Nachricht schreiben"
+    "contact_cta": "Nachricht schreiben",
+    "blog_preview_title": "Neueste Artikel",
+    "blog_preview_desc": "Aktuelle Gedanken zu Technologie, KI & Community",
+    "blog_preview_cta": "Alle Artikel anzeigen",
+    "blog_preview_empty": "Neue Artikel erscheinen bald..."
   },
   "sections": {
     "alltag": "Alltag",
@@ -39,7 +43,7 @@
     "login_title": "Anmelden",
     "register_title": "Registrieren",
     "email": "E-Mail",
-    "password": "Passwort",
+    "password": "***",
     "full_name": "Vollständiger Name",
     "submit_login": "Anmelden",
     "submit_register": "Konto erstellen",
@@ -193,5 +197,25 @@
     "read": "Min.",
     "empty": "Noch keine Blog-Artikel veröffentlicht.",
     "back": "Zurück zum Blog"
+  },
+  "tech": {
+    "tech_title": "Tech-Ökosystem",
+    "tech_desc": "Moderne Architekturen & Workflows, die ich tagtäglich einsetze",
+    "tech_agents_title": "Autonome Agenten",
+    "tech_agents_desc": "Orchestrierung mit Hermes Agent & Desktop, Claude Code und Cowork – Multi-Agent-Workflows für DevOps, Code-Review und Server-Automation.",
+    "tech_ai_title": "KI-Inferenz & LLMs",
+    "tech_ai_desc": "Lokale und serverbasierte Inferenz über Ollama Pro Cloud-Flatrate mit Modellen wie Gemma 4. Ergänzt durch Google AI Studio, NotebookLM & OpenRouter.",
+    "tech_data_title": "Daten & Auth",
+    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) und Firebase – moderne Backend-Dienste für skalierbare Web- und Mobile-Apps.",
+    "tech_devops_title": "DevOps & Automation",
+    "tech_devops_desc": "n8n Workflow-Automation, Nginx Proxy Manager, Docker Compose auf Hetzner VPS – CI/CD mit GitHub Actions und vollautomatischem Deployment."
+  },
+  "kiosk": {
+    "kiosk_title": "AIKF-Kiosk",
+    "kiosk_desc": "Moderne Kiosk- & Vereinsmanagement-Lösung für den AIKF e.V. Nürnberg",
+    "kiosk_feature_1": "n8n-gesteuerte Automatisierung von Buchungen & Mitgliederverwaltung",
+    "kiosk_feature_2": "Digitale Belege & Quittungen auf Knopfdruck",
+    "kiosk_feature_3": "Echtzeit-Bestandsverwaltung & Berichtswesen",
+    "kiosk_cta": "Mehr erfahren"
   }
 }

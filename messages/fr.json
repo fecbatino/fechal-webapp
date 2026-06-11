@@ -21,7 +21,11 @@
     "contact": "Contact",
     "contact_title": "Contact",
     "contact_desc": "N'hésitez pas à me contacter pour des projets IT, des associations ou des collaborations.",
-    "contact_cta": "Envoyer un message"
+    "contact_cta": "Envoyer un message",
+    "blog_preview_title": "Derniers articles",
+    "blog_preview_desc": "Réflexions récentes sur la technologie, l'IA & la communauté",
+    "blog_preview_cta": "Voir tous les articles",
+    "blog_preview_empty": "De nouveaux articles arrivent bientôt..."
   },
   "sections": {
     "alltag": "Quotidien",
@@ -39,7 +43,7 @@
     "login_title": "Connexion",
     "register_title": "S'inscrire",
     "email": "E-mail",
-    "password": "Mot de passe",
+    "password": "***",
     "full_name": "Nom complet",
     "submit_login": "Se connecter",
     "submit_register": "Créer un compte",
@@ -193,5 +197,25 @@
     "read": "min",
     "empty": "Aucun article de blog publié pour le moment.",
     "back": "Retour au blog"
+  },
+  "tech": {
+    "tech_title": "Écosystème Tech",
+    "tech_desc": "Architectures modernes & workflows que j'utilise au quotidien",
+    "tech_agents_title": "Agents Autonomes",
+    "tech_agents_desc": "Orchestration avec Hermes Agent & Desktop, Claude Code et Cowork – workflows multi-agents pour DevOps, révision de code et automatisation serveur.",
+    "tech_ai_title": "Inférence IA & LLMs",
+    "tech_ai_desc": "Inférence locale et serveur via Ollama Pro forfait cloud avec des modèles comme Gemma 4. Complété par Google AI Studio, NotebookLM & OpenRouter.",
+    "tech_data_title": "Données & Auth",
+    "tech_data_desc": "Supabase (PostgreSQL, Auth, Realtime) et Firebase – services backend modernes pour applications web et mobiles évolutives.",
+    "tech_devops_title": "DevOps & Automation",
+    "tech_devops_desc": "Automatisation de workflows n8n, Nginx Proxy Manager, Docker Compose sur Hetzner VPS – CI/CD avec GitHub Actions et déploiement entièrement automatisé."
+  },
+  "kiosk": {
+    "kiosk_title": "AIKF-Kiosk",
+    "kiosk_desc": "Solution moderne de gestion de kiosque & d'association pour l'AIKF e.V. Nuremberg",
+    "kiosk_feature_1": "Automatisation des réservations & gestion des membres via n8n",
+    "kiosk_feature_2": "Reçus & factures numériques en un clic",
+    "kiosk_feature_3": "Gestion des stocks & rapports en temps réel",
+    "kiosk_cta": "En savoir plus"
   }
 }
