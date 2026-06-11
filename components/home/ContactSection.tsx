@@ -50,7 +50,7 @@ export default async function ContactSection() {
               </a>
 
               <a
-                href="https://github.com/fechal"
+                href="https://github.com/fecbatino"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl border border-gray-200 hover:border-gray-400 hover:bg-gray-50 transition-colors group"
@@ -62,7 +62,7 @@ export default async function ContactSection() {
                 </span>
                 <div className="min-w-0">
                   <p className="text-xs text-gray-400 font-medium uppercase tracking-wide">GitHub</p>
-                  <p className="text-sm text-gray-700 font-medium group-hover:text-gray-900">github.com/fechal</p>
+                  <p className="text-sm text-gray-700 font-medium group-hover:text-gray-900">github.com/fecbatino</p>
                 </div>
               </a>
 
