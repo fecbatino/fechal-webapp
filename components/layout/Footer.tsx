@@ -1,29 +1,67 @@
 import Link from 'next/link'
+import { MessageCircle, Code, Camera, Music, Video } from 'lucide-react'
+
+const socialLinks = [
+  {
+    href: 'https://github.com/fecbatino',
+    label: 'GitHub',
+    icon: Code,
+    color: 'hover:text-white hover:border-white/20',
+  },
+  {
+    href: 'https://www.instagram.com/fecbatino',
+    label: 'Instagram',
+    icon: Camera,
+    color: 'hover:text-pink-400 hover:border-pink-500/30 hover:bg-pink-500/10',
+  },
+  {
+    href: 'https://www.tiktok.com/@fecbatino',
+    label: 'TikTok',
+    icon: Music,
+    color: 'hover:text-white hover:border-white/20',
+  },
+  {
+    href: 'https://www.youtube.com/@fecbatino',
+    label: 'YouTube',
+    icon: Video,
+    color: 'hover:text-red-400 hover:border-red-500/30 hover:bg-red-500/10',
+  },
+]
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-gray-950 mt-auto py-8 px-4">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-        <span className="text-sm text-gray-500">
-          © {new Date().getFullYear()} Fechal Batakpale
-        </span>
-        <div className="flex items-center gap-4 text-sm">
-          <Link href="/impressum" className="text-gray-500 hover:text-teal-400 transition-colors">
-            Impressum
-          </Link>
-          <span className="text-gray-700">·</span>
-          <Link href="/datenschutz" className="text-gray-500 hover:text-teal-400 transition-colors">
-            Datenschutz
-          </Link>
-          <span className="text-gray-700">·</span>
-          <a
-            href="https://github.com/fecbatino"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-gray-500 hover:text-teal-400 transition-colors"
-          >
-            GitHub
-          </a>
+    <footer className="border-t border-white/5 bg-gray-950 mt-auto py-10 px-4">
+      <div className="max-w-6xl mx-auto">
+        {/* Top row: copyright + legal */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
+          <span className="text-sm text-gray-500">
+            © {new Date().getFullYear()} Fechal Batakpale
+          </span>
+          <div className="flex items-center gap-4 text-sm">
+            <Link href="/impressum" className="text-gray-500 hover:text-teal-400 transition-colors">
+              Impressum
+            </Link>
+            <span className="text-gray-700">·</span>
+            <Link href="/datenschutz" className="text-gray-500 hover:text-teal-400 transition-colors">
+              Datenschutz
+            </Link>
+          </div>
+        </div>
+
+        {/* Bottom row: social icons */}
+        <div className="flex items-center justify-center gap-4 pt-4 border-t border-white/5">
+          {socialLinks.map(({ href, label, icon: Icon, color }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`w-9 h-9 rounded-lg border border-white/5 bg-white/5 flex items-center justify-center text-gray-400 transition-all ${color}`}
+              aria-label={label}
+            >
+              <Icon size={16} strokeWidth={1.5} />
+            </a>
+          ))}
         </div>
       </div>
     </footer>

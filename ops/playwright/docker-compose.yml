@@ -1,0 +1,60 @@
+# ────────────────────────────────────────────────────────────────────────────
+# Playwright / Browserless – Headless Chrome für n8n-Automation
+#
+# Dieses Compose-Snippet kann in den Haupt-Stack integriert oder
+# eigenständig deployed werden.
+#
+# Eigenständig:
+#   docker compose -f ops/playwright/docker-compose.yml up -d
+#
+# In den Haupt-Stack (docker-compose.yml):
+#   Kopiere den browserless-Service in den Haupt-Stack und
+#   stelle sicher, dass er dem web-network beitritt.
+# ────────────────────────────────────────────────────────────────────────────
+services:
+  # Headless Chrome via Browserless.io
+  # Ermöglicht n8n-Workflows das Rendern von Webseiten,
+  # Erstellen von Screenshots und PDF-Export.
+  browserless:
+    image: browserless/chrome:latest
+    container_name: browserless
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3444:3000"   # Nur lokal erreichbar (localhost:3444)
+    environment:
+      # Maximale gleichzeitige Sessions
+      - MAX_CONCURRENT_SESSIONS=3
+      # Timeout pro Request (in ms)
+      - MAX_TIMEOUT=30000
+      # Preboosts: hält einen warmen Browser bereit
+      - PREBOOT_CHROME=true
+      # Token für API-Zugriff (optional, zur Sicherheit)
+      # - TOKEN=DEIN_TOKEN
+      # Debug-Modus
+      - LOG_LEVEL=info
+      # Healthcheck-Endpunkt aktivieren
+      - HEALTH_ENDPOINT=/healthz
+    networks:
+      - web-network
+    healthcheck:
+      test: ["CMD", "curl", "-sf", "http://localhost:3000/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 256M
+    volumes:
+      - browserless-data:/home/chrome/browserless-data
+
+networks:
+  web-network:
+    external: true
+    name: web-network
+
+volumes:
+  browserless-data:
