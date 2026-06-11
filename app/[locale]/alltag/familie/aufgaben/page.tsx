@@ -2,13 +2,13 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { useFamilyId } from '@/lib/family-context'
+import { useFamily } from '@/lib/family-context'
 import TaskList from '@/components/alltag/familie/TaskList'
 import { FamilyTask } from '@/lib/types'
 
 export default function AufgabenPage() {
   const t = useTranslations('familie')
-  const { familyId, loading: familyLoading } = useFamilyId()
+  const { familyId, loading: familyLoading } = useFamily()
   const [tasks, setTasks] = useState<FamilyTask[]>([])
   const [loading, setLoading] = useState(true)
 

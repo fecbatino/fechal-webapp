@@ -25,9 +25,9 @@ export default function Flashcard({ card, locale, onRate }: Props) {
   }
 
   return (
-    <div className="bg-white rounded-2xl border border-border shadow-sm p-8 flex flex-col items-center gap-6 min-h-[320px]">
+    <div className="bg-background rounded-2xl border border-border shadow-sm p-8 flex flex-col items-center gap-6 min-h-[320px]">
       <div className="text-center flex-1 flex flex-col items-center justify-center gap-3">
-        <p className="text-5xl font-bold text-gray-900 leading-relaxed" dir="rtl" lang="ar">
+        <p className="text-5xl font-bold text-foreground leading-relaxed" dir="rtl" lang="ar">
           {card.arabic}
         </p>
         <p className="text-lg text-muted-fg italic">{card.transliteration}</p>

@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { useFamilyId } from '@/lib/family-context'
+import { useFamily } from '@/lib/family-context'
 import NotesFeed from '@/components/alltag/familie/NotesFeed'
 import NoteForm from '@/components/alltag/familie/NoteForm'
 import { FamilyNote } from '@/lib/types'
 
 export default function NotizenPage() {
   const t = useTranslations('familie')
-  const { familyId, loading: familyLoading } = useFamilyId()
+  const { familyId, loading: familyLoading } = useFamily()
   const [notes, setNotes] = useState<FamilyNote[]>([])
   const [userId, setUserId] = useState<string>('')
   const [loading, setLoading] = useState(true)

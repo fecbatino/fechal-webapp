@@ -95,7 +95,20 @@
     "family_id_missing": "No family ID. Please contact admin.",
     "role_parent": "Parent",
     "role_child": "Child",
-    "role_member": "Member"
+    "role_member": "Member",
+    "manage_title": "Family Management",
+    "manage_code": "Invite Code",
+    "manage_copy": "Copy Code",
+    "manage_copied": "Copied!",
+    "manage_regenerate": "Regenerate Code",
+    "manage_members": "Members",
+    "manage_remove": "Remove",
+    "manage_delete": "Delete Family",
+    "manage_delete_confirm": "Really delete this family? This action cannot be undone.",
+    "manage_delete_hint": "The family and all associated data will be permanently deleted.",
+    "manage_back": "Back to Family",
+    "member_count": "{count} members",
+    "cancel": "Cancel"
   },
   "arabisch": {
     "title": "Learn Arabic",

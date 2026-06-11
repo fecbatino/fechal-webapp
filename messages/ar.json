@@ -95,7 +95,20 @@
     "family_id_missing": "لا يوجد معرّف للأسرة. يُرجى التواصل مع المسؤول.",
     "role_parent": "والد/والدة",
     "role_child": "طفل",
-    "role_member": "عضو"
+    "role_member": "عضو",
+    "manage_title": "إدارة الأسرة",
+    "manage_code": "رمز الدعوة",
+    "manage_copy": "نسخ الرمز",
+    "manage_copied": "تم النسخ!",
+    "manage_regenerate": "تحديث الرمز",
+    "manage_members": "الأعضاء",
+    "manage_remove": "إزالة",
+    "manage_delete": "حذف الأسرة",
+    "manage_delete_confirm": "هل تريد حقاً حذف هذه الأسرة؟ لا يمكن التراجع عن هذا الإجراء.",
+    "manage_delete_hint": "سيتم حذف الأسرة وجميع البيانات المرتبطة بها نهائياً.",
+    "manage_back": "العودة إلى الأسرة",
+    "member_count": "{count} أعضاء",
+    "cancel": "إلغاء"
   },
   "arabisch": {
     "title": "تعلّم العربية",

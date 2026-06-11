@@ -2,13 +2,13 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { useFamilyId } from '@/lib/family-context'
+import { useFamily } from '@/lib/family-context'
 import { Profile } from '@/lib/types'
 import FamilyMembers from '@/components/alltag/familie/FamilyMembers'
 
 export default function MitgliederPage() {
   const t = useTranslations('familie')
-  const { familyId, loading: familyLoading } = useFamilyId()
+  const { familyId, loading: familyLoading } = useFamily()
   const [members, setMembers] = useState<Pick<Profile, 'id' | 'email' | 'full_name' | 'family_role'>[]>([])
   const [userId, setUserId] = useState<string>('')
   const [loading, setLoading] = useState(true)

@@ -95,7 +95,20 @@
     "family_id_missing": "Keine Familien-ID. Bitte Admin kontaktieren.",
     "role_parent": "Elternteil",
     "role_child": "Kind",
-    "role_member": "Mitglied"
+    "role_member": "Mitglied",
+    "manage_title": "Familien-Verwaltung",
+    "manage_code": "Einladungs-Code",
+    "manage_copy": "Code kopieren",
+    "manage_copied": "Kopiert!",
+    "manage_regenerate": "Code erneuern",
+    "manage_members": "Mitglieder",
+    "manage_remove": "Entfernen",
+    "manage_delete": "Familie löschen",
+    "manage_delete_confirm": "Wirklich diese Familie löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "manage_delete_hint": "Die Familie und alle zugehörigen Daten werden unwiderruflich gelöscht.",
+    "manage_back": "Zurück zur Familie",
+    "member_count": "{count} Mitglieder",
+    "cancel": "Abbrechen"
   },
   "arabisch": {
     "title": "Arabisch lernen",

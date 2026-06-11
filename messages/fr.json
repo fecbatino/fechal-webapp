@@ -95,7 +95,20 @@
     "family_id_missing": "Pas d'ID famille. Contacter l'administrateur.",
     "role_parent": "Parent",
     "role_child": "Enfant",
-    "role_member": "Membre"
+    "role_member": "Membre",
+    "manage_title": "Gestion de la famille",
+    "manage_code": "Code d'invitation",
+    "manage_copy": "Copier le code",
+    "manage_copied": "Copié !",
+    "manage_regenerate": "Régénérer le code",
+    "manage_members": "Membres",
+    "manage_remove": "Supprimer",
+    "manage_delete": "Supprimer la famille",
+    "manage_delete_confirm": "Voulez-vous vraiment supprimer cette famille ? Cette action est irréversible.",
+    "manage_delete_hint": "La famille et toutes les données associées seront définitivement supprimées.",
+    "manage_back": "Retour à la famille",
+    "member_count": "{count} membres",
+    "cancel": "Annuler"
   },
   "arabisch": {
     "title": "Apprendre l'arabe",

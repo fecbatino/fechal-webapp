@@ -23,7 +23,7 @@ export default function AlltagPage() {
             className="block p-6 rounded-2xl border border-border hover:border-emerald-400 hover:shadow-md transition-all bg-background text-center group"
           >
             <div className="text-4xl mb-3">{emoji}</div>
-            <h2 className="font-semibold text-gray-800 group-hover:text-accent">
+            <h2 className="font-semibold text-foreground group-hover:text-accent">
               {t(key)}
             </h2>
             <p className="text-sm text-muted-fg mt-1">{t(`${key}_desc`)}</p>

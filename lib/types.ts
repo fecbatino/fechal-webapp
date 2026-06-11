@@ -1,6 +1,14 @@
 export type Role = 'guest' | 'user' | 'admin'
 export type FamilyRole = 'parent' | 'child' | 'member'
 
+export interface Family {
+  id: string
+  name: string
+  invite_code: string
+  created_by: string
+  created_at: string
+}
+
 export interface Profile {
   id: string
   email: string

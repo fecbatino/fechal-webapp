@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { createClient } from '@/lib/supabase/client'
-import { useFamilyId } from '@/lib/family-context'
+import { useFamily } from '@/lib/family-context'
 import FamilyCalendar from '@/components/alltag/familie/FamilyCalendar'
 import EventForm from '@/components/alltag/familie/EventForm'
 import { FamilyEvent } from '@/lib/types'
 
 export default function KalenderPage() {
   const t = useTranslations('familie')
-  const { familyId, loading: familyLoading } = useFamilyId()
+  const { familyId, loading: familyLoading } = useFamily()
   const [events, setEvents] = useState<FamilyEvent[]>([])
   const [userId, setUserId] = useState<string>('')
   const [loading, setLoading] = useState(true)
