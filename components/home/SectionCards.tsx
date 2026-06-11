@@ -3,6 +3,7 @@ import { useTranslations } from 'next-intl'
 import { Link } from '@/lib/navigation'
 
 const sections = [
+  { key: 'blog', href: '/blog', emoji: '📝' },
   { key: 'alltag', href: '/alltag', emoji: '\u{1F3E0}' },
   { key: 'portfolio', href: '/portfolio', emoji: '\u{1F4BC}' },
   { key: 'hajj', href: '/hajj-umrah', emoji: '\u{1F547}' },
@@ -14,7 +15,7 @@ export default function SectionCards() {
 
   return (
     <section className="max-w-5xl mx-auto px-4 py-16">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
         {sections.map(({ key, href, emoji }) => (
           <Link
             key={key}
