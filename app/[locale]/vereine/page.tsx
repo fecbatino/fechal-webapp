@@ -1,5 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 import type { Metadata } from 'next'
+import LogoMark from '@/components/ui/LogoMark'
 
 interface Props {
   params: Promise<{ locale: string }>
@@ -33,8 +34,7 @@ const vereine = [
       fr: 'Responsable informatique & Webmaster',
       en: 'IT Officer & Webmaster',
     },
-    color: 'emerald',
-    icon: '🕌',
+    accent: 'teal',
   },
   {
     id: 'aikf',
@@ -54,8 +54,7 @@ const vereine = [
       fr: 'Membre & Support informatique',
       en: 'Member & IT Support',
     },
-    color: 'blue',
-    icon: '📚',
+    accent: 'emerald',
   },
 ]
 
@@ -67,43 +66,68 @@ const labels = {
 
 type Locale = 'de' | 'fr' | 'en'
 
+const accentStyles: Record<string, { badge: string; border: string; text: string }> = {
+  teal: { badge: 'bg-teal-500/10 border-teal-500/20 text-teal-400', border: 'hover:border-teal-500/40', text: 'text-teal-400' },
+  emerald: { badge: 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400', border: 'hover:border-emerald-500/40', text: 'text-emerald-400' },
+}
+
 export default async function VereinePage({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations('sections')
   const l = (labels[locale as Locale] ?? labels.de)
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16">
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-2">{t('vereine')}</h1>
-        <p className="text-gray-500 text-lg">{t('vereine_desc')}</p>
-      </div>
+    <div className="min-h-screen bg-gray-950">
+      <div className="max-w-4xl mx-auto px-4 py-20">
+        {/* Header */}
+        <div className="mb-16">
+          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-teal-400 mb-3">
+            🤝 {t('vereine')}
+          </span>
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-3">{t('vereine')}</h1>
+          <p className="text-gray-400 text-lg max-w-xl">{t('vereine_desc')}</p>
+        </div>
 
-      <div className="space-y-8">
-        {vereine.map((v) => (
-          <div key={v.id} className="bg-white border border-gray-200 rounded-2xl p-8">
-            <div className="flex items-start gap-4 mb-6">
-              <span className="text-4xl">{v.icon}</span>
-              <div>
-                <h2 className="text-2xl font-bold text-gray-900">{v.name}</h2>
-                <p className="text-gray-500 text-sm mt-1">
-                  {v.subtitle[locale as Locale] ?? v.subtitle.de}
+        <div className="space-y-8">
+          {vereine.map((v) => {
+            const accent = accentStyles[v.accent]
+            return (
+              <div
+                key={v.id}
+                className={`glass-card rounded-2xl p-8 transition-all ${accent.border}`}
+              >
+                <div className="flex items-start gap-5 mb-6">
+                  {/* Logo placeholder */}
+                  <div className="w-14 h-14 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+                    <LogoMark size={36} />
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">{v.name}</h2>
+                    <p className="text-gray-400 text-sm mt-1">
+                      {v.subtitle[locale as Locale] ?? v.subtitle.de}
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-gray-300 leading-relaxed mb-6">
+                  {v.description[locale as Locale] ?? v.description.de}
                 </p>
+
+                {/* Role badge */}
+                <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-xl border ${accent.badge}`}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-wide opacity-70">{l.role}</p>
+                    <p className="text-sm font-medium">{v.role[locale as Locale] ?? v.role.de}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-
-            <p className="text-gray-700 leading-relaxed mb-6">
-              {v.description[locale as Locale] ?? v.description.de}
-            </p>
-
-            <div className="bg-gray-50 rounded-xl px-5 py-3 inline-block">
-              <span className="text-xs text-gray-400 uppercase tracking-wide font-medium">{l.role}</span>
-              <p className="text-gray-800 font-semibold mt-0.5">
-                {v.role[locale as Locale] ?? v.role.de}
-              </p>
-            </div>
-          </div>
-        ))}
+            )
+          })}
+        </div>
       </div>
     </div>
   )

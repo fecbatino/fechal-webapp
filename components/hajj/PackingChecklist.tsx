@@ -12,6 +12,13 @@ interface Props {
 const CATEGORY_ORDER: ChecklistCategory[] = ['documents', 'clothing', 'health', 'essentials']
 const STORAGE_KEY = 'hajjPackingChecklist'
 
+const categoryAccents: Record<ChecklistCategory, { color: string; bg: string; border: string }> = {
+  documents: { color: 'text-teal-400', bg: 'bg-teal-500/10', border: 'border-teal-500/20' },
+  clothing: { color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20' },
+  health: { color: 'text-emerald-400', bg: 'bg-emerald-500/10', border: 'border-emerald-500/20' },
+  essentials: { color: 'text-amber-400', bg: 'bg-amber-500/10', border: 'border-amber-500/20' },
+}
+
 export default function PackingChecklist({ items, locale: propLocale }: Props) {
   const hookLocale = useLocale()
   const locale = propLocale ?? hookLocale
@@ -48,33 +55,62 @@ export default function PackingChecklist({ items, locale: propLocale }: Props) {
     { documents: [], clothing: [], health: [], essentials: [] }
   )
 
+  const totalChecked = checked.size
+  const totalItems = items.length
+  const progress = totalItems > 0 ? Math.round((totalChecked / totalItems) * 100) : 0
+
   return (
-    <div className="space-y-8">
-      <p className="text-sm text-gray-500">
-        {t('items_checked', { count: checked.size, total: items.length })}
-      </p>
+    <div className="glass-card rounded-2xl p-6">
+      {/* Progress bar */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-sm text-gray-400">
+            {t('items_checked', { count: totalChecked, total: totalItems })}
+          </span>
+          <span className="text-xs text-teal-400 font-medium">{progress}%</span>
+        </div>
+        <div className="w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 transition-all duration-500"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+      </div>
 
       {CATEGORY_ORDER.map((cat) => {
         const catItems = grouped[cat]
         if (catItems.length === 0) return null
+        const accent = categoryAccents[cat]
         return (
-          <div key={cat}>
-            <h2 className="font-semibold text-gray-700 mb-3 text-sm uppercase tracking-wide">
+          <div key={cat} className="mb-6 last:mb-0">
+            <h2 className={`font-semibold mb-3 text-xs uppercase tracking-wide ${accent.color}`}>
               {t(`checklist_cat_${cat}`)}
             </h2>
             <ul className="space-y-2">
               {catItems.map((item) => (
                 <li key={item.id} className="flex items-center gap-3">
-                  <input
-                    type="checkbox"
-                    id={item.id}
-                    checked={checked.has(item.id)}
-                    onChange={() => toggle(item.id)}
-                    className="w-4 h-4 accent-emerald-600 cursor-pointer"
-                  />
+                  <button
+                    onClick={() => toggle(item.id)}
+                    className={`w-5 h-5 rounded-md border flex items-center justify-center flex-shrink-0 transition-all ${
+                      checked.has(item.id)
+                        ? `${accent.bg} ${accent.border}`
+                        : 'border-white/10 hover:border-teal-500/30'
+                    }`}
+                    role="checkbox"
+                    aria-checked={checked.has(item.id)}
+                    aria-label={getMultilingualText(item.label, locale)}
+                  >
+                    {checked.has(item.id) && (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-teal-400">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    )}
+                  </button>
                   <label
-                    htmlFor={item.id}
-                    className={`text-sm cursor-pointer ${checked.has(item.id) ? 'line-through text-gray-400' : 'text-gray-700'}`}
+                    onClick={() => toggle(item.id)}
+                    className={`text-sm cursor-pointer transition-colors ${
+                      checked.has(item.id) ? 'line-through text-gray-500' : 'text-gray-300 hover:text-white'
+                    }`}
                   >
                     {getMultilingualText(item.label, locale)}
                   </label>
