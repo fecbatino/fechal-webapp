@@ -10,6 +10,10 @@ import '../globals.css'
 export const metadata: Metadata = {
   title: 'Fechal Batakpale',
   description: 'Portfolio · Alltag · Hajj & Umrah · Vereine',
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+  },
 }
 
 export default async function LocaleLayout({

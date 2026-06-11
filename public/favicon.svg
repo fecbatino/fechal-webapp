@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+  <!-- Rounded square background -->
+  <rect width="40" height="40" rx="10" fill="#14b8a6"/>
+  <!-- Subtle geometric accent -->
+  <path d="M28 4 Q36 4 36 12" stroke="rgba(255,255,255,0.20)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M32 4 Q36 4 36 8" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <!-- Arabic letter ف (Fa) - for Fechal -->
+  <text x="20" y="27" text-anchor="middle" fill="white" font-size="20" font-family="'Amiri','Noto Naskh Arabic',serif" font-weight="700">ف</text>
+</svg>
