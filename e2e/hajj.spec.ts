@@ -23,6 +23,7 @@ test.describe('Hajj & Umrah page', () => {
 
   test('hajj page shows checklist checkboxes', async ({ page }) => {
     await page.goto('/de/hajj-umrah')
-    await expect(page.locator('input[type="checkbox"]').first()).toBeVisible({ timeout: 10000 })
+    // Komponente nutzt <button role="checkbox">, kein <input>
+    await expect(page.locator('[data-testid^="checklist-item-"]').first()).toBeVisible({ timeout: 10000 })
   })
 })

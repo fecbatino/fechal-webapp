@@ -99,6 +99,7 @@ export default function PackingChecklist({ items, locale: propLocale }: Props) {
                     role="checkbox"
                     aria-checked={checked.has(item.id)}
                     aria-label={getMultilingualText(item.label, locale)}
+                    data-testid={`checklist-item-${item.id}`}
                   >
                     {checked.has(item.id) && (
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-accent">

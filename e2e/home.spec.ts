@@ -11,8 +11,14 @@ test('Startseite redirects to a locale and shows section cards', async ({ page }
 
 test('Language switcher changes to French', async ({ page }) => {
   await page.goto('/de')
-  await page.getByRole('button', { name: 'FR' }).click()
-  await expect(page).toHaveURL(/\/fr/)
+  // Toggle-Button via data-testid öffnen (stabiler als text-basierte Selectoren)
+  await page.locator('[data-testid="lang-switcher-toggle"]').click()
+  // Auf Dropdown-Render warten
+  await page.locator('[data-testid="lang-option-fr"]').waitFor({ state: 'visible', timeout: 5000 })
+  // FR-Option klicken
+  await page.locator('[data-testid="lang-option-fr"]').click()
+  // URL-Prüfung – router.replace wechselt die Locale
+  await expect(page).toHaveURL(/\/fr/, { timeout: 8000 })
   await expect(page.getByText('Accueil')).toBeVisible()
 })
 

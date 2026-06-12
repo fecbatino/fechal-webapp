@@ -45,6 +45,7 @@ export default function LanguageSwitcher() {
         className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border hover:border-accent/40 hover:bg-accent-light transition-all text-sm"
         aria-label="Sprache wechseln"
         aria-expanded={open}
+        data-testid="lang-switcher-toggle"
       >
         <span className="text-sm leading-none">{current.flag}</span>
         <span className="text-subtle-fg text-xs font-medium">{current.label}</span>
@@ -75,6 +76,7 @@ export default function LanguageSwitcher() {
                     ? 'bg-accent-light text-accent'
                     : 'text-subtle-fg hover:bg-subtle hover:text-foreground'
                 }`}
+                data-testid={`lang-option-${l.code}`}
               >
                 <span className="text-base">{l.flag}</span>
                 <div className="flex-1 text-left">
