@@ -1,0 +1,27 @@
+services:
+  fechal-webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+    container_name: fechal-webapp
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    networks:
+      - web-network
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+networks:
+  web-network:
+    external: true
+    name: web-network

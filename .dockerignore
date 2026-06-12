@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.env*
+!.env.example
+e2e
+__tests__
+playwright-report
+test-results
+Dockerfile
+docker-compose.yml
+*.md
