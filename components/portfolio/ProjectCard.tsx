@@ -1,4 +1,5 @@
 'use client'
+import Image from 'next/image'
 import { useTranslations, useLocale } from 'next-intl'
 import { PortfolioProject } from '@/lib/types'
 import { getLocalizedText } from '@/lib/hajj-data'
@@ -40,13 +41,27 @@ export default function ProjectCard({ project, locale: propLocale }: Props) {
     <div className="glass-card rounded-2xl overflow-hidden group transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
       {/* Screenshot / Placeholder */}
       {project.screenshot_url ? (
-        <div className="relative w-full h-48 overflow-hidden">
-          <img
-            src={project.screenshot_url}
-            alt={title ?? ''}
-            loading="lazy"
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          />
+        <div className="relative w-full aspect-[16/10] overflow-hidden">
+          {project.screenshot_url.startsWith('/') ? (
+            <Image
+              src={project.screenshot_url}
+              alt={title ?? ''}
+              width={1280}
+              height={800}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            // Remote sources (e.g. admin-entered URLs) are not covered by
+            // images.remotePatterns, so next/image would refuse them.
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={project.screenshot_url}
+              alt={title ?? ''}
+              loading="lazy"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          )}
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 via-transparent to-transparent" />
         </div>
       ) : (

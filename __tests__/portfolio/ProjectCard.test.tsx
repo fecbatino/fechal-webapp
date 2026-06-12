@@ -4,6 +4,7 @@ import { PortfolioProject } from '@/lib/types'
 
 jest.mock('next-intl', () => ({
   useTranslations: (ns: string) => (key: string) => `${ns}.${key}`,
+  useLocale: () => 'de',
 }))
 
 const mockProject: PortfolioProject = {
@@ -47,13 +48,13 @@ describe('ProjectCard', () => {
 
   it('renders GitHub link with correct href', () => {
     render(<ProjectCard project={mockProject} locale="de" />)
-    const link = screen.getByText('portfolio.github ↗')
+    const link = screen.getByText('portfolio.github').closest('a')
     expect(link).toHaveAttribute('href', 'https://github.com/example/repo')
   })
 
   it('renders live demo link with correct href', () => {
     render(<ProjectCard project={mockProject} locale="de" />)
-    const link = screen.getByText('portfolio.live_demo ↗')
+    const link = screen.getByText('portfolio.live_demo').closest('a')
     expect(link).toHaveAttribute('href', 'https://example.com')
   })
 
@@ -62,11 +63,19 @@ describe('ProjectCard', () => {
     expect(screen.queryByRole('img')).not.toBeInTheDocument()
   })
 
-  it('renders image when screenshot_url is provided', () => {
+  it('renders plain img for remote screenshot URLs', () => {
     const project = { ...mockProject, screenshot_url: 'https://example.com/shot.png' }
     render(<ProjectCard project={project} locale="de" />)
     expect(screen.getByRole('img')).toBeInTheDocument()
     expect(screen.getByRole('img')).toHaveAttribute('src', 'https://example.com/shot.png')
+  })
+
+  it('renders optimized image with alt text for local screenshot paths', () => {
+    const project = { ...mockProject, screenshot_url: '/portfolio/mein-projekt.webp' }
+    render(<ProjectCard project={project} locale="de" />)
+    const img = screen.getByRole('img')
+    expect(img).toBeInTheDocument()
+    expect(img).toHaveAttribute('alt', 'Mein Projekt')
   })
 
   it('does not render GitHub link when github_url is null', () => {

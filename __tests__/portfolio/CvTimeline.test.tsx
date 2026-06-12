@@ -4,6 +4,7 @@ import { CvEntry } from '@/lib/types'
 
 jest.mock('next-intl', () => ({
   useTranslations: (ns: string) => (key: string) => `${ns}.${key}`,
+  useLocale: () => 'de',
 }))
 
 const mockEntries: CvEntry[] = [

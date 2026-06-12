@@ -4,6 +4,7 @@ import { PortfolioProject } from '@/lib/types'
 
 jest.mock('next-intl', () => ({
   useTranslations: (ns: string) => (key: string) => `${ns}.${key}`,
+  useLocale: () => 'de',
 }))
 
 const webProject: PortfolioProject = {
@@ -65,28 +66,28 @@ describe('ProjectGrid', () => {
 
   it('filters to web category on click', () => {
     render(<ProjectGrid projects={[webProject, aiProject]} locale="de" />)
-    fireEvent.click(screen.getByText('portfolio.category_web'))
+    fireEvent.click(screen.getByRole('button', { name: 'portfolio.category_web' }))
     expect(screen.getByText('Web Projekt')).toBeInTheDocument()
     expect(screen.queryByText('KI Projekt')).not.toBeInTheDocument()
   })
 
   it('filters to ai category on click', () => {
     render(<ProjectGrid projects={[webProject, aiProject]} locale="de" />)
-    fireEvent.click(screen.getByText('portfolio.category_ai'))
+    fireEvent.click(screen.getByRole('button', { name: 'portfolio.category_ai' }))
     expect(screen.queryByText('Web Projekt')).not.toBeInTheDocument()
     expect(screen.getByText('KI Projekt')).toBeInTheDocument()
   })
 
   it('shows no_projects when filtered category has no projects', () => {
     render(<ProjectGrid projects={[webProject]} locale="de" />)
-    fireEvent.click(screen.getByText('portfolio.category_ai'))
+    fireEvent.click(screen.getByRole('button', { name: 'portfolio.category_ai' }))
     expect(screen.getByText('portfolio.no_projects')).toBeInTheDocument()
   })
 
   it('shows all projects again after switching back to all', () => {
     render(<ProjectGrid projects={[webProject, aiProject]} locale="de" />)
-    fireEvent.click(screen.getByText('portfolio.category_web'))
-    fireEvent.click(screen.getByText('portfolio.category_all'))
+    fireEvent.click(screen.getByRole('button', { name: 'portfolio.category_web' }))
+    fireEvent.click(screen.getByRole('button', { name: 'portfolio.category_all' }))
     expect(screen.getByText('Web Projekt')).toBeInTheDocument()
     expect(screen.getByText('KI Projekt')).toBeInTheDocument()
   })

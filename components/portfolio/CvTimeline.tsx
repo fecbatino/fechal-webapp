@@ -5,10 +5,12 @@ import { getLocalizedCvTitle, getLocalizedCvDescription } from '@/lib/cv-data'
 
 interface Props {
   entries: CvEntry[]
+  locale?: string
 }
 
-export default function CvTimeline({ entries }: Props) {
-  const locale = useLocale()
+export default function CvTimeline({ entries, locale: propLocale }: Props) {
+  const hookLocale = useLocale()
+  const locale = propLocale ?? hookLocale
   const t = useTranslations('portfolio')
 
   const experience = entries
