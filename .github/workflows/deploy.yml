@@ -11,7 +11,7 @@ name: CI/CD Deploy
 #   NEXT_PUBLIC_SUPABASE_URL     used by the build gate
 #   NEXT_PUBLIC_SUPABASE_ANON_KEY  used by the build gate
 #
-# The deployed path on the server is /opt/stacks/web/fechal-webapp and the
+# The deployed path on the server is /opt/stacks/fechal-webapp and the
 # container is rebuilt via the compose file at /opt/stacks/web.
 
 on:
@@ -101,11 +101,11 @@ jobs:
             --exclude '.env' \
             --exclude '.claude' \
             -e "ssh -i ~/.ssh/id_deploy" \
-            ./ "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/stacks/web/fechal-webapp/"
+            ./ "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/opt/stacks/fechal-webapp/"
       - name: Rebuild image and recreate container
         run: |
           ssh -i ~/.ssh/id_deploy "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            'cd /opt/stacks/web && docker compose build fechal-webapp && docker compose up -d fechal-webapp && docker image prune -f'
+            'cd /opt/stacks/fechal-webapp && docker compose build fechal-webapp && docker compose up -d fechal-webapp && docker image prune -f'
       - name: Health check
         run: |
           ssh -i ~/.ssh/id_deploy "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \

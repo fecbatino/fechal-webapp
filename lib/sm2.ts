@@ -13,7 +13,8 @@ export interface SM2Output {
 }
 
 export function calculateSM2(input: SM2Input): SM2Output {
-  let { easeFactor, repetitions, interval, quality } = input
+  const { quality } = input
+  let { easeFactor, repetitions, interval } = input
 
   if (quality < 3) {
     repetitions = 0
