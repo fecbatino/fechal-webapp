@@ -4,6 +4,7 @@ import { UMRAH_STEPS } from '@/lib/hajj-data'
 
 jest.mock('next-intl', () => ({
   useTranslations: (ns: string) => (key: string) => `${ns}.${key}`,
+  useLocale: () => 'de',
 }))
 
 describe('UmrahGuide', () => {

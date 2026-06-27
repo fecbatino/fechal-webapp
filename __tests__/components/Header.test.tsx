@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react'
 import { render, screen } from '@testing-library/react'
 import Header from '@/components/layout/Header'
 
@@ -23,6 +24,7 @@ jest.mock('next/navigation', () => ({
 }))
 
 jest.mock('@/lib/navigation', () => ({
+  Link: ({ children, href }: { children: ReactNode; href: string }) => <a href={href}>{children}</a>,
   useRouter: () => ({ replace: jest.fn() }),
   usePathname: () => '/de',
 }))

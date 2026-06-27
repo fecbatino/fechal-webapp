@@ -1,3 +1,4 @@
+import { type ReactNode } from 'react'
 import { render, screen } from '@testing-library/react'
 import LoginPage from '@/app/[locale]/auth/login/page'
 
@@ -15,6 +16,7 @@ jest.mock('@/lib/supabase/client', () => ({
 }))
 
 jest.mock('@/lib/navigation', () => ({
+  Link: ({ children, href }: { children: ReactNode; href: string }) => <a href={href}>{children}</a>,
   useRouter: () => ({ push: jest.fn() }),
 }))
 
