@@ -8,6 +8,7 @@ import {
   PackageDistributionArraySchema,
   MonthlyTrendArraySchema,
   RecentTransactionArraySchema,
+  validateRpc,
   type DashboardData,
 } from '@/lib/admin-types'
 
@@ -21,8 +22,9 @@ interface UseAdminDashboardResult {
 /**
  * S-21: Custom hook for admin dashboard analytics.
  * Calls Supabase RPC functions (Security Definer, admin-role checked).
- * Every RPC response is validated at runtime against the Zod schemas in
- * lib/admin-types.ts — no unchecked `as` casts.
+ * Every RPC response is validated at runtime via Zod safeParse (validateRpc);
+ * a failed validation raises a typed RpcValidationError that is surfaced
+ * through the error state instead of crashing the dashboard.
  */
 export function useAdminDashboard(): UseAdminDashboardResult {
   const [data, setData] = useState<DashboardData | null>(null)
@@ -65,13 +67,13 @@ export function useAdminDashboard(): UseAdminDashboardResult {
 
         if (cancelled) return
 
-        // Runtime validation: throws on shape mismatch with the DB contract.
+        // Runtime validation via safeParse; throws typed RpcValidationError on drift.
         setData({
-          overview: DashboardOverviewSchema.parse(overviewRes.data),
-          bookingStats: BookingStatsArraySchema.parse(bookingStatsRes.data),
-          packageDistribution: PackageDistributionArraySchema.parse(packageDistRes.data),
-          monthlyTrends: MonthlyTrendArraySchema.parse(monthlyTrendsRes.data),
-          recentTransactions: RecentTransactionArraySchema.parse(recentTxRes.data),
+          overview: validateRpc('get_admin_dashboard_overview', DashboardOverviewSchema, overviewRes.data),
+          bookingStats: validateRpc('get_admin_booking_stats', BookingStatsArraySchema, bookingStatsRes.data),
+          packageDistribution: validateRpc('get_admin_package_distribution', PackageDistributionArraySchema, packageDistRes.data),
+          monthlyTrends: validateRpc('get_admin_monthly_trends', MonthlyTrendArraySchema, monthlyTrendsRes.data),
+          recentTransactions: validateRpc('get_admin_recent_transactions', RecentTransactionArraySchema, recentTxRes.data),
         })
       } catch (err) {
         if (!cancelled) {

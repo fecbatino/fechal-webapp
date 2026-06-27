@@ -38,3 +38,27 @@ describe('admin Zod schemas', () => {
     expect(() => DashboardOverviewSchema.parse({ total_bookings: 1 })).toThrow()
   })
 })
+
+import { validateRpc, RpcValidationError } from '@/lib/admin-types'
+
+describe('validateRpc (safeParse wrapper)', () => {
+  it('returns typed data on a valid response', () => {
+    const out = validateRpc('get_admin_booking_stats', BookingStatsArraySchema, [
+      { status: 'paid', count: 2, total_revenue: '999.00', total_participants: 4 },
+    ])
+    expect(out[0].total_revenue).toBe(999)
+  })
+
+  it('throws a typed RpcValidationError naming the rpc on drift', () => {
+    expect(() =>
+      validateRpc('get_admin_booking_stats', BookingStatsArraySchema, [{ status: 'paid' }]),
+    ).toThrow(RpcValidationError)
+    try {
+      validateRpc('get_admin_booking_stats', BookingStatsArraySchema, [{ status: 'paid' }])
+    } catch (e) {
+      expect(e).toBeInstanceOf(RpcValidationError)
+      expect((e as RpcValidationError).rpc).toBe('get_admin_booking_stats')
+      expect((e as RpcValidationError).issues).toMatch(/count/)
+    }
+  })
+})

@@ -89,3 +89,34 @@ export type DashboardData = {
   monthlyTrends: MonthlyTrend[]
   recentTransactions: RecentTransaction[]
 }
+
+/**
+ * Typed error thrown when an RPC response fails runtime schema validation.
+ * Surfaced through the dashboard hook's error state (async effect errors do
+ * not reach React error boundaries), giving a controlled failure instead of
+ * a crash on unexpected DB drift.
+ */
+export class RpcValidationError extends Error {
+  constructor(
+    public readonly rpc: string,
+    public readonly issues: string,
+  ) {
+    super(`RPC ${rpc} returned data that does not match its schema: ${issues}`)
+    this.name = 'RpcValidationError'
+  }
+}
+
+/**
+ * safeParse wrapper: returns typed data on success, throws a typed
+ * RpcValidationError (with flattened issue paths) on failure.
+ */
+export function validateRpc<T>(rpc: string, schema: z.ZodType<T>, data: unknown): T {
+  const result = schema.safeParse(data)
+  if (!result.success) {
+    const issues = result.error.issues
+      .map((i) => `${i.path.join('.') || '<root>'}: ${i.message}`)
+      .join('; ')
+    throw new RpcValidationError(rpc, issues)
+  }
+  return result.data
+}
