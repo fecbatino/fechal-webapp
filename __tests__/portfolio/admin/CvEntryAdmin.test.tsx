@@ -31,12 +31,14 @@ const baseEntry: CvEntry = {
   title_de: 'Software Entwickler',
   title_fr: 'Développeur Logiciel',
   title_en: 'Software Developer',
+  title_ar: 'مطور برمجيات',
   organization: 'Tech GmbH',
   start_year: 2020,
   end_year: null,
   description_de: null,
   description_fr: null,
   description_en: null,
+  description_ar: null,
   sort_order: 0,
 }
 
