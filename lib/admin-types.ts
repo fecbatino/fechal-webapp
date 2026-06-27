@@ -1,64 +1,86 @@
 /**
- * S-21 Admin Dashboard Types
- * TypeScript definitions for Hajj & Umrah analytics
+ * S-21 Admin Dashboard Types + runtime validation.
+ *
+ * Zod schemas are the single source of truth: TypeScript types are inferred
+ * via z.infer, and lib/use-admin-dashboard.ts parses every RPC response
+ * against these schemas instead of using unchecked `as` casts.
+ *
+ * Shapes mirror supabase/migrations/009_admin_dashboard_rpc.sql exactly.
+ * Numeric/money columns use z.coerce.number() because PostgREST may serialize
+ * Postgres `numeric` as a string; coercion yields a number either way.
  */
 
-export interface BookingStats {
-  status: string
-  count: number
-  total_revenue: number
-  total_participants: number
-}
+import { z } from 'zod'
 
-export interface PackageDistribution {
-  id: string
-  name: string
-  type: 'hajj' | 'umrah'
-  price_eur: number
-  seats_total: number
-  seats_booked: number
-  booking_count: number
-  revenue: number
-}
+export const BookingStatsSchema = z.object({
+  status: z.string(),
+  count: z.coerce.number(),
+  total_revenue: z.coerce.number(),
+  total_participants: z.coerce.number(),
+})
 
-export interface MonthlyTrend {
-  month: string
-  bookings: number
-  revenue: number
-  participants: number
-}
+export const PackageDistributionSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  type: z.enum(['hajj', 'umrah']),
+  price_eur: z.coerce.number(),
+  seats_total: z.coerce.number(),
+  seats_booked: z.coerce.number(),
+  booking_count: z.coerce.number(),
+  revenue: z.coerce.number(),
+})
 
-export interface RecentTransaction {
-  id: string
-  booking_ref: string
-  package_name: string
-  package_type: 'hajj' | 'umrah'
-  amount: number
-  method: string
-  payment_status: 'pending' | 'confirmed' | 'failed'
-  booking_status: 'draft' | 'confirmed' | 'paid' | 'cancelled'
-  sepa_reference: string | null
-  created_at: string
-  user_email: string | null
-}
+export const MonthlyTrendSchema = z.object({
+  month: z.string(),
+  bookings: z.coerce.number(),
+  revenue: z.coerce.number(),
+  participants: z.coerce.number(),
+})
 
-export interface DashboardOverview {
-  total_bookings: number
-  total_revenue: number
-  total_participants: number
-  confirmed_bookings: number
-  paid_bookings: number
-  cancelled_bookings: number
-  pending_payments: number
-  confirmed_payments: number
-  failed_payments: number
-  total_packages: number
-  hajj_bookings: number
-  umrah_bookings: number
-  hajj_revenue: number
-  umrah_revenue: number
-  total_seats_available: number
-}
+export const RecentTransactionSchema = z.object({
+  id: z.string(),
+  booking_ref: z.string(),
+  package_name: z.string(),
+  package_type: z.enum(['hajj', 'umrah']),
+  amount: z.coerce.number(),
+  method: z.string(),
+  payment_status: z.enum(['pending', 'confirmed', 'failed']),
+  booking_status: z.enum(['draft', 'confirmed', 'paid', 'cancelled']),
+  sepa_reference: z.string().nullable(),
+  created_at: z.string(),
+  user_email: z.string().nullable(),
+})
+
+export const DashboardOverviewSchema = z.object({
+  total_bookings: z.coerce.number(),
+  total_revenue: z.coerce.number(),
+  total_participants: z.coerce.number(),
+  confirmed_bookings: z.coerce.number(),
+  paid_bookings: z.coerce.number(),
+  cancelled_bookings: z.coerce.number(),
+  pending_payments: z.coerce.number(),
+  confirmed_payments: z.coerce.number(),
+  failed_payments: z.coerce.number(),
+  total_packages: z.coerce.number(),
+  hajj_bookings: z.coerce.number(),
+  umrah_bookings: z.coerce.number(),
+  hajj_revenue: z.coerce.number(),
+  umrah_revenue: z.coerce.number(),
+  total_seats_available: z.coerce.number(),
+})
+
+// Array schemas for the TABLE-returning RPCs
+export const BookingStatsArraySchema = z.array(BookingStatsSchema)
+export const PackageDistributionArraySchema = z.array(PackageDistributionSchema)
+export const MonthlyTrendArraySchema = z.array(MonthlyTrendSchema)
+export const RecentTransactionArraySchema = z.array(RecentTransactionSchema)
+
+// Inferred types — consumed by components; names unchanged for compatibility.
+export type BookingStats = z.infer<typeof BookingStatsSchema>
+export type PackageDistribution = z.infer<typeof PackageDistributionSchema>
+export type MonthlyTrend = z.infer<typeof MonthlyTrendSchema>
+export type RecentTransaction = z.infer<typeof RecentTransactionSchema>
+export type DashboardOverview = z.infer<typeof DashboardOverviewSchema>
 
 export type DashboardData = {
   overview: DashboardOverview

@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import type { DashboardData, DashboardOverview, BookingStats, PackageDistribution, MonthlyTrend, RecentTransaction } from '@/lib/admin-types'
+import {
+  DashboardOverviewSchema,
+  BookingStatsArraySchema,
+  PackageDistributionArraySchema,
+  MonthlyTrendArraySchema,
+  RecentTransactionArraySchema,
+  type DashboardData,
+} from '@/lib/admin-types'
 
 interface UseAdminDashboardResult {
   data: DashboardData | null
@@ -14,7 +21,8 @@ interface UseAdminDashboardResult {
 /**
  * S-21: Custom hook for admin dashboard analytics.
  * Calls Supabase RPC functions (Security Definer, admin-role checked).
- * Returns aggregated booking, payment, and package data.
+ * Every RPC response is validated at runtime against the Zod schemas in
+ * lib/admin-types.ts — no unchecked `as` casts.
  */
 export function useAdminDashboard(): UseAdminDashboardResult {
   const [data, setData] = useState<DashboardData | null>(null)
@@ -57,12 +65,13 @@ export function useAdminDashboard(): UseAdminDashboardResult {
 
         if (cancelled) return
 
+        // Runtime validation: throws on shape mismatch with the DB contract.
         setData({
-          overview: overviewRes.data as DashboardOverview,
-          bookingStats: bookingStatsRes.data as BookingStats[],
-          packageDistribution: packageDistRes.data as PackageDistribution[],
-          monthlyTrends: monthlyTrendsRes.data as MonthlyTrend[],
-          recentTransactions: recentTxRes.data as RecentTransaction[],
+          overview: DashboardOverviewSchema.parse(overviewRes.data),
+          bookingStats: BookingStatsArraySchema.parse(bookingStatsRes.data),
+          packageDistribution: PackageDistributionArraySchema.parse(packageDistRes.data),
+          monthlyTrends: MonthlyTrendArraySchema.parse(monthlyTrendsRes.data),
+          recentTransactions: RecentTransactionArraySchema.parse(recentTxRes.data),
         })
       } catch (err) {
         if (!cancelled) {
