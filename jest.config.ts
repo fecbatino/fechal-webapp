@@ -9,6 +9,7 @@ const config: Config = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   passWithNoTests: true,
   testPathIgnorePatterns: ['<rootDir>/e2e/'],
+  modulePathIgnorePatterns: ['<rootDir>/.next/'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },

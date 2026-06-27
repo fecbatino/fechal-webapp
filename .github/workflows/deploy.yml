@@ -12,7 +12,7 @@ name: CI/CD Deploy
 #   NEXT_PUBLIC_SUPABASE_ANON_KEY  used by the build gate
 #
 # The deployed path on the server is /opt/stacks/fechal-webapp and the
-# container is rebuilt via the compose file at /opt/stacks/web.
+# container is rebuilt via the compose file at /opt/stacks/fechal-webapp.
 
 on:
   push:
@@ -34,6 +34,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+      - name: Typecheck (hard gate)
+        run: npm run typecheck
       - name: Build (hard gate)
         run: npm run build
         env:
