@@ -5,6 +5,9 @@ import { routing } from './i18n/routing'
 
 const intlMiddleware = createMiddleware(routing)
 
+// Pfade, die Authentifizierung erfordern
+const PROTECTED_PATHS = /^\/(de|en|fr|ar)\/alltag\//
+
 export default async function middleware(request: NextRequest) {
   // Step 1: let next-intl handle locale first (returns redirect or rewrite)
   const intlResponse = intlMiddleware(request)
@@ -28,11 +31,20 @@ export default async function middleware(request: NextRequest) {
   )
 
   // Step 3: Refresh auth session — reads + potentially writes refreshed cookie
-  await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  // Step 4: Protect /alltag/* routes — redirect unauthenticated users
+  const { pathname } = request.nextUrl
+  if (PROTECTED_PATHS.test(pathname) && !user) {
+    const locale = pathname.split('/')[1]
+    const loginUrl = new URL('/' + locale + '/auth/login', request.url)
+    loginUrl.searchParams.set('redirect', pathname)
+    return NextResponse.redirect(loginUrl)
+  }
 
   return intlResponse
 }
 
 export const config = {
-  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)'],
+  matcher: ['/((?!api|_next|_vercel|.*\..*).*)'],
 }

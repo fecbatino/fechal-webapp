@@ -10,10 +10,10 @@ export default async function AlltagLayout({
 }) {
   const { locale } = await params
   const supabase = await createClient()
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { user } } = await supabase.auth.getUser()
 
-  if (!session) {
-    redirect(`/${locale}/auth/login`)
+  if (!user) {
+    redirect('/' + locale + '/auth/login')
   }
 
   return <>{children}</>
