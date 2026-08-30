@@ -30,7 +30,9 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  const messages = await getMessages()
+  // EXPLIZITE Locale aus params an getMessages übergeben, NICHT den
+  // requestLocale-Kontext vertrauen (fiel auf 'de' zurück, obwohl URL=fr).
+  const messages = await getMessages({ locale: locale as Locale })
   const dir = locale === 'ar' ? 'rtl' : 'ltr'
 
   return (
