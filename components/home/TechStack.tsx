@@ -1,5 +1,6 @@
 'use client'
 import { useTranslations } from 'next-intl'
+import { Stagger, StaggerItem, FadeUp } from '@/components/motion-primitives'
 
 const techItems = [
   {
@@ -73,55 +74,58 @@ export default function TechStack() {
 
       <div className="relative max-w-6xl mx-auto">
         {/* Section header */}
-        <div className="text-center mb-14">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
-            ⚡ {t('title')}
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
-            {t('title')}
-          </h2>
-          <p className="text-muted-fg max-w-2xl mx-auto">
-            {t('desc')}
-          </p>
-        </div>
+        <FadeUp>
+          <div className="text-center mb-14">
+            <span className="inline-block text-xs font-semibold tracking-widest uppercase text-accent mb-3">
+              ⚡ {t('title')}
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+              {t('title')}
+            </h2>
+            <p className="text-muted-fg max-w-2xl mx-auto">
+              {t('desc')}
+            </p>
+          </div>
+        </FadeUp>
 
         {/* 2×2 Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <Stagger className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {techItems.map((item) => (
-            <div
-              key={item.key}
-              className={`relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${item.gradient} p-6 transition-all duration-300 ${item.borderGlow}`}
-            >
-              {/* Hover glow */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
+            <StaggerItem key={item.key}>
+              <div
+                className={`group relative overflow-hidden rounded-2xl border border-border bg-gradient-to-br ${item.gradient} p-6 transition-all duration-300 ${item.borderGlow}`}
+              >
+                {/* Hover glow */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
 
-              <div className="relative flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-subtle border border-border flex items-center justify-center flex-shrink-0">
-                  {item.icon}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-foreground mb-1.5">
-                    {t(item.key + '_title')}
-                  </h3>
-                  <p className="text-sm text-muted-fg leading-relaxed">
-                    {t(item.key + '_desc')}
-                  </p>
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {item.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] px-2 py-0.5 rounded-full bg-subtle text-muted-fg font-medium border border-border"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div className="relative flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-subtle border border-border flex items-center justify-center flex-shrink-0">
+                    {item.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg font-semibold text-foreground mb-1.5">
+                      {t(item.key + '_title')}
+                    </h3>
+                    <p className="text-sm text-muted-fg leading-relaxed">
+                      {t(item.key + '_desc')}
+                    </p>
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {item.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[10px] px-2 py-0.5 rounded-full bg-subtle text-muted-fg font-medium border border-border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

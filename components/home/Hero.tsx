@@ -1,15 +1,26 @@
-import { getTranslations } from 'next-intl/server'
+'use client'
+
+import { motion, type Variants } from 'framer-motion'
+import { useTranslations } from 'next-intl'
 import LogoMark from '@/components/ui/LogoMark'
 
-export default async function Hero() {
-  const t = await getTranslations('home')
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.6, delay: i * 0.12, ease: 'easeOut' as const },
+  }),
+}
+
+export default function Hero() {
+  const t = useTranslations('home')
 
   return (
     <section className="relative overflow-hidden bg-background py-28 px-4">
       {/* Animated gradient background */}
-      <div className="absolute inset-0" style={{background: 'var(--gradient-hero)'}}>
+      <div className="absolute inset-0" style={{ background: 'var(--gradient-hero)' }}>
         {/* Glowing orbs */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{background: 'color-mix(in srgb, var(--accent) 20%, transparent)'}} />
+        <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse" style={{ background: 'color-mix(in srgb, var(--accent) 20%, transparent)' }} />
         <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
@@ -28,36 +39,60 @@ export default async function Hero() {
       </svg>
 
       <div className="relative max-w-3xl mx-auto text-center">
-        {/* Logo mark with glow */}
-        <div className="flex justify-center mb-8">
+        <motion.div
+          custom={0}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="flex justify-center mb-8"
+        >
           <div className="relative">
-            <div className="absolute inset-0 rounded-full blur-xl" style={{background: 'color-mix(in srgb, var(--accent) 20%, transparent)'}} />
+            <div className="absolute inset-0 rounded-full blur-xl" style={{ background: 'color-mix(in srgb, var(--accent) 20%, transparent)' }} />
             <LogoMark size={80} className="relative shadow-2xl" />
           </div>
-        </div>
+        </motion.div>
 
-        {/* Name */}
-        <h1 className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight mb-2">
+        <motion.h1
+          custom={1}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight mb-2"
+        >
           Fechal
-        </h1>
-        <p className="text-accent text-sm font-medium tracking-[0.2em] uppercase mb-4">
-          Batakpale
-        </p>
+        </motion.h1>
 
-        {/* Separator */}
-        <div className="flex items-center justify-center gap-3 mb-6">
+        <motion.p
+          custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="text-accent text-sm font-medium tracking-[0.2em] uppercase mb-4"
+        >
+          Batakpale
+        </motion.p>
+
+        <motion.div
+          custom={3}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="flex items-center justify-center gap-3 mb-6"
+        >
           <span className="h-px w-16 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
           <span className="text-accent/80 text-xs">✦</span>
           <span className="h-px w-16 bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
-        </div>
+        </motion.div>
 
-        {/* Tagline */}
-        <p className="text-subtle-fg text-lg md:text-xl font-light max-w-xl mx-auto">
+        <motion.p
+          custom={4}
+          variants={fadeUp}
+          initial="hidden"
+          animate="show"
+          className="text-subtle-fg text-lg md:text-xl font-light max-w-xl mx-auto"
+        >
           {t('hero_subtitle')}
-        </p>
-
-        {/* Subtle bottom fade */}
-        <div className="absolute -bottom-20 left-0 right-0 h-20" style={{background: 'linear-gradient(to top, var(--background), transparent)'}} />
+        </motion.p>
       </div>
     </section>
   )
