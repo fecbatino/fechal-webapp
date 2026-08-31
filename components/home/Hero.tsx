@@ -1,19 +1,23 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import LogoMark from '@/components/ui/LogoMark'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  show: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.6, delay: i * 0.12, ease: 'easeOut' as const },
-  }),
-}
-
 export default function Hero() {
   const t = useTranslations('home')
+  const reduceMotion = useReducedMotion()
+
+  const fadeUp: Variants = reduceMotion
+    ? { hidden: { opacity: 0 }, show: { opacity: 1 } }
+    : {
+        hidden: { opacity: 0, y: 24 },
+        show: (i: number) => ({
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, delay: i * 0.12, ease: 'easeOut' as const },
+        }),
+      }
 
   return (
     <section className="relative overflow-hidden bg-background py-28 px-4">
@@ -59,21 +63,11 @@ export default function Hero() {
           animate="show"
           className="text-5xl md:text-6xl font-extrabold text-foreground tracking-tight mb-2"
         >
-          Fechal
+          Fechal <span className="text-accent">Batakpale</span>
         </motion.h1>
 
-        <motion.p
-          custom={2}
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          className="text-accent text-sm font-medium tracking-[0.2em] uppercase mb-4"
-        >
-          Batakpale
-        </motion.p>
-
         <motion.div
-          custom={3}
+          custom={2}
           variants={fadeUp}
           initial="hidden"
           animate="show"
@@ -85,7 +79,7 @@ export default function Hero() {
         </motion.div>
 
         <motion.p
-          custom={4}
+          custom={3}
           variants={fadeUp}
           initial="hidden"
           animate="show"
