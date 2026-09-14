@@ -1,9 +1,10 @@
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, getLocale } from 'next-intl/server'
 import Link from 'next/link'
 import { MessageCircle, Code, Camera, Music, Video } from 'lucide-react'
 
 export default async function Footer() {
   const t = await getTranslations('social')
+  const locale = await getLocale()
 
   const socialLinks = [
     {
@@ -41,11 +42,11 @@ export default async function Footer() {
             © {new Date().getFullYear()} Fechal Batakpale
           </span>
           <div className="flex items-center gap-4 text-sm">
-            <Link href="/impressum" className="text-muted-fg hover:text-accent transition-colors">
+            <Link href={`/${locale}/impressum`} className="text-muted-fg hover:text-accent transition-colors">
               Impressum
             </Link>
             <span className="text-muted">·</span>
-            <Link href="/datenschutz" className="text-muted-fg hover:text-accent transition-colors">
+            <Link href={`/${locale}/datenschutz`} className="text-muted-fg hover:text-accent transition-colors">
               Datenschutz
             </Link>
           </div>
