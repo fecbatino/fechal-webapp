@@ -37,13 +37,13 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <LogoMark size={56} className="shadow-lg" />
+            <LogoMark size={56} />
           </div>
           <h1 className="text-2xl font-bold text-foreground">{t('register_title')}</h1>
           <p className="text-subtle-fg text-sm mt-1">Fechal · Familie · Glaube · IT</p>
         </div>
 
-        <div className="bg-card rounded-2xl border-border shadow-sm p-8">
+        <div className="bg-card rounded-2xl border border-border p-8">
           <form onSubmit={handleRegister} className="space-y-4">
             <div>
               <label htmlFor="fullName" className="block text-sm font-medium text-muted mb-1">
@@ -93,7 +93,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 disabled:opacity-50 transition-colors font-semibold shadow-sm"
+              className="w-full py-3 bg-accent text-white rounded-xl hover:bg-accent-hover disabled:opacity-50 transition-colors font-semibold"
             >
               {loading ? '...' : t('submit_register')}
             </button>

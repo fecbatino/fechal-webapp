@@ -20,7 +20,7 @@ export default function SurahList({ surahs, progressMap }: Props) {
           <Link
             key={surah.number}
             href={`/koran/${surah.number}` as `/koran/${string}`}
-            className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-emerald-400 hover:shadow-sm transition-all group"
+            className="flex items-center gap-4 p-4 bg-background rounded-xl border border-border hover:border-accent transition-all group"
           >
             <span className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-50 text-emerald-700 font-bold text-sm flex items-center justify-center border border-emerald-200">
               {surah.number}

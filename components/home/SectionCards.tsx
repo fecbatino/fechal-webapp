@@ -47,7 +47,7 @@ export default function SectionCards() {
           <motion.div key={key} variants={item}>
             <Link
               href={href}
-              className="group relative block p-6 h-full rounded-2xl border border-border bg-card hover:shadow-xl transition-shadow overflow-hidden"
+              className="group relative block p-6 h-full rounded-2xl border border-border bg-card transition-all duration-300 hover:border-accent/45 overflow-hidden"
             >
               {/* accent glow on hover */}
               <div

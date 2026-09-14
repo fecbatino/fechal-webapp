@@ -52,7 +52,7 @@ export default function Hero() {
         >
           <div className="relative">
             <div className="absolute inset-0 rounded-full blur-xl" style={{ background: 'color-mix(in srgb, var(--accent) 20%, transparent)' }} />
-            <LogoMark size={80} className="relative shadow-2xl" />
+            <LogoMark size={80} className="relative" />
           </div>
         </motion.div>
 

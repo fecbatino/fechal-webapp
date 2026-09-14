@@ -64,7 +64,7 @@ export default function LanguageSwitcher() {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 top-full mt-1.5 w-44 rounded-xl border border-border bg-card/95 backdrop-blur-xl shadow-2xl overflow-hidden z-50">
+        <div className="absolute right-0 top-full mt-1.5 w-44 rounded-xl border border-border bg-card/95 backdrop-blur-xl overflow-hidden z-50">
           {locales.map((l) => {
             const isActive = locale === l.code
             return (
@@ -84,7 +84,7 @@ export default function LanguageSwitcher() {
                   <span className="text-muted-fg ml-1.5 text-xs">{l.name}</span>
                 </div>
                 {isActive && (
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <svg className="text-accent" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 )}

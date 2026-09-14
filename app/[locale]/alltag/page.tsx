@@ -20,7 +20,7 @@ export default function AlltagPage() {
           <Link
             key={key}
             href={href}
-            className="block p-6 rounded-2xl border border-border hover:border-emerald-400 hover:shadow-md transition-all bg-background text-center group"
+            className="block p-6 rounded-2xl border border-border hover:border-accent transition-all bg-background text-center group"
           >
             <div className="text-4xl mb-3">{emoji}</div>
             <h2 className="font-semibold text-foreground group-hover:text-accent">

@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { Link, useRouter, usePathname } from '@/lib/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
 import LanguageSwitcher from './LanguageSwitcher'
 import ThemeToggle from './ThemeToggle'
 import LogoMark from '@/components/ui/LogoMark'
@@ -48,7 +49,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="border-b border-border bg-background/90 backdrop-blur-lg sticky top-0 z-50">
+    <header className="glass-dark border-b border-border sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5 group">
           <LogoMark size={32} className="flex-shrink-0 transition-transform group-hover:scale-105" />
@@ -90,11 +91,12 @@ export default function Header() {
             </Link>
           )}
 
-          {/* Hamburger */}
+          {/* Hamburger — 44px Touch-Target */}
           <button
             onClick={() => setMenuOpen((o) => !o)}
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+            className="md:hidden flex flex-col justify-center items-center w-11 h-11 -mr-2 gap-1.5"
             aria-label="Menü"
+            aria-expanded={menuOpen}
           >
             <span className={`block h-0.5 w-5 bg-muted-fg transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
             <span className={`block h-0.5 w-5 bg-muted-fg transition-all duration-200 ${menuOpen ? 'opacity-0' : ''}`} />
@@ -103,37 +105,47 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="md:hidden border-t border-border bg-background/95 backdrop-blur-lg px-4 py-4 flex flex-col gap-1">
-          {navLinks.map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="py-2.5 px-3 rounded-lg text-muted-fg hover:bg-accent-light hover:text-accent-hover text-sm font-medium transition-all"
-            >
-              {label}
-            </Link>
-          ))}
-          <div className="border-t border-border mt-2 pt-3">
-            {user ? (
-              <button
-                onClick={handleLogout}
-                className="w-full text-left py-2.5 px-3 rounded-lg text-red-400 hover:bg-red-500/10 text-sm font-medium"
-              >
-                {t('logout')}
-              </button>
-            ) : (
-              <Link
-                href="/auth/login"
-                className="block py-2.5 px-3 rounded-lg text-accent hover:bg-accent-light text-sm font-medium"
-              >
-                {t('login')}
-              </Link>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Mobile Menu — animiertes Slide-Down, respektiert prefers-reduced-motion */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
+            className="md:hidden overflow-hidden border-t border-border bg-background/95 backdrop-blur-lg"
+          >
+            <div className="px-4 py-3 flex flex-col gap-1 max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain">
+              {navLinks.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="py-3 px-3 rounded-lg text-muted-fg hover:bg-accent-light hover:text-accent-hover text-sm font-medium transition-all"
+                >
+                  {label}
+                </Link>
+              ))}
+              <div className="border-t border-border mt-2 pt-3">
+                {user ? (
+                  <button
+                    onClick={handleLogout}
+                    className="w-full text-left py-3 px-3 rounded-lg text-red-400 hover:bg-red-500/10 text-sm font-medium"
+                  >
+                    {t('logout')}
+                  </button>
+                ) : (
+                  <Link
+                    href="/auth/login"
+                    className="block py-3 px-3 rounded-lg text-accent hover:bg-accent-light text-sm font-medium"
+                  >
+                    {t('login')}
+                  </Link>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

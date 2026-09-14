@@ -38,7 +38,7 @@ export default function ProjectCard({ project, locale: propLocale }: Props) {
   const categoryLabel = t(meta.labelKey)
 
   return (
-    <div className="glass-card rounded-2xl overflow-hidden group transition-all duration-300 hover:shadow-lg hover:shadow-accent/5 hover:-translate-y-1">
+    <div className="glass-card rounded-2xl overflow-hidden group">
       {/* Screenshot / Placeholder */}
       {project.screenshot_url ? (
         <div className="relative w-full aspect-[16/10] overflow-hidden">
