@@ -25,7 +25,7 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ background: 'var(--gradient-hero)' }}>
         {/* Glowing orbs */}
         <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full blur-3xl animate-pulse motion-reduce:animate-none" style={{ background: 'color-mix(in srgb, var(--accent) 20%, transparent)' }} />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl animate-pulse motion-reduce:animate-none" style={{ animationDelay: '2s' }} />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full blur-3xl animate-pulse motion-reduce:animate-none" style={{ background: 'color-mix(in srgb, var(--accent-2) 18%, transparent)', animationDelay: '2s' }} />
       </div>
 
       {/* Grid pattern overlay */}

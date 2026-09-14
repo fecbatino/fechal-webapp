@@ -6,7 +6,7 @@ const techItems = [
   {
     key: 'agents',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
         <line x1="8" y1="21" x2="16" y2="21" />
         <line x1="12" y1="17" x2="12" y2="21" />
@@ -19,28 +19,28 @@ const techItems = [
   {
     key: 'ai',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 2a4 4 0 0 1 4 4c0 2-2 4-4 4s-4-2-4-4a4 4 0 0 1 4-4z" />
         <path d="M2 22c0-5 4.5-8 10-8s10 3 10 8" />
         <path d="M17 6l2 2-2 2" />
         <path d="M21 8l-2 2-2-2" />
       </svg>
     ),
-    gradient: 'from-violet-500/20 via-violet-500/5 to-transparent',
-    borderGlow: 'group-hover:border-violet-500/40',
+    gradient: 'from-accent-2/20 via-accent-2/5 to-transparent',
+    borderGlow: 'group-hover:border-accent-2/40',
     tags: ['Gemma 4', 'Ollama Pro', 'Google AI Studio', 'OpenRouter'],
   },
   {
     key: 'data',
     icon: (
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--accent-2)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <ellipse cx="12" cy="5" rx="9" ry="3" />
         <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
         <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
       </svg>
     ),
-    gradient: 'from-blue-500/20 via-blue-500/5 to-transparent',
-    borderGlow: 'group-hover:border-blue-500/40',
+    gradient: 'from-accent-2/20 via-accent-2/5 to-transparent',
+    borderGlow: 'group-hover:border-accent-2/40',
     tags: ['Supabase', 'Firebase', 'PostgreSQL', 'Auth'],
   },
   {

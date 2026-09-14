@@ -12,7 +12,7 @@ export default async function ContactSection() {
       href: s('github_url'),
       label: s('github_label'),
       icon: Code,
-      btnColor: 'hover:bg-card hover:text-foreground hover:border-border',
+      btnColor: 'hover:bg-indigo-500/10 hover:text-indigo-400 hover:border-indigo-500/30',
       iconColor: 'text-muted-fg',
     },
     {
@@ -54,7 +54,7 @@ export default async function ContactSection() {
         {/* Contact card */}
         <FadeUp delay={0.1}>
           <div className="glass-card rounded-2xl overflow-hidden">
-            <div className="h-1 bg-gradient-to-r from-teal-500 via-teal-400 to-emerald-400" />
+            <div className="h-1 bg-gradient-to-r from-accent via-accent-2 to-accent" />
 
             <div className="p-8">
               {/* Avatar & Name */}
