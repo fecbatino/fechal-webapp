@@ -1,5 +1,5 @@
 import Hero from '@/components/home/Hero'
-import SectionCards from '@/components/home/SectionCards'
+import BentoGrid from '@/components/home/BentoGrid'
 import BlogPreview from '@/components/home/BlogPreview'
 import TechStack from '@/components/home/TechStack'
 import KioskSection from '@/components/home/KioskSection'
@@ -16,7 +16,7 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <Hero />
-      <SectionCards />
+      <BentoGrid />
       <BlogPreview locale={locale} />
       <TechStack />
       <KioskSection locale={locale} />
