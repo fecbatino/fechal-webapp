@@ -1,8 +1,14 @@
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { Inter, Plus_Jakarta_Sans, JetBrains_Mono } from 'next/font/google'
 
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-jbmono',
   display: 'swap',
 })
 
@@ -20,7 +26,7 @@ export default function RootLayout({
   return (
     <html className="dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${jakarta.variable} font-sans bg-background text-foreground min-h-dvh`}
+        className={`${inter.variable} ${jakarta.variable} ${mono.variable} font-sans bg-background text-foreground min-h-dvh`}
         suppressHydrationWarning
       >
         {children}

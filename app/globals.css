@@ -38,21 +38,22 @@
    DARK THEME
    ═══════════════════════════════════ */
 .dark {
-  --background: #030712;
+  --background: #090d16;
   --foreground: #f9fafb;
-  --card: #111827;
+  --card: rgba(15, 23, 42, 0.75);
   --card-foreground: #f3f4f6;
   --subtle: #1f2937;
   --subtle-foreground: #d1d5db;
   --muted: #6b7280;
   --muted-foreground: #9ca3af;
   --border: #1f2937;
-  --accent: #2dd4bf;
-  --accent-hover: #5eead4;
-  --accent-light: rgba(45, 212, 191, 0.15);
-  --accent-2: #818cf8;
-  --accent-2-light: rgba(129, 140, 248, 0.15);
-  --ring: #2dd4bf;
+  --accent: #6366f1;
+  --accent-hover: #818cf8;
+  --accent-light: rgba(99, 102, 241, 0.15);
+  --accent-2: #10b981;
+  --accent-2-light: rgba(16, 185, 129, 0.15);
+  --ring: #6366f1;
+  --radius: 14px;
 
   /* Glassmorphism – Dark */
   --glass-bg: rgba(255, 255, 255, 0.05);
@@ -88,6 +89,8 @@
   --color-ring: var(--ring);
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jbmono), ui-monospace, SFMono-Regular, monospace;
+  --radius-card: 14px;
 }
 
 /* ═══════════════════════════════════
@@ -175,4 +178,22 @@ h1, h2, h3 {
 ::selection {
   background: var(--accent);
   color: #ffffff;
+}
+
+/* ═══════════════════════════════════
+   Bento-Grid Card (UI-Modernisierung)
+   Paper: rgba(15,23,42,.75) | Border 1px rgba(255,255,255,.08) | Radius 14px
+   ═══════════════════════════════════ */
+.bento-card {
+  background: var(--card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius, 14px);
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  border-color: color-mix(in srgb, var(--accent) 50%, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 8px 32px color-mix(in srgb, var(--accent) 18%, transparent);
 }
