@@ -12,6 +12,8 @@ services:
     restart: unless-stopped
     # ports not exposed — only internal via nginx-proxy-manager
     env_file: .env
+    volumes:
+      - ./public/showcases:/app/public/showcases
     environment:
       - PORT=3000
       - NODE_ENV=production
