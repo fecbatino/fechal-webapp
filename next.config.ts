@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
   // replaced by a native ESM test runner (e.g. Vitest).
   transpilePackages: ['next-intl'],
 
+  // Legal pages live under /[locale] only (next-intl). Root-level URLs used by
+  // external references (e.g. Google OAuth branding submission) redirect to /de.
+  async redirects() {
+    return [
+      { source: '/datenschutz', destination: '/de/datenschutz', permanent: true },
+      { source: '/impressum', destination: '/de/impressum', permanent: true },
+    ]
+  },
+
   // Global security headers on every route (see lib/security-headers.ts).
   async headers() {
     return [

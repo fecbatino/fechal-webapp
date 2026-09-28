@@ -42,8 +42,33 @@ const sections = [
     ),
   },
   {
+    id: 'google-api',
+    title: '4. Google-API-Dienste (OAuth)',
+    content: (
+      <div className="space-y-2">
+        <p>
+          Diese Anwendung nutzt Google-APIs (Gmail, Google Calendar, Google Drive, YouTube) über
+          die OAuth-2.0-Schnittstelle des Google-Kontos des Betreibers. Zugriff besteht
+          ausschließlich auf das eigene Betriebskonto des Betreibers (fechal-batakpale.com) —
+          es werden keine Daten von Website-Besuchern über Google-APIs erhoben.
+        </p>
+        <p>
+          Zweck der Zugriffe: Betriebsautomatisierung (E-Mail-Übersicht, Terminerinnerungen,
+          Kalendersynchronisation). Abruf und Nutzung erfolgen gemäß den
+          Google-API-Services-Nutzungsbedingungen (Google User Data Policy), einschließlich der
+          Begrenzung auf den Betriebszweck. Automatisierte Zugriffe unterliegen der
+          Google-API-Limitierung.
+        </p>
+        <p>
+          Die Berechtigung (OAuth-Token) kann jederzeit über die Google-Kontoeinstellungen
+          (Sicherheit → Apps mit Kontozugriff) widerrufen werden.
+        </p>
+      </div>
+    ),
+  },
+  {
     id: 'verantwortlich',
-    title: 'Verantwortliche Stelle',
+    title: '5. Verantwortliche Stelle',
     content: (
       <div className="space-y-1">
         <p className="font-medium text-foreground">Fechal Batakpale</p>
